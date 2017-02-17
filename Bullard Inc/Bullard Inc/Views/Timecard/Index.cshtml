@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
+    string status = "OPEN";
+    DateTime dateValue = new DateTime(2017, 2, 15);
+    switch (dateValue.DayOfWeek)
+    {
+        case DayOfWeek.Monday:
+            dateValue = dateValue.AddDays(-1);
+            break;
+        case DayOfWeek.Tuesday:
+            dateValue = dateValue.AddDays(-2);
+            break;
+        case DayOfWeek.Wednesday:
+            dateValue = dateValue.AddDays(-3);
+            break;
+        case DayOfWeek.Thursday:
+            dateValue = dateValue.AddDays(-5);
+            break;
+        case DayOfWeek.Friday:
+            dateValue = dateValue.AddDays(-6);
+            break;
+        case DayOfWeek.Saturday:
+            dateValue = dateValue.AddDays(-7);
+            break;
+        default:
+            break;
+
+    }
+    DateTime endWeek = dateValue.AddDays(7);
+    string startDate = dateValue.ToString("d");
+    string endDate = endWeek.Date.ToString("d");
+}
+<h2 align="center"><b>TIMECARD</b></h2>
+
+<div class="text-center">
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="timecard/calendar">@startDate - @endDate</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
+<p>Status: <span style="color: red"><b>@status</b></span></p>
+
+<a href="timecard/empjobview/monday" class="btn btn-default btn-lg btn-block">MONDAY</a>
+<a href="timecard/empjobview/tuesday" class="btn btn-default btn-lg btn-block">TUESDAY</a>
+<a href="timecard/empjobview/wednesday" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
+<a href="timecard/empjobview/thursday" class="btn btn-default btn-lg btn-block">THURSDAY</a>
+<a href="timecard/empjobview/friday" class="btn btn-default btn-lg btn-block">FRIDAY</a>
+<br />
+
+<div align="right">
+    <a href="#" class="btn btn-primary btn-lg">Back</a>
+</div>

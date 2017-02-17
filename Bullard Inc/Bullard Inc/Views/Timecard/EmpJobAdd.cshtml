@@ -1,0 +1,78 @@
+﻿@model Bullard_Inc.Models.EmpJobEditModel
+
+@{
+    Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
+    string startDate = "12/6/17";
+    string endDate = "-12/13/17";
+}
+
+<h2 align="center"><b>TIMECARD</b></h2>
+
+<div align="center">
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li class="active"><a href="#">@startDate - @endDate</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
+<p>Status: <span style="color: red"><b>@Model.status</b></span></p>
+
+<a href="Timecard/Details/1" class="btn btn-default btn-lg btn-block disabled">@Model.day.ToUpper()</a>
+<br />
+
+<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label for="job_number" class="col-lg-2 control-label">JOB #</label>
+            <div class="col-lg-10">
+                <select class="form-control" id="select">
+                    <option>-- select one--</option>
+                    <option>14-081</option>
+                    <option>14-082</option>
+                    <option>14-083</option>
+                    <option>14-084</option>
+                    <option>14-085</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="hours" class="col-lg-2 control-label">Hours</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="hours" value="@Model.hours">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="miles" class="col-lg-2 control-label">Miles</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="miles" value=@Model.miles>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lunch" class="col-lg-2 control-label">Lunch</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="lunch" value=@Model.lunch>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="workPreferred" class="col-lg-2 control-label">Work Preferred: </label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea">@Model.workPreferred</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <div class="pull-right">
+                    <a href="/timecard/empjobview/@Model.day.ToUpper()" align="right" type="reset" class="btn btn-primary">Back</a>
+                </div>
+                <div class="pull-left">
+                    <a href="/timecard/empjobview/@Model.day.ToUpper()" type="submit" class="btn btn-success">SUBMIT</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

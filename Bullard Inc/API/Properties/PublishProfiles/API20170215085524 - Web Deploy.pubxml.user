@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADYCTOhXu+0Cdt09e+7vvMwAAAAACAAAAAAAQZgAAAAEAACAAAAA3E9ZDCWM+g/FvQdhY4xRM59R68puQK/kO1AXZ5nbrRAAAAAAOgAAAAAIAACAAAACdijPQqoRl5JCLtuYNWkaOpWloRbbki0Io9sV54Z+ubIAAAABpbB4/kd7zQ05gQIOhIXt4iXOWBsvjSnWIvHkEI92hcmSWdvUuhNWdNE+snVFVFVTsdtaDckn7xxYfaisjSwMU4N8Cst5cHt/FHAYD7i+f3U0Mk7xdNPmPwH7ZvVFVXdlHNTKBKMXHVzZjUHVN7BvMqfZx+D+rfZKzCEpmuQnfG0AAAABkO52eJImpX21LwZNBU6s/fL6GdoA1PM3/xHjcIn5t5E93OtxkiUZ1XyGOYKZTnnU+1fz1Pnmx88rUTNjuM02D</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:bullardserver.database.windows.net,1433;Initial Catalog=bullard_db;Persist Security Info=False;User ID=bullardadmin;Password=Bullard123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="https://demos.telerik.com/kendo-ui/calendar/index">
+    <style>
+        html {
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.material.mobile.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2017.1.118/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+</head>
+<body>
+
+    <div id="example">
+        <div class="demo-section k-content" style="text-align: center;">
+            <h4>Pick a week</h4>
+            <div id="calendar"></div>
+        </div>
+        <script>
+                $(document).ready(function() {
+                    // create Calendar from div HTML element
+                    $("#calendar").kendoCalendar();
+                });
+        </script>
+    </div>
+
+</body>
+<!--
+<body>
+    <form id="form1" runat="server">
+
+        <asp:Calendar id="calendar1" runat="server">
+
+            <OtherMonthDayStyle ForeColor="LightGray">
+            </OtherMonthDayStyle>
+
+            <TitleStyle BackColor="Blue"
+                        ForeColor="White">
+            </TitleStyle>
+
+            <DayStyle BackColor="gray">
+            </DayStyle>
+
+            <SelectedDayStyle BackColor="LightGray"
+                              Font-Bold="True">
+            </SelectedDayStyle>
+        </asp:Calendar>
+
+    </form>
+</body>
+      -->
+</html>
