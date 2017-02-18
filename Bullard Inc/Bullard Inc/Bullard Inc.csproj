@@ -270,7 +270,6 @@
     <Content Include="Views\Shared\AdminFrame.cshtml" />
     <Content Include="Views\Shared\FieldWorkerFrame.cshtml" />
     <Content Include="Views\Timecard\Calendar.cshtml" />
-    <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
     <Content Include="Views\Timecard\EmpJobEdit.cshtml" />
     <Content Include="Views\Timecard\EmpJobView.cshtml" />
     <Content Include="Views\Timecard\Index.cshtml" />
