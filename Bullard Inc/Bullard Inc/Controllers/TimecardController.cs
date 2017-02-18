@@ -46,14 +46,14 @@ namespace Timecard.Controllers
                 lunch = 0,
                 workPreferred = ""
             };
-            return View(vr);
+            return View("EmpJobEdit",vr);
         }
 
         [Route("timecard/empjobview/{day}/empjobedit")]
         public ActionResult EmpJobEdit(string day)
         {
             //  ViewData["day"] = day;
-            var vm = new EmpJobEditModel()
+            var vr = new EmpJobEditModel()
             {
                 day = day,
                 jobNumber = "14 - 081",
@@ -63,7 +63,7 @@ namespace Timecard.Controllers
                 lunch = 0.5,
                 workPreferred = "Dry Wall"
             };
-            return View(vm);
+            return View(vr);
         }
 
         public ActionResult Calendar()
