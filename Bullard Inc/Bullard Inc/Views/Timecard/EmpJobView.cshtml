@@ -19,7 +19,7 @@
 
 <a href="#" class="btn btn-default btn-lg btn-block disabled">@Model.day</a>
 <br />
-<a href="@Model.day/empjobadd" class="btn btn-default">ADD</a>
+<a href="@Model.day/timecard/empjobadd" class="btn btn-default">ADD</a>
 <hr />
 <p>
     JOB #: @Model.jobNumber <br />
@@ -28,7 +28,7 @@
     Lunch: @Model.lunch <br />
     Work Preferred: @Model.workPreferred <br /> <br />
     <div>
-        <a href="@Model.day/empjobedit" class="btn btn-default">EDIT</a>
+        <a href="@Model.day/timecard/empjobedit" class="btn btn-default">EDIT</a>
         <a href="#" class="btn btn-default disabled">DEL</a>
     </div>
 </p>
@@ -40,5 +40,5 @@
 </p>
 
 <div align="right">
-    <a href="/timecard" class="btn btn-primary">Back</a>
+    <a href="/Timecard/Index" class="btn btn-primary">Back</a>
 </div>

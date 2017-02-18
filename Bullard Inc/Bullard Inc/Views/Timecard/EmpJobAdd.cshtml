@@ -1,11 +1,9 @@
-﻿@model Bullard_Inc.Models.EmpJobEditModel
-
-@{
+﻿@{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
     string startDate = "12/6/17";
     string endDate = "-12/13/17";
 }
-
+@model Bullard_Inc.Models.EmpJobEditModel
 <h2 align="center"><b>TIMECARD</b></h2>
 
 <div align="center">
@@ -18,7 +16,7 @@
 
 <p>Status: <span style="color: red"><b>@Model.status</b></span></p>
 
-<a href="Timecard/Details/1" class="btn btn-default btn-lg btn-block disabled">@Model.day.ToUpper()</a>
+<a href="Timecard/Details/1" class="btn btn-default btn-lg btn-block disabled">@Model.day</a>
 <br />
 
 <form class="form-horizontal">
