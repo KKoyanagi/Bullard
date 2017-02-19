@@ -1,24 +1,38 @@
 ﻿@model Bullard_Inc.Models.EmpJobEditModel
 @{
     string startDate = "12/6/17";
-    string endDate = "-12/13/17";
+    string endDate = "12/13/17";
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
 
-<div align="center">
-    <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li class="active"><a href="">@startDate - @endDate</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
+<div class="text-center">
+    <nav>
+        <ul class="pagination pagination-lg">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item active"><a class="page-link" href="/timecard/calendar">@startDate - @endDate</a></li>
+
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <p>Status: <span style="color: red"><b>@Model.status</b></span></p>
 
-<a href="#" class="btn btn-default btn-lg btn-block disabled">@Model.day</a>
+<button class="btn btn-default btn-lg btn-block">@Model.day</button>
 <br />
-<a href="@Model.day/timecard/empjobedit" class="btn btn-default">ADD</a>
+<a href="@Model.day/empjobadd" class="btn btn-default">ADD</a>
 <hr />
 <p>
     JOB #: @Model.jobNumber <br />
@@ -27,7 +41,7 @@
     Lunch: @Model.lunch <br />
     Work Preferred: @Model.workPreferred <br /> <br />
     <div>
-        <a href="@Model.day/timecard/empjobedit" class="btn btn-default">EDIT</a>
+        <a href="@Model.day/empjobedit" class="btn btn-default">EDIT</a>
         <a href="#" class="btn btn-default disabled">DEL</a>
     </div>
 </p>

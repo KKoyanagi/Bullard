@@ -44,7 +44,7 @@ namespace Timecard.Controllers
                 hours = 0,
                 miles = 0,
                 lunch = 0,
-                workPreferred = ""
+                workPreferred = "N/A"
             };
             return View("EmpJobEdit",vr);
         }

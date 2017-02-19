@@ -2678,7 +2678,7 @@ fieldset[disabled] a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color: #01579b;
   background-color: #0275d8;
   border-color: #0275d8;
 }
@@ -4760,6 +4760,8 @@ tbody.collapse.show {
 }
 
 .pagination {
+  text-align: center;
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4767,6 +4769,10 @@ tbody.collapse.show {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+}
+
+.pagination-centered {
+    text-align: center;
 }
 
 .page-item:first-child .page-link {
