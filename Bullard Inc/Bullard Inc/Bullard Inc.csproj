@@ -273,6 +273,7 @@
     <Content Include="Views\Timecard\EmpJobEdit.cshtml" />
     <Content Include="Views\Timecard\EmpJobView.cshtml" />
     <Content Include="Views\Timecard\Index.cshtml" />
+    <Content Include="Views\Shared\LoginFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
