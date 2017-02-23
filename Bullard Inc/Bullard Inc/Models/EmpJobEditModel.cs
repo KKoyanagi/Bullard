@@ -8,6 +8,7 @@ namespace Bullard_Inc.Models
     public class EmpJobEditModel
     {
         public string employeeDay_ID { get; set; }
+        public string day { get; set; }
         public string job_ID { get; set; }
         public string project_ID { get; set; }
         public string activityCode { get; set; }
