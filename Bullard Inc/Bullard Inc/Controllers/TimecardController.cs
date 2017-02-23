@@ -44,7 +44,7 @@ namespace Timecard.Controllers
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
                 var Employees = JsonConvert.DeserializeObject<EmpJobEditModel>(responseData);
-
+                Employees.day = day;
                 return View(Employees);
             }
             return View("Error");
