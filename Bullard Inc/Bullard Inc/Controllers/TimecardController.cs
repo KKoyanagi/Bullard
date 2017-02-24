@@ -67,7 +67,7 @@ namespace Timecard.Controllers
                 hours = 0,
                 mileage = 0,
                 lunch = 0,
-                workPreferred = "N/A"
+                workPerformed = "N/A"
             };
             return View("EmpJobEdit",vr);
         }
@@ -84,12 +84,12 @@ namespace Timecard.Controllers
                 hours = 8.0,
                 mileage = 125,
                 lunch = 0.5,
-                workPreferred = "Dry Wall"
+                workPerformed = "Dry Wall"
             };
             return View(vr);
         }
 
-        public ActionResult Calendar()
+        public ActionResult History()
         {
             return View();
         }
