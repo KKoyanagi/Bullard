@@ -5,10 +5,28 @@ using System.Threading.Tasks;
 using Bullard_Inc.Models;
 using System.Web.Mvc;
 
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
 namespace Timecard.Controllers
 {
     public class TimecardController : Controller
     {
+
+        HttpClient client;
+        //The URL of the WEB API Service
+        string url = "http://api20170215085524.azurewebsites.net/api/jobs/1";
+
+        //Set the base address and the Header Formatter
+        public TimecardController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
 
         // GET: /<controller>/
         public ActionResult Index()
@@ -16,20 +34,25 @@ namespace Timecard.Controllers
             return View();
         }
 
+        // GET: EmployeeInfo
         [Route("timecard/empjobview/{day}")]
-        public ActionResult EmpJobView(string day)
+        public async Task<ActionResult> EmpJobView(string day)
         {
-            var vr = new EmpJobEditModel()
+            HttpResponseMessage responseMessage = await client.GetAsync(url);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                day = day,
-                jobNumber = "14 - 081",
-                status = "OPEN",
-                hours = 8.0,
-                miles = 125,
-                lunch = 0.5,
-                workPreferred = "Dry Wall"
-            };
-            return View(vr);
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                var Employees = JsonConvert.DeserializeObject<EmpJobEditModel>(responseData);
+                Employees.day = day;
+                return View(Employees);
+            }
+            return View("Error");
+        }
+
+        public ActionResult Create()
+        {
+            return View(new EmpJobEditModel());
         }
 
         [Route("timecard/empjobview/{day}/empjobadd")]
@@ -39,12 +62,12 @@ namespace Timecard.Controllers
             var vr = new EmpJobEditModel()
             {
                 day = day,
-                jobNumber = "",
+                activityCode = "",
                 status = "OPEN",
                 hours = 0,
-                miles = 0,
+                mileage = 0,
                 lunch = 0,
-                workPreferred = "N/A"
+                workPerformed = "N/A"
             };
             return View("EmpJobEdit",vr);
         }
@@ -56,17 +79,17 @@ namespace Timecard.Controllers
             var vr = new EmpJobEditModel()
             {
                 day = day,
-                jobNumber = "14 - 081",
+                activityCode = "14 - 081",
                 status = "OPEN",
                 hours = 8.0,
-                miles = 125,
+                mileage = 125,
                 lunch = 0.5,
-                workPreferred = "Dry Wall"
+                workPerformed = "Dry Wall"
             };
             return View(vr);
         }
 
-        public ActionResult Calendar()
+        public ActionResult History()
         {
             return View();
         }
