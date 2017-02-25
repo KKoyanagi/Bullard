@@ -20,5 +20,7 @@ namespace API.Models
         public int Emp_Id { get; set; }
         [Range(0,1)]
         public Boolean Approval { get; set; }
+        [Range(0, 1)]
+        public Boolean Submitted { get; set; }
     }
 }

@@ -30,6 +30,34 @@ namespace API.Models
                              select t;
             return timesheets;
         }
+        public IEnumerable<Timesheet> GetApprovedTimesheetsByWeek(int week_id)
+        {
+            var timesheets = from t in context.Timesheets
+                             where t.Week_Id == week_id && t.Approval == true
+                             select t;
+            return timesheets;
+        }
+        public IEnumerable<Timesheet> GetSubmittedTimesheetsByWeek(int week_id)
+        {
+            var timesheets = from t in context.Timesheets
+                             where t.Week_Id == week_id && t.Submitted == true
+                             select t;
+            return timesheets;
+        }
+        public IEnumerable<Timesheet> GetUnapprovedTimesheetsByWeek(int week_id)
+        {
+            var timesheets = from t in context.Timesheets
+                             where t.Week_Id == week_id && t.Approval == false
+                             select t;
+            return timesheets;
+        }
+        public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(int week_id)
+        {
+            var timesheets = from t in context.Timesheets
+                             where t.Week_Id == week_id && t.Submitted == false
+                             select t;
+            return timesheets;
+        }
         public IEnumerable<Timesheet> GetTimesheetsByEmp(int emp_id)
         {
             var timesheets = from t in context.Timesheets

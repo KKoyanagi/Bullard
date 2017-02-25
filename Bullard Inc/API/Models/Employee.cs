@@ -13,6 +13,8 @@ namespace API.Models
         [Key]
         public int Emp_Id { get; set; }
         [StringLength(50)]
+        public string AccountName { get; set; }
+        [StringLength(50)]
         public string FirstName { get; set; }
         [StringLength(50)]
         public string LastName { get; set; }
