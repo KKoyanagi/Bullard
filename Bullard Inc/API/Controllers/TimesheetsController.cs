@@ -40,7 +40,26 @@ namespace API.Controllers
         {
             return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
         }
-
+        [HttpGet("approved/week/{id}", Name = "GetApprovedTimesheetByWeek")]
+        public IEnumerable<Timesheet> GetApprovedTimesheetsByWeek(string id)
+        {
+            return timesheetRepository.GetApprovedTimesheetsByWeek(Int32.Parse(id));
+        }
+        [HttpGet("submitted/week/{id}", Name = "GetSubmittedTimesheetByWeek")]
+        public IEnumerable<Timesheet> GetSubmittedTimesheetsByWeek(string id)
+        {
+            return timesheetRepository.GetSubmittedTimesheetsByWeek(Int32.Parse(id));
+        }
+        [HttpGet("unapproved/week/{id}", Name = "GetUnapprovedTimesheetByWeek")]
+        public IEnumerable<Timesheet> GetUnapprovedTimesheetsByWeek(string id)
+        {
+            return timesheetRepository.GetUnapprovedTimesheetsByWeek(Int32.Parse(id));
+        }
+        [HttpGet("notsubmitted/week/{id}", Name = "GetNotsubmittedTimesheetByWeek")]
+        public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(string id)
+        {
+            return timesheetRepository.GetNotsubmittedTimesheetsByWeek(Int32.Parse(id));
+        }
         [HttpGet("employee/{id}", Name = "GetTimesheetByEmp")]
         public IEnumerable<Timesheet> GetTimesheetsByEmp(string id)
         {
