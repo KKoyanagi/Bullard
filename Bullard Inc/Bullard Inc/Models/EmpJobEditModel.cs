@@ -16,7 +16,7 @@ namespace Bullard_Inc.Models
         public double hours { get; set; }
         public int mileage { get; set; }
         public double lunch { get; set; }
-        public string workPreferred { get; set; }
+        public string workPerformed { get; set; }
 
     }
 }
