@@ -1,0 +1,56 @@
+﻿@model Bullard_Inc.Models.EmpTimesheetsView
+@{
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <h2>
+            @Model.FirstName @Model.LastName
+        </h2>
+        <h3>
+            Waiting Approval
+        </h3>
+        @foreach (var timesheet in Model.Timesheets)
+        {
+            if (@timesheet.Submitted == true && @timesheet.Approved == false)
+            {
+                <div>
+                    @timesheet.Timesheet_Id 
+                </div>
+            }
+        }
+        <h3>
+            Unsubmitted
+        </h3>
+        @foreach( var timesheet in Model.Timesheets)
+        {
+            if(@timesheet.Submitted== false)
+            {
+                <div>
+                    @timesheet.Timesheet_Id
+                </div>
+            }
+        }
+        <h3>
+            Aprroved
+        </h3>
+        @foreach (var timesheet in Model.Timesheets)
+        {
+            if (@timesheet.Submitted == true && @timesheet.Approved==true)
+            {
+                <div>
+                    @timesheet.Timesheet_Id
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>

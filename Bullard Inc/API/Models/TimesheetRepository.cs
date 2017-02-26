@@ -33,7 +33,7 @@ namespace API.Models
         public IEnumerable<Timesheet> GetApprovedTimesheetsByWeek(int week_id)
         {
             var timesheets = from t in context.Timesheets
-                             where t.Week_Id == week_id && t.Approval == true
+                             where t.Week_Id == week_id && t.Approved == true
                              select t;
             return timesheets;
         }
@@ -47,7 +47,7 @@ namespace API.Models
         public IEnumerable<Timesheet> GetUnapprovedTimesheetsByWeek(int week_id)
         {
             var timesheets = from t in context.Timesheets
-                             where t.Week_Id == week_id && t.Approval == false
+                             where t.Week_Id == week_id && t.Approved == false
                              select t;
             return timesheets;
         }
