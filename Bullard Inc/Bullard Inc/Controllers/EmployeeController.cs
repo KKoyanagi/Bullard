@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bullard_Inc.Models;
 using System.Web.Mvc;
-
+using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -45,26 +45,28 @@ namespace Bullard_Inc.Controllers
         public async Task<ActionResult> EmpTimesheetsView(string id)
         {
             EmpTimesheetsView result = new Models.EmpTimesheetsView();
-            
-            HttpResponseMessage responseMessage = await client.GetAsync("/employees/{id}");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                result = (EmpTimesheetsView)JsonConvert.DeserializeObject<Employee>(responseData);
-
-                responseMessage = await client.GetAsync("/timesheets/employee/{id}");
+           
+                HttpResponseMessage responseMessage = await client.GetAsync("employees/" + id);
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                    List<Timesheet> timesheets = JsonConvert.DeserializeObject<List<Timesheet>>(responseData);
+                    result = (EmpTimesheetsView)JsonConvert.DeserializeObject<EmpTimesheetsView>(responseData);
+                    Debug.WriteLine(result.FirstName);
+                    responseMessage = await client.GetAsync("timesheets/employee/" + id);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                    result.Timesheets = timesheets;
-                    return View(result);
-                }
-                return View("Error");
-            }
+                        List<Timesheet> timesheets = JsonConvert.DeserializeObject<List<Timesheet>>(responseData);
+                        Debug.WriteLine(timesheets);
+                        result.Timesheets = timesheets;
+                        return View(result);
+                    }
+
+                    return View("Error");
+               }  
+            
             
             return View("Error");
         }
