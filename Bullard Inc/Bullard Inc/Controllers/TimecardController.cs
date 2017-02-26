@@ -16,7 +16,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://api20170215085524.azurewebsites.net/api/jobs/1";
+        string url = "http://BullardAPI.azurewebsites.net/api/jobs/1";
 
         //Set the base address and the Header Formatter
         public TimecardController()
