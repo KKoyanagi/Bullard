@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] Bullard </title>
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+
+    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css" rel="stylesheet">
+    <link href="~/Content/compiled.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+
+<body class="fixed-sn mdb-skin">
+    <!========================= DOUBLE NAVAGATION =========================>
+    <header>
+
+        <!--------------------- SIDEBAR NAVAGATION --------------------->
+        <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar">
+
+            <!-- Logo -->
+            <li>
+                <div class="logo-wrapper waves-light">
+                    <a href="#"><img src="~/fonts/Images/headerlogo_website.png" class="img-fluid flex-center"></a>
+                </div>
+            </li>
+            <!--/. Logo -->
+            <!-- Side navigation links -->
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a href="/home/index" class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-sign-out"></i>
+                            Sign Out
+                            @*<i class="fa fa-angle-down rotate-icon"></i>*@
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/timecard/index" class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-clock-o"></i>
+                            Timecard
+                            @*<i class="fa fa-angle-down rotate-icon"></i>*@
+                        </a> 
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-user"></i>
+                            Help
+                            @*<i class="fa fa-angle-down rotate-icon"></i>*@
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--/. Side navigation links -->
+
+            <div class="sidenav-bg mask-strong"></div>
+
+        </ul>
+        <!------------------- ./SIDEBAR NAVAGATION --------------------->
+        <!----------------------- NAVAGATION BAR ----------------------->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar double-nav">
+
+            <!-- SideNav slide-out button -->
+            <div class="float-xs-left">
+                <a href="#" data-activates="slide-out" class="button-collapse">
+                    <i class="fa fa-bars"></i>
+                    <img id="logo" src="~/fonts/Images/headerlogo_website.png">
+                </a>
+            </div>
+            <!-- SideNav slide-out button -->
+            <!-- Breadcrumb-->
+            <div id="brand" class="breadcrumb-dn mr-auto">
+                <!-- BRAND RIGHT SIDE -->
+            </div>
+            <!-- Breadcrumb-->
+            <!-- Right-side navagation items -->
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span class="hidden-sm-down">Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-user"></i>
+                        <span class="hidden-sm-down">Account</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/home/index" class="nav-link">
+                        <i class="fa fa-sign-out"></i>
+                        <span class="hidden-sm-down">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- ./Left-side navagation items -->
+
+        </nav>
+        <!--------------------- ./NAVAGATION BAR ----------------------->
+
+    </header>
+    <!======================= ./DOUBLE NAVAGATION =========================>
+
+    <!============================ MAIN LAYOUT ============================>
+    <main>
+        <div class="container-fluid">
+
+            @RenderBody()
+
+        </div>
+    </main>
+    <!========================== ./MAIN LAYOUT ============================>
+
+    <!============================== SCRIPTS ==============================>
+    <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/compiled.min.js"></script>
+
+    <script>
+    $('#myModal').on('shown.bs.modal', function () {
+  		$('#myInput').focus()
+	})
+    </script>
+
+    <script>
+    $(".button-collapse").sideNav();
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

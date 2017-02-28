@@ -19,6 +19,8 @@ namespace API.Models
         [ForeignKey("Employee")]
         public int Emp_Id { get; set; }
         [Range(0,1)]
-        public Boolean Approval { get; set; }
+        public Boolean Approved { get; set; }
+        [Range(0, 1)]
+        public Boolean Submitted { get; set; }
     }
 }

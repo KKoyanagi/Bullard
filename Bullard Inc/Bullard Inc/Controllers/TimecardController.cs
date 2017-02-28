@@ -16,7 +16,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://api20170215085524.azurewebsites.net/api/jobs/1";
+        string url = "http://BullardAPI.azurewebsites.net/api/jobs/1";
 
         //Set the base address and the Header Formatter
         public TimecardController()
@@ -36,15 +36,14 @@ namespace Timecard.Controllers
 
         // GET: EmployeeInfo
         [Route("timecard/empjobview/{day}")]
-        public async Task<ActionResult> EmpJobView(string day)
+        public async Task<ActionResult> EmpJobView(int day)
         {
             HttpResponseMessage responseMessage = await client.GetAsync(url);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<EmpJobEditModel>(responseData);
-                Employees.day = day;
+                var Employees = JsonConvert.DeserializeObject<JobModel>(responseData);
                 return View(Employees);
             }
             return View("Error");
@@ -52,16 +51,16 @@ namespace Timecard.Controllers
 
         public ActionResult Create()
         {
-            return View(new EmpJobEditModel());
+            return View(new JobModel());
         }
 
         [Route("timecard/empjobview/{day}/empjobadd")]
-        public ActionResult EmpJobAdd(string day)
+        public ActionResult EmpJobAdd(int day)
         {
             //  ViewData["day"] = day;
-            var vr = new EmpJobEditModel()
+            var vr = new JobModel()
             {
-                day = day,
+                employeeDay_Id = day,
                 activityCode = "",
                 status = "OPEN",
                 hours = 0,
@@ -73,12 +72,12 @@ namespace Timecard.Controllers
         }
 
         [Route("timecard/empjobview/{day}/empjobedit")]
-        public ActionResult EmpJobEdit(string day)
+        public ActionResult EmpJobEdit(int day)
         {
             //  ViewData["day"] = day;
-            var vr = new EmpJobEditModel()
+            var vr = new JobModel()
             {
-                day = day,
+                employeeDay_Id = day,
                 activityCode = "14 - 081",
                 status = "OPEN",
                 hours = 8.0,
@@ -93,7 +92,5 @@ namespace Timecard.Controllers
         {
             return View();
         }
-
-
     }
 }

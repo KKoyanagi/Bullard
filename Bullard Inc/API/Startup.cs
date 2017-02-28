@@ -52,6 +52,7 @@ namespace API
             services.AddSingleton<ITimesheetRepository, TimesheetRepository>();
             services.AddSingleton<IEmployeeDayRepository, EmployeeDayRepository>();
             services.AddSingleton<IJobRepository, JobRepository>();
+            services.AddSingleton<IActivityCodeRepository, ActivityCodeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

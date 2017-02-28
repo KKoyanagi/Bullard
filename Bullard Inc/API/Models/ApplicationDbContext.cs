@@ -21,6 +21,7 @@ namespace API.Models
         public DbSet<Timesheet> Timesheets { get; set; }
         public DbSet<EmployeeDay> EmployeeDays { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<ActivityCode> ActivityCodes { get; set; }
 
     }
 }
