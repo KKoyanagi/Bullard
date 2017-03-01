@@ -572,3 +572,249 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Sec
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.csprojResolveAssemblyReference.cache
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.dll
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.pdb
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\ApplicationInsights.config
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\csc.exe
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\vbc.exe
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll.config
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.pdb
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Owin.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Razor.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\WebGrease.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Razor.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.pdb
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.csprojResolveAssemblyReference.cache
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.pdb
+C:\Projects\Bullard Inc\Bullard Inc\bin\ApplicationInsights.config
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\csc.exe
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\System.Collections.Immutable.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\System.Reflection.Metadata.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\vbc.exe
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe
+C:\Projects\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe.config
+C:\Projects\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll.config
+C:\Projects\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Bullard Inc.pdb
+C:\Projects\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\EntityFramework.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Web.Infrastructure.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Owin.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Razor.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\WebGrease.dll
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.Razor.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.pdb
+C:\Projects\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\EntityFramework.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Projects\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Projects\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.csprojResolveAssemblyReference.cache
+C:\Projects\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.dll
+C:\Projects\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.pdb
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\ApplicationInsights.config
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\csc.exe
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\vbc.exe
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll.config
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Bullard Inc.pdb
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Owin.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Razor.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\WebGrease.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.Web.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Helpers.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Mvc.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Optimization.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.Razor.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Web.WebPages.Razor.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Antlr3.Runtime.pdb
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Newtonsoft.Json.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\EntityFramework.SqlServer.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.csprojResolveAssemblyReference.cache
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.dll
+C:\Users\Sammy Sosa\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.pdb

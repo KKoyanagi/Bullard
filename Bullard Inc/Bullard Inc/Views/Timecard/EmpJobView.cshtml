@@ -1,9 +1,21 @@
-﻿@model Bullard_Inc.Models.EmpJobEditModel
+﻿@model Bullard_Inc.Models.JobModel
 @{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string startDate = "12/6/17";
     string endDate = "12/13/17";
+    string day = "n/a";
+
+    switch (Model.employeeDay_Id)
+    {
+        case 1: day = "monday".ToUpper(); break;
+        case 2: day = "tuesday".ToUpper(); break;
+        case 3: day = "wednesday".ToUpper(); break;
+        case 4: day = "thursday".ToUpper(); break;
+        case 5: day = "friday".ToUpper(); break;
+        case 6: day = "saturday".ToUpper(); break;
+        case 7: day = "sunday".ToUpper(); break;
+    }
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -32,9 +44,9 @@
 
 <p>Status: <span style="color: red"><b>@Model.status</b></span></p>
 
-<button class="btn btn-default btn-lg btn-block">@Model.day</button>
+<button class="btn btn-default btn-lg btn-block">@day</button>
 <br />
-<a href="@Model.day/empjobadd" class="btn btn-default">ADD</a>
+<a href="@Model.employeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
 <hr />
 <p>
     JOB #: @Model.activityCode <br />
@@ -43,7 +55,7 @@
     Lunch: @Model.lunch <br />
     Work Preferred: @Model.workPerformed <br /> <br />
     <div>
-        <a href="@Model.day/empjobedit" class="btn btn-default">EDIT</a>
+        <a href="@Model.employeeDay_Id/empjobedit" class="btn btn-default">EDIT</a>
         <a href="#" class="btn btn-default disabled">DEL</a>
     </div>
 </p>

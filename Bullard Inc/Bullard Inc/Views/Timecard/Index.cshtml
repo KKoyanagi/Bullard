@@ -32,36 +32,47 @@
     string endDate = endWeek.Date.ToString("d");
 }
 <h2 align="center"><b>TIMECARD</b></h2>
-
-<div align="center">
-    <nav>
-        <ul class="pagination pagination-lg">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <li class="page-item active"><a class="page-link" href="calendar">@startDate - @endDate</a></li>
-
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <nav>
+                <ul class="pagination pagination-lg pg-bluegrey">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="history">
+                            @startDate - @endDate
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Status: <span style="color: red"><b>@status</b></span></p>
+        </div>
+    </div>
 </div>
 
-<p>Status: <span style="color: red"><b>@status</b></span></p>
 
-<a href="/timecard/empjobview/monday" class="btn btn-default btn-lg btn-block">MONDAY</a>
-<a href="/timecard/empjobview/tuesday" class="btn btn-default btn-lg btn-block">TUESDAY</a>
-<a href="/timecard/empjobview/wednesday" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
-<a href="/timecard/empjobview/thursday" class="btn btn-default btn-lg btn-block">THURSDAY</a>
-<a href="/timecard/empjobview/friday" class="btn btn-default btn-lg btn-block">FRIDAY</a>
+<a href="/timecard/empjobview/1" class="btn btn-default btn-lg btn-block">MONDAY</a>
+<a href="/timecard/empjobview/2" class="btn btn-default btn-lg btn-block">TUESDAY</a>
+<a href="/timecard/empjobview/3" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
+<a href="/timecard/empjobview/4" class="btn btn-default btn-lg btn-block">THURSDAY</a>
+<a href="/timecard/empjobview/5" class="btn btn-default btn-lg btn-block">FRIDAY</a>
 <br />
 
 <div align="right">
