@@ -32,6 +32,7 @@
     string endDate = endWeek.Date.ToString("d");
 }
 <h2 align="center"><b>TIMECARD</b></h2>
+
 <div class="container">
     <div class="row">
         <div class="col"></div>
@@ -60,19 +61,21 @@
         </div>
         <div class="col"></div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <p>Status: <span style="color: red"><b>@status</b></span></p>
-        </div>
-    </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <p>Status: <span style="color: red"><b>@status</b></span></p>
+    </div>
+</div>
 
 <a href="/timecard/empjobview/1" class="btn btn-default btn-lg btn-block">MONDAY</a>
 <a href="/timecard/empjobview/2" class="btn btn-default btn-lg btn-block">TUESDAY</a>
 <a href="/timecard/empjobview/3" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
 <a href="/timecard/empjobview/4" class="btn btn-default btn-lg btn-block">THURSDAY</a>
 <a href="/timecard/empjobview/5" class="btn btn-default btn-lg btn-block">FRIDAY</a>
+<a href="/timecard/empjobview/6" class="btn btn-default btn-lg btn-block">SATURDAY</a>
+<a href="/timecard/empjobview/7" class="btn btn-default btn-lg btn-block">SUNDAY</a>
 <br />
 
 <div align="right">

@@ -4,47 +4,43 @@
 
     string startDate = "12/6/17";
     string endDate = "12/13/17";
-    string day = "n/a";
-
-    switch (Model.employeeDay_Id)
-    {
-        case 1: day = "monday".ToUpper(); break;
-        case 2: day = "tuesday".ToUpper(); break;
-        case 3: day = "wednesday".ToUpper(); break;
-        case 4: day = "thursday".ToUpper(); break;
-        case 5: day = "friday".ToUpper(); break;
-        case 6: day = "saturday".ToUpper(); break;
-        case 7: day = "sunday".ToUpper(); break;
-    }
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
 
-<div class="text-center">
-    <nav>
-        <ul class="pagination pagination-lg">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <li class="page-item active"><a class="page-link" href="/timecard/history">@startDate - @endDate</a></li>
-
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <nav>
+                <ul class="pagination pagination-lg pg-bluegrey">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="history">
+                            @startDate - @endDate
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col"></div>
+    </div>
 </div>
 
 <p>Status: <span style="color: red"><b>@Model.status</b></span></p>
 
-<button class="btn btn-default btn-lg btn-block">@day</button>
+<button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
 <a href="@Model.employeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
 <hr />
@@ -67,5 +63,5 @@
 </p>
 
 <div align="right">
-    <a href="/Timecard/Index" class="btn btn-primary">Back</a>
+    <a href="/Timecard/Index" class="btn btn-default btn-lg">Back</a>
 </div>
