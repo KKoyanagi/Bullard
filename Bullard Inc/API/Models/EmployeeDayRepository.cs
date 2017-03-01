@@ -27,9 +27,22 @@ namespace API.Models
             return employeeDays;
         }
         
-        public void InsertEmployeeDay(EmployeeDay employeeDay)
+        //This now no longer just inserts, it will insert and return new object
+        // or if it is already created return the old object
+        public EmployeeDay InsertEmployeeDay(EmployeeDay employeeDay)
         {
-            context.EmployeeDays.Add(employeeDay);
+            var emp = from ed in context.EmployeeDays
+                      where ed.Timesheet_Id == employeeDay.Timesheet_Id && ed.Day_Id == employeeDay.Day_Id
+                      select ed;
+            if (emp.Any())
+            {
+                return emp.First();
+            }
+            else
+            {
+                context.EmployeeDays.Add(employeeDay);
+                return employeeDay;
+            }  
         }
 
         public EmployeeDay RemoveEmployeeDay(int employeeDay_id)

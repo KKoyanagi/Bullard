@@ -44,9 +44,9 @@ namespace API.Controllers
                 return BadRequest();
             }
             Debug.WriteLine(employeeDay);
-            employeeDaysRepository.InsertEmployeeDay(employeeDay);
+            var emp = employeeDaysRepository.InsertEmployeeDay(employeeDay);
             employeeDaysRepository.Save();
-            return Created("GetEmployeeDaysById", employeeDay);
+            return new ObjectResult(emp);
         }
 
         [HttpPut("{id}")]
