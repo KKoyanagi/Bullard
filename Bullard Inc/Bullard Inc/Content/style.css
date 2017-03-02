@@ -7,3 +7,14 @@
 	max-height: 30px;
 	padding-left:10px;
 }
+
+.txt{
+	color: #0275d8;
+}
+.txt:hover{
+	text-decoration: underline;
+}
+
+.Bullard_Color{
+	background-color: #3F729B;
+}
