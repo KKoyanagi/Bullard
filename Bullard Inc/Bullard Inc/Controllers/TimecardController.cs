@@ -31,6 +31,8 @@ namespace Timecard.Controllers
         // GET: /<controller>/
         public ActionResult Index()
         {
+            // get request to api/timesheets/employee/current/{id}
+            // return View(timesheet)
             return View();
         }
 
@@ -39,6 +41,13 @@ namespace Timecard.Controllers
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
         {
+            // Make a Post request to api/employeedays
+            // with the timesheet_id and day_id in the body
+            // api will return an employeeday object
+            // Deserialize and the use employeeDay_id to make a get request
+            // Make get request to api/jobs/employeedays/{employeeDay_id}
+            // this returns a list of jobs - List<job> jobs
+
             ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
 
             HttpResponseMessage responseMessage = await client.GetAsync(url);

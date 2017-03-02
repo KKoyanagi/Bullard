@@ -18,6 +18,7 @@ namespace API.Models
         IEnumerable<Timesheet> GetTimesheetsByEmp(int emp_id);
         Timesheet RemoveTimesheet(int timesheet_id);
         void UpdateTimesheet(Timesheet timesheet);
+        Timesheet GetTimesheetCurrent(int emp_id);
 
         //void UpdateTimesheet(Timesheet timesheet);
         void Save();

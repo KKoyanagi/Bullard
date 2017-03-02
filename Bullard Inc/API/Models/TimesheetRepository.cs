@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace API.Models
 {
@@ -65,6 +66,31 @@ namespace API.Models
                              select t;
             return timesheets;
         }
+
+        public Timesheet GetTimesheetCurrent(int emp_id)
+        {
+            var week = context.WorkWeeks.Last();
+            var ts = from td in context.Timesheets
+                      where td.Week_Id == week.Week_Id && td.Emp_Id==emp_id 
+                      select td;
+            if (ts.Any())
+            {
+                Debug.WriteLine("testing");
+                return ts.First();
+            }
+            else
+            {
+                Timesheet timesheet = new Timesheet();
+                timesheet.Week_Id = week.Week_Id;
+                timesheet.Emp_Id = emp_id;
+                timesheet.Approved = false;
+                timesheet.Submitted = false;
+                context.Timesheets.Add(timesheet);
+                context.SaveChanges();
+                return timesheet;
+            }
+        }
+
         public Timesheet InsertTimesheet(Timesheet timesheet)
         {
             var ts = from td in context.Timesheets
