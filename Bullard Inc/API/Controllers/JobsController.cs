@@ -62,7 +62,7 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            jobsRepository.UpdateJob(jb);
+            jobsRepository.UpdateJob(job);
             return new NoContentResult();
         }
 
