@@ -12,22 +12,8 @@
     <title>Employees</title>
 </head>
 <body>
-    <div>
-            @foreach (var item in Model)
-            {
-                <div>
-                   <dl>
-                    <dt><a href="http://BullardAPI.azurewebsites.net/api/employees/@item.Emp_Id">@item.FirstName  @item.LastName</a></dt>
-                    
-                    <dd>Employee Id: @item.Emp_Id</dd>
-                    <dd>Acoount Name: @item.AccountName</dd>
-                    <dd>Email: @item.Email</dd>
-                    <dd>Phone: @item.Phone</dd>                       
-                  
-                    </dl>
-                    <hr />
-                </div>
-            }
+    <div class="panel panel-default">
+        <div class="panel-body">A Basic Panel</div>
     </div>
 </body>
 </html>
