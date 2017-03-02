@@ -52,7 +52,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Job job)
         {
-            if (job == null || job.Job_Id != Int32.Parse(id))
+            if (job == null)
             {
                 return BadRequest();
             }
@@ -62,7 +62,14 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            jobsRepository.UpdateJob(job);
+            //Conflicting key error unless use specific jb element
+            //so for now using this work around
+            jb.EmployeeDay_Id = job.EmployeeDay_Id;
+            jb.Project_Id = job.Project_Id;
+            jb.ActivityCode = job.ActivityCode;
+            jb.Hours = job.Hours;
+            jb.Mileage = job.Mileage;
+            jobsRepository.UpdateJob(jb);
             return new NoContentResult();
         }
 

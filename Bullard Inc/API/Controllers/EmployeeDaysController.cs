@@ -49,6 +49,7 @@ namespace API.Controllers
             return new ObjectResult(emp);
         }
 
+        //This might be unneccasary now, since it just hold foreign keys and no data
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] EmployeeDay employeeDay)
         {
@@ -62,6 +63,8 @@ namespace API.Controllers
             {
                 return NotFound();
             }
+            day.Timesheet_Id = employeeDay.Timesheet_Id;
+            day.Day_Id = employeeDay.Day_Id;
             employeeDaysRepository.UpdateEmployeeDay(day);
             return new NoContentResult();
         }

@@ -79,7 +79,7 @@ namespace API.Controllers
             return Created("GettimesheetById", timesheet);
         }
 
-        /*[HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Timesheet timesheet)
         {
             if (timesheet == null || timesheet.Emp_Id != Int32.Parse(id))
@@ -87,14 +87,16 @@ namespace API.Controllers
                 return BadRequest();
             }
 
-            var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-            if (emp == null)
+            var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+            if (ts == null)
             {
                 return NotFound();
             }
-            timesheetRepository.Updatetimesheet(emp);
+            ts.Approved = timesheet.Approved;
+            ts.Submitted = timesheet.Submitted;
+            timesheetRepository.UpdateTimesheet(ts);
             return new NoContentResult();
-        }*/
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
