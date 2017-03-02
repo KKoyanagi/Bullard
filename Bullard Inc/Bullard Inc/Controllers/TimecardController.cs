@@ -27,24 +27,26 @@ namespace Timecard.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-
+        // Homepage of TimeCard Controller
         // GET: /<controller>/
         public ActionResult Index()
         {
             return View();
         }
 
+        // This action will display the number of Jobs the user has worked on a particular day. 
         // GET: EmployeeInfo
-        [Route("timecard/empjobview/{day}")]
-        public async Task<ActionResult> EmpJobView(string day)
+        [Route("timecard/empjobview/{day_id}")]
+        public async Task<ActionResult> EmpJobView(int day_id)
         {
+            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
+
             HttpResponseMessage responseMessage = await client.GetAsync(url);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<EmpJobEditModel>(responseData);
-                Employees.day = day;
+                var Employees = JsonConvert.DeserializeObject<JobModel>(responseData);
                 return View(Employees);
             }
             return View("Error");
@@ -52,16 +54,18 @@ namespace Timecard.Controllers
 
         public ActionResult Create()
         {
-            return View(new EmpJobEditModel());
+            return View(new JobModel());
         }
 
-        [Route("timecard/empjobview/{day}/empjobadd")]
-        public ActionResult EmpJobAdd(string day)
+        // This action will display a empty Timecard
+        [Route("timecard/empjobview/{day_id}/empjobadd")]
+        public ActionResult EmpJobAdd(int day_id)
         {
-            //  ViewData["day"] = day;
-            var vr = new EmpJobEditModel()
+            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
+
+            var vr = new JobModel()
             {
-                day = day,
+                employeeDay_Id = day_id, 
                 activityCode = "",
                 status = "OPEN",
                 hours = 0,
@@ -69,16 +73,19 @@ namespace Timecard.Controllers
                 lunch = 0,
                 workPerformed = "N/A"
             };
+
             return View("EmpJobEdit",vr);
         }
 
-        [Route("timecard/empjobview/{day}/empjobedit")]
-        public ActionResult EmpJobEdit(string day)
+        // This action will display the user's selected Timecard
+        [Route("timecard/empjobview/{day_id}/empjobedit")]
+        public ActionResult EmpJobEdit(int day_id)
         {
-            //  ViewData["day"] = day;
-            var vr = new EmpJobEditModel()
+            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
+
+            var vr = new JobModel()
             {
-                day = day,
+                employeeDay_Id = day_id,
                 activityCode = "14 - 081",
                 status = "OPEN",
                 hours = 8.0,
@@ -86,14 +93,30 @@ namespace Timecard.Controllers
                 lunch = 0.5,
                 workPerformed = "Dry Wall"
             };
+
             return View(vr);
         }
 
+        // This action will display the user's timecard history
         public ActionResult History()
         {
             return View();
         }
 
-
+        // converts the day_id into a string
+        private string dayToString(int day_id)
+        {
+            switch (day_id)
+            {
+                case 1: return "MONDAY";
+                case 2: return "TUESDAY"; 
+                case 3: return "WEDNESDAY"; 
+                case 4: return "THURSDAY"; 
+                case 5: return "FRIDAY"; 
+                case 6: return "SATURDAY"; 
+                case 7: return "SUNDAY";
+                default: return "N/A"; 
+            }
+        }
     }
 }

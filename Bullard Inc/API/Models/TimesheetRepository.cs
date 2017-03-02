@@ -75,7 +75,7 @@ namespace API.Models
             context.Timesheets.Remove(timesheet);
             return timesheet;
         }
-        public void UpdateTimehseet(Timesheet timesheet)
+        public void UpdateTimesheet(Timesheet timesheet)
         {
             context.Entry(timesheet).State = EntityState.Modified;
         }

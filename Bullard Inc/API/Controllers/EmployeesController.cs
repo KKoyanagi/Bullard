@@ -51,6 +51,7 @@ namespace API.Controllers
             return Created("GetEmployeeById",employee);
         }
 
+        
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Employee employee)
         {
@@ -64,6 +65,11 @@ namespace API.Controllers
             {
                 return NotFound();
             }
+            emp.AccountName = employee.AccountName;
+            emp.Email = employee.Email;
+            emp.FirstName = employee.FirstName;
+            emp.LastName = employee.LastName;
+            emp.Phone = employee.Phone;
             employeeRepository.UpdateEmployee(emp);
             return new NoContentResult();
         }
