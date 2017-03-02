@@ -202,6 +202,7 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IEmployeeDayRepository.
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IEmployeeRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IJobRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\ITimesheetRepository.cs
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IWeekRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\Job.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\JobRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\Project.cs
@@ -209,5 +210,6 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\SeedData.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\Timesheet.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\TimesheetRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\User.cs
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\WeekRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\WorkDay.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\WorkWeek.cs
