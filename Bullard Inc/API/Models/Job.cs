@@ -13,16 +13,16 @@ namespace API.Models
     {
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int Job_Id { get; set; }
+        public int job_Id { get; set; }
         [ForeignKey("EmployeeDay")]
-        public int EmployeeDay_Id { get; set; }
+        public int employeeDay_Id { get; set; }
         //Figure out composite key
         [ForeignKey("Project")]
-        public int Project_Id { get; set; }
-        public int ActivityCode { get; set; }
+        public int project_Id { get; set; }
+        public int activityCode { get; set; }
         [Range(0, 24)]
-        public double Hours { get; set; }
-        public int Mileage { get; set; }
-        public double Lunch { get; set; }
+        public double hours { get; set; }
+        public int mileage { get; set; }
+        public double lunch { get; set; }
     }
 }
