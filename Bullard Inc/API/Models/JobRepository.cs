@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace API.Models
 {
@@ -27,9 +28,10 @@ namespace API.Models
             return jobs;
         }
 
-        public void InsertJob(Job job)
+        public Job InsertJob(Job job)
         {
             context.Jobs.Add(job);
+            return job;
         }
 
         public Job RemoveJob(int job_id)
@@ -41,6 +43,30 @@ namespace API.Models
         public void UpdateJob(Job job)
         {
             context.Entry(job).State = EntityState.Modified;
+            //Job jb = context.Jobs.Find(job.Job_Id);
+            //context.Jobs.Remove(jb);
+            //context.SaveChanges();
+            //context.Jobs.Add(job);
+            /*try
+            {
+                // Attempt to save changes to the database
+                context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var entry = ex.Entries.Single();
+                var databaseEntity = context.Jobs.AsNoTracking().Single(jb => jb.Job_Id == ((Job)entry.Entity).Job_Id);
+                var databaseEntry = context.Entry(databaseEntity);
+                foreach (var property in entry.Metadata.GetProperties())
+                {
+                    Debug.WriteLine("{0} {1}", entry.Property(property.Name), entry.Property(property.Name).CurrentValue);
+                    databaseEntry.Property(property.Name).CurrentValue = entry.Property(property.Name).CurrentValue;
+                }
+                context.SaveChanges();
+            }*/
+
+
+
         }
         public void Save()
         {

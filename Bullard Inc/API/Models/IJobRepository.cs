@@ -7,7 +7,7 @@ namespace API.Models
 {
     public interface IJobRepository
     {
-        void InsertJob(Job job);
+        Job InsertJob(Job job);
         //IEnumerable<EmployeeDay> GetEmployeeDays();
         Job GetJobById(int job_id);
         IEnumerable<Job> GetJobsByEmployeeDayId(int employeeDay_id);

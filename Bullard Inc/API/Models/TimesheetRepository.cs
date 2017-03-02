@@ -65,9 +65,20 @@ namespace API.Models
                              select t;
             return timesheets;
         }
-        public void InsertTimesheet(Timesheet timesheet)
+        public Timesheet InsertTimesheet(Timesheet timesheet)
         {
-            context.Timesheets.Add(timesheet);
+            var ts = from td in context.Timesheets
+                      where td.Emp_Id == timesheet.Emp_Id && td.Week_Id == timesheet.Week_Id
+                      select td;
+            if (ts.Any())
+            {
+                return ts.First();
+            }
+            else
+            {
+                context.Timesheets.Add(timesheet);
+                return timesheet;
+            }
         }
         public Timesheet RemoveTimesheet(int timesheet_id)
         {
