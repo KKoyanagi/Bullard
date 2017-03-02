@@ -7,12 +7,12 @@ namespace Bullard_Inc.Models
 {
     public class JobModel
     {
-        public int EmployeeDay_Id { get; set; }
-        public int Job_ID { get; set; }
-        public int Project_ID { get; set; }
-        public int ActivityCode { get; set; }
-        public double Hours { get; set; }
-        public int Mileage { get; set; }
+        public int employeeDay_Id { get; set; }
+        public int job_ID { get; set; }
+        public int project_ID { get; set; }
+        public int activityCode { get; set; }
+        public double hours { get; set; }
+        public int mileage { get; set; }
 
         //public string status { get; set; }
         public double lunch { get; set; }
