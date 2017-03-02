@@ -66,12 +66,12 @@ namespace Timecard.Controllers
             var vr = new JobModel()
             {
                 employeeDay_Id = day_id, 
-                activityCode = "",
-                status = "OPEN",
+                activityCode = 8,
+                //status = "OPEN",
                 hours = 0,
                 mileage = 0,
                 lunch = 0,
-                workPerformed = "N/A"
+                //workPerformed = "N/A"
             };
 
             return View("EmpJobEdit",vr);
@@ -86,12 +86,12 @@ namespace Timecard.Controllers
             var vr = new JobModel()
             {
                 employeeDay_Id = day_id,
-                activityCode = "14 - 081",
-                status = "OPEN",
+                activityCode = 14 - 081,
+                //status = "OPEN",
                 hours = 8.0,
                 mileage = 125,
                 lunch = 0.5,
-                workPerformed = "Dry Wall"
+                //workPerformed = "Dry Wall"
             };
 
             return View(vr);

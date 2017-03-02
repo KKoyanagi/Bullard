@@ -42,14 +42,14 @@
 
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
-<a href="@Model.EmployeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
+<a href="@Model.employeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
 <hr />
 <p>
     JOB #: @Model.activityCode <br />
     Hours: @Model.hours <br />
     Miles: @Model.mileage <br />
     Lunch: @Model.lunch <br />
-    Work Preferred: @Model.workPerformed <br /> <br />
+    Work Preferred: Model.workPerformed <br /> <br />
     <div>
         <a href="@Model.employeeDay_Id/empjobedit" class="btn btn-default">EDIT</a>
         <a href="#" class="btn btn-default disabled">DEL</a>
