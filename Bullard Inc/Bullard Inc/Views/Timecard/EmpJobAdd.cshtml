@@ -5,6 +5,7 @@
 
     string startDate = "12/6/17";
     string endDate = "12/13/17";
+    Model.employeeDay_Id = (int)ViewData["day"];
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -44,10 +45,10 @@
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
 
-<form>
+<form action ="" method="post">
 
     <div class="btn-group">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Job Number: @Model.activityCode</button>
+        <button class="btn btn-primary dropdown-toggle" value=0 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="activityCode">Job Number:</button>
 
         <div class="dropdown-menu">
             <a class="dropdown-item" href="#">14-081</a>
@@ -58,29 +59,40 @@
 
         </div>
     </div><br /><br />
+    <div class="md-form">
+        <input value=0 type="text" id="form6" class="form-control" name="employeeDay_Id">
+        <label class="active" for="form6">employeeDay_Id</label>
+    </div>
+    <div class="md-form">
+        <input value=0 type="text" id="form6" class="form-control" name="project_ID">
+        <label class="active" for="form6">project_ID</label>
+    </div>
 
     <div class="md-form">
-        <input value=@Model.hours type="text" id="form6" class="form-control">
+        <input value=0 type="text" id="form6" class="form-control" name="hours">
         <label class="active" for="form6">Hours</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.mileage type="text" id="form6" class="form-control">
+        <input value=0 type="text" id="form6" class="form-control"  name="mileage">
         <label class="active" for="form6">Miles</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.lunch type="text" id="form6" class="form-control">
+        <input value=0 type="text" id="form6" class="form-control"  name="lunch">
         <label class="active" for="form6">Lunch</label>
     </div>
 
     <div class="md-form">
         <textarea type="text" id="form7" class="md-textarea">Model.workPerformed</textarea>
-        <label for="form7">Work Preferred</label>
+        <label for="form7">Work Performed</label>
+    </div>
+    <div align="left">
+        <input type="submit" class="btn btn-default btn-lg" value="Submit">
     </div>
 
 </form>
 
 <div align="right">
-    <a href="/Timecard/empjobview/@Model.employeeDay_Id" class="btn btn-default btn-lg">Back</a>
+    <a href="/Timecard/empjobview/@Model.employeeDay_Id" class="btn btn-default btn-lg">Cancel</a>
 </div>

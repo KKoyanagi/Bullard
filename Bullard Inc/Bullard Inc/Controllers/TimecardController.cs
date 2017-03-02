@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
+//using Microsoft.AspNet.WebApi.Client;
+using System.Net.Http.Formatting;
 
 namespace Timecard.Controllers
 {
@@ -16,7 +18,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://BullardAPI.azurewebsites.net/api/jobs/1";
+        string url = "http://BullardAPI.azurewebsites.net/api/jobs";
 
         //Set the base address and the Header Formatter
         public TimecardController()
@@ -41,7 +43,7 @@ namespace Timecard.Controllers
         {
             ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
 
-            HttpResponseMessage responseMessage = await client.GetAsync(url);
+            HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + 1);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -52,31 +54,55 @@ namespace Timecard.Controllers
             return View("Error");
         }
 
-        public ActionResult Create()
+        [Route("timecard/empjobview/{day_id}/empjobadd")]
+        public ActionResult empJobAdd(int day_id)
         {
+            ViewData["day"] = day_id;
             return View(new JobModel());
         }
 
-        // This action will display a empty Timecard
+        [HttpPost]
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public ActionResult EmpJobAdd(int day_id)
+        public async Task<ActionResult> empJobAdd(int day_id, JobModel job)
         {
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-
-            var vr = new JobModel()
+            JobModel vr = new JobModel();
+            vr.employeeDay_Id = 1;
+            vr.project_ID = 1;
+            vr.activityCode = 3050;
+            vr.hours = 12;
+            vr.mileage = 8;
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, vr);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
             {
-                employeeDay_Id = day_id, 
-                activityCode = 8,
-                //status = "OPEN",
-                hours = 0,
-                mileage = 0,
-                lunch = 0,
-                //workPerformed = "N/A"
-            };
-
-            return View("EmpJobEdit",vr);
+                return RedirectToAction("timecard/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error" + response);
         }
-
+        // This action will display a empty Timecard
+        /*[HttpPost]
+        [Route("timecard/empjobview/{day}/empjobadd")]
+        public async Task<RedirectToRouteResult> EmpJobAdd()
+        {
+            //  if (ModelState.IsValid)
+            // {
+            JobModel vr = new JobModel();
+            vr.employeeDay_Id = 3;
+            vr.project_ID = 9;
+            vr.job_ID = 7;
+            vr.activityCode = 3050;
+            vr.hours = 12;
+            vr.mileage = 8;
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, vr);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("timecard/empjobview/{day}");
+            }
+            return RedirectToAction("Error " + response);
+            // }
+        }
+        */
         // This action will display the user's selected Timecard
         [Route("timecard/empjobview/{day_id}/empjobedit")]
         public ActionResult EmpJobEdit(int day_id)
