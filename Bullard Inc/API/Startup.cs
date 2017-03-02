@@ -19,7 +19,6 @@ namespace API
     {
         public Startup(IHostingEnvironment env)
         {
-            Debug.WriteLine("Testing");
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)

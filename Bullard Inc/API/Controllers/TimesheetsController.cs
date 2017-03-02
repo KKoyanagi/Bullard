@@ -27,43 +27,92 @@ namespace API.Controllers
         [HttpGet("{id}", Name = "GettimesheetById")]
         public IActionResult GetTimesheetById(string id)
         {
-           var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-            if (emp == null)
+           try
             {
-                return NotFound();
+                var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
             }
-            return new ObjectResult(emp);
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet("week/{id}", Name = "GetTimesheetByWeek")]
         public IEnumerable<Timesheet> GetTimesheetsByWeek(string id)
         {
-            return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
         [HttpGet("approved/week/{id}", Name = "GetApprovedTimesheetByWeek")]
         public IEnumerable<Timesheet> GetApprovedTimesheetsByWeek(string id)
         {
-            return timesheetRepository.GetApprovedTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetApprovedTimesheetsByWeek(Int32.Parse(id));
+            }
+           catch
+            {
+                return null;
+            }
         }
         [HttpGet("submitted/week/{id}", Name = "GetSubmittedTimesheetByWeek")]
         public IEnumerable<Timesheet> GetSubmittedTimesheetsByWeek(string id)
         {
-            return timesheetRepository.GetSubmittedTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetSubmittedTimesheetsByWeek(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
         [HttpGet("unapproved/week/{id}", Name = "GetUnapprovedTimesheetByWeek")]
         public IEnumerable<Timesheet> GetUnapprovedTimesheetsByWeek(string id)
         {
-            return timesheetRepository.GetUnapprovedTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetUnapprovedTimesheetsByWeek(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
         [HttpGet("notsubmitted/week/{id}", Name = "GetNotsubmittedTimesheetByWeek")]
         public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(string id)
         {
-            return timesheetRepository.GetNotsubmittedTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetNotsubmittedTimesheetsByWeek(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
         [HttpGet("employee/{id}", Name = "GetTimesheetByEmp")]
         public IEnumerable<Timesheet> GetTimesheetsByEmp(string id)
         {
-            return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
+            try
+            {
+                return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
         [HttpPost]
         public IActionResult Create([FromBody] Timesheet timesheet)
@@ -73,42 +122,56 @@ namespace API.Controllers
             {
                 return BadRequest();
             }
-            Debug.WriteLine(timesheet);
-            timesheetRepository.InsertTimesheet(timesheet);
+           // Debug.WriteLine(timesheet);
+            ts =  timesheetRepository.InsertTimesheet(timesheet);
             timesheetRepository.Save();
-            return Created("GettimesheetById", timesheet);
+            return new ObjectResult(ts);
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Timesheet timesheet)
         {
-            if (timesheet == null || timesheet.Emp_Id != Int32.Parse(id))
+            try
+            {
+                if (timesheet == null || timesheet.Emp_Id != Int32.Parse(id))
+                {
+                    return BadRequest();
+                }
+
+                var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+                if (ts == null)
+                {
+                    return NotFound();
+                }
+                ts.Approved = timesheet.Approved;
+                ts.Submitted = timesheet.Submitted;
+                timesheetRepository.UpdateTimesheet(ts);
+                return new NoContentResult();
+            }
+            catch
             {
                 return BadRequest();
             }
-
-            var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-            if (ts == null)
-            {
-                return NotFound();
-            }
-            ts.Approved = timesheet.Approved;
-            ts.Submitted = timesheet.Submitted;
-            timesheetRepository.UpdateTimesheet(ts);
-            return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-            if (emp == null)
+            try
             {
-                return NotFound();
-            }
+                var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+                if (emp == null)
+                {
+                    return NotFound();
+                }
 
-            timesheetRepository.RemoveTimesheet(Int32.Parse(id));
-            return new NoContentResult();
+                timesheetRepository.RemoveTimesheet(Int32.Parse(id));
+                return new NoContentResult();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

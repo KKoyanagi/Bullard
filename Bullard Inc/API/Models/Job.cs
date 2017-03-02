@@ -12,7 +12,7 @@ namespace API.Models
     public class Job
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int Job_Id { get; set; }
         [ForeignKey("EmployeeDay")]
         public int EmployeeDay_Id { get; set; }
@@ -21,7 +21,8 @@ namespace API.Models
         public int Project_Id { get; set; }
         public int ActivityCode { get; set; }
         [Range(0, 24)]
-        public int Hours { get; set; }
+        public double Hours { get; set; }
         public int Mileage { get; set; }
+        public double Lunch { get; set; }
     }
 }

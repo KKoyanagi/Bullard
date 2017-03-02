@@ -21,65 +21,102 @@ namespace API.Controllers
         [HttpGet("timesheet/{id}", Name = "GetEmployeeDaysByTimesheet")]
         public IEnumerable<EmployeeDay> GetEmployeeDaysByTimesheet(string id)
         {
-            return employeeDaysRepository.GetEmployeeDaysByTimesheet(Int32.Parse(id));
+            try
+            {
+                return employeeDaysRepository.GetEmployeeDaysByTimesheet(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         [HttpGet("{id}", Name = "GetEmployeeDayById")]
         public IActionResult GetEmployeeDaysById(string id)
         {
-            var emp = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
-            if (emp == null)
+            try
             {
-                return NotFound();
+                var emp = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
             }
-            return new ObjectResult(emp);
-        }
-
-        [HttpPost]
-        public IActionResult Create([FromBody] EmployeeDay employeeDay)
-        {
-            Debug.WriteLine("Getting Here");
-            if (employeeDay == null)
+            catch
             {
                 return BadRequest();
             }
-            Debug.WriteLine(employeeDay);
-            var emp = employeeDaysRepository.InsertEmployeeDay(employeeDay);
-            employeeDaysRepository.Save();
-            return new ObjectResult(emp);
+        }
+
+        //This no longer just inserts, it also checks if this is already created
+        [HttpPost]
+        public IActionResult Create([FromBody] EmployeeDay employeeDay)
+        {
+            try
+            {
+                Debug.WriteLine("Getting Here");
+                if (employeeDay == null)
+                {
+                    return BadRequest();
+                }
+                Debug.WriteLine(employeeDay);
+                //Thi
+                var empDay = employeeDaysRepository.InsertEmployeeDay(employeeDay);
+                employeeDaysRepository.Save();
+                return new ObjectResult(empDay);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         //This might be unneccasary now, since it just hold foreign keys and no data
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] EmployeeDay employeeDay)
         {
-            if (employeeDay == null || employeeDay.EmployeeDay_Id != Int32.Parse(id))
+            try
+            {
+                if (employeeDay == null || employeeDay.EmployeeDay_Id != Int32.Parse(id))
+                {
+                    return BadRequest();
+                }
+
+                var day = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
+                if (day == null)
+                {
+                    return NotFound();
+                }
+                day.Timesheet_Id = employeeDay.Timesheet_Id;
+                day.Day_Id = employeeDay.Day_Id;
+                employeeDaysRepository.UpdateEmployeeDay(day);
+                return new NoContentResult();
+            }
+            catch
             {
                 return BadRequest();
             }
-
-            var day = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
-            if (day == null)
-            {
-                return NotFound();
-            }
-            day.Timesheet_Id = employeeDay.Timesheet_Id;
-            day.Day_Id = employeeDay.Day_Id;
-            employeeDaysRepository.UpdateEmployeeDay(day);
-            return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var day = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
-            if (day == null)
+            try
             {
-                return NotFound();
-            }
+                var day = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
+                if (day == null)
+                {
+                    return NotFound();
+                }
 
-            employeeDaysRepository.RemoveEmployeeDay(Int32.Parse(id));
-            return new NoContentResult();
+                employeeDaysRepository.RemoveEmployeeDay(Int32.Parse(id));
+                return new NoContentResult();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

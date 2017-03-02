@@ -7,7 +7,7 @@ namespace API.Models
 {
     public interface ITimesheetRepository
     {
-        void InsertTimesheet(Timesheet timesheet);
+        Timesheet InsertTimesheet(Timesheet timesheet);
         IEnumerable<Timesheet> GetTimesheets();
         Timesheet GetTimesheetById(int timesheet_id);
         IEnumerable<Timesheet> GetTimesheetsByWeek(int wk_id);

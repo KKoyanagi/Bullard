@@ -23,9 +23,10 @@ namespace API.Models
         {
             return context.Employees.Find(emp_id);
         }
-        public void InsertEmployee(Employee employee)
+        public Employee InsertEmployee(Employee employee)
         {
             context.Employees.Add(employee);
+            return employee;
         }
         public Employee RemoveEmployee(int emp_id)
         {
@@ -35,6 +36,7 @@ namespace API.Models
         }
         public void UpdateEmployee(Employee employee)
         {
+
             context.Entry(employee).State = EntityState.Modified;
         }
         public void Save()
