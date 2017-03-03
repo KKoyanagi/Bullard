@@ -27,14 +27,14 @@ namespace API.Controllers
         [HttpGet("{id}", Name = "GettimesheetById")]
         public IActionResult GetTimesheetById(string id)
         {
-           try
+            try
             {
-                var emp = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-                if (emp == null)
+                var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+                if (ts == null)
                 {
                     return NotFound();
                 }
-                return new ObjectResult(emp);
+                return new ObjectResult(ts);
             }
             catch
             {
@@ -61,7 +61,7 @@ namespace API.Controllers
             {
                 return timesheetRepository.GetApprovedTimesheetsByWeek(Int32.Parse(id));
             }
-           catch
+            catch
             {
                 return null;
             }
@@ -122,12 +122,24 @@ namespace API.Controllers
             {
                 return BadRequest();
             }
-           // Debug.WriteLine(timesheet);
-            var ts =  timesheetRepository.InsertTimesheet(timesheet);
+            // Debug.WriteLine(timesheet);
+            var ts = timesheetRepository.InsertTimesheet(timesheet);
             timesheetRepository.Save();
             return new ObjectResult(ts);
         }
-
+        [HttpGet("employee/current/{id}")]
+        public IActionResult GetCurrentForEmp(string id)
+        {
+            try
+            {
+                var ts = timesheetRepository.GetTimesheetCurrent(Int32.Parse(id));
+                return new ObjectResult(ts);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Timesheet timesheet)
         {
