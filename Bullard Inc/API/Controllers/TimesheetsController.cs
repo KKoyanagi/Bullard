@@ -123,7 +123,7 @@ namespace API.Controllers
                 return BadRequest();
             }
            // Debug.WriteLine(timesheet);
-            ts =  timesheetRepository.InsertTimesheet(timesheet);
+            var ts =  timesheetRepository.InsertTimesheet(timesheet);
             timesheetRepository.Save();
             return new ObjectResult(ts);
         }
