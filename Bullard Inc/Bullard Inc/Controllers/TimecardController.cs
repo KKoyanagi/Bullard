@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 //using Microsoft.AspNet.WebApi.Client;
 using System.Net.Http.Formatting;
+using System.Diagnostics;
 
 namespace Timecard.Controllers
 {
@@ -74,17 +75,19 @@ namespace Timecard.Controllers
         [Route("timecard/empjobview/{day_id}/empjobadd")]
         public async Task<ActionResult> empJobAdd(int day_id, JobModel job)
         {
-            JobModel vr = new JobModel();
-            vr.employeeDay_Id = 1;
-            vr.project_ID = 1;
-            vr.activityCode = 3050;
-            vr.hours = 12;
-            vr.mileage = 8;
+            Job vr = new Job();
+            vr.EmployeeDay_Id = 1;
+            vr.Project_Id = 1;
+            vr.ActivityCode = 3050;
+            vr.Hours = 12;
+            vr.Mileage = 8;
+            vr.Lunch = 0;
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, vr);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("timecard/empjobview/" + day_id);
+                return RedirectToAction("/empjobview/" + day_id);
             }
             return RedirectToAction("Error" + response);
         }

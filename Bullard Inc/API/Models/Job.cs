@@ -12,7 +12,7 @@ namespace API.Models
     public class Job
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int Job_Id { get; set; }
         [ForeignKey("EmployeeDay")]
         public int EmployeeDay_Id { get; set; }

@@ -907,3 +907,10 @@ C:\Users\Madeline\Documents\Visual Studio 2015\Projects\Bullard\Bullard Inc\Bull
 C:\Users\Madeline\Documents\Visual Studio 2015\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
 C:\Users\Madeline\Documents\Visual Studio 2015\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
 C:\Users\Madeline\Documents\Visual Studio 2015\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.dll
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Extensions.dll
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Formatting.dll
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Primitives.dll
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
