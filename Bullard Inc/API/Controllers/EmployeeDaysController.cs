@@ -63,7 +63,7 @@ namespace API.Controllers
                 Debug.WriteLine(employeeDay);
                 //Thi
                 var empDay = employeeDaysRepository.InsertEmployeeDay(employeeDay);
-                employeeDaysRepository.Save();
+                //employeeDaysRepository.Save();
                 return new ObjectResult(empDay);
             }
             catch
@@ -73,7 +73,7 @@ namespace API.Controllers
         }
 
         //This might be unneccasary now, since it just hold foreign keys and no data
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] EmployeeDay employeeDay)
         {
             try
@@ -83,21 +83,19 @@ namespace API.Controllers
                     return BadRequest();
                 }
 
-                var day = employeeDaysRepository.GetEmployeeDayById(Int32.Parse(id));
+                var day = employeeDaysRepository.UpdateEmployeeDay(employeeDay);
                 if (day == null)
                 {
                     return NotFound();
                 }
-                day.Timesheet_Id = employeeDay.Timesheet_Id;
-                day.Day_Id = employeeDay.Day_Id;
-                employeeDaysRepository.UpdateEmployeeDay(day);
-                return new NoContentResult();
+
+                return new ObjectResult(empDay);
             }
             catch
             {
                 return BadRequest();
             }
-        }
+        }*/
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)

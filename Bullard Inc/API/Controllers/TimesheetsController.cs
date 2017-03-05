@@ -124,7 +124,7 @@ namespace API.Controllers
             }
             // Debug.WriteLine(timesheet);
             var ts = timesheetRepository.InsertTimesheet(timesheet);
-            timesheetRepository.Save();
+            //timesheetRepository.Save();
             return new ObjectResult(ts);
         }
         [HttpGet("employee/current/{id}")]
@@ -145,20 +145,24 @@ namespace API.Controllers
         {
             try
             {
-                if (timesheet == null || timesheet.Emp_Id != Int32.Parse(id))
+                if (timesheet == null)
                 {
                     return BadRequest();
                 }
 
-                var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
-                if (ts == null)
+                //var ts = timesheetRepository.GetTimesheetById(Int32.Parse(id));
+                //if (ts == null)
+                //{
+                 //  return NotFound();
+                //}
+                //ts.Approved = timesheet.Approved;
+                //ts.Submitted = timesheet.Submitted;
+                var ts2 = timesheetRepository.UpdateTimesheet(timesheet);
+                if (ts2 == null)
                 {
                     return NotFound();
                 }
-                ts.Approved = timesheet.Approved;
-                ts.Submitted = timesheet.Submitted;
-                timesheetRepository.UpdateTimesheet(ts);
-                return new NoContentResult();
+                return new ObjectResult(ts2);
             }
             catch
             {

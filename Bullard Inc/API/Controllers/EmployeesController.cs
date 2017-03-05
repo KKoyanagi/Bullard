@@ -56,7 +56,7 @@ namespace API.Controllers
                 }
                 Debug.WriteLine(employee);
                 var emp = employeeRepository.InsertEmployee(employee);
-                employeeRepository.Save();
+                //employeeRepository.Save();
                 return new ObjectResult(emp);
             }
             catch
@@ -76,19 +76,19 @@ namespace API.Controllers
                     return BadRequest();
                 }
 
-                var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
-                if (emp == null)
-                {
-                    return NotFound();
-                }
+                /*var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
+                
                 emp.AccountName = employee.AccountName;
                 emp.Email = employee.Email;
                 emp.FirstName = employee.FirstName;
                 emp.LastName = employee.LastName;
-                emp.Phone = employee.Phone;
-                employeeRepository.UpdateEmployee(emp);
-                employeeRepository.Save();
-                return new NoContentResult();
+                emp.Phone = employee.Phone;*/
+                var emp = employeeRepository.UpdateEmployee(employee);
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
             }
             catch
             {

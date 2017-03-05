@@ -9,8 +9,8 @@ namespace API.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext()
+            : base(new DbContextOptionsBuilder().UseSqlServer("Server=tcp:bullardserver.database.windows.net,1433;Initial Catalog=bullard_db;Persist Security Info=False;User ID=bullardadmin;Password=Bullard123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;").Options)
         { }
 
         public DbSet<Employee> Employees { get; set; }

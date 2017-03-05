@@ -10,9 +10,9 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class WeeksController : Controller
     {
-        private IWeekRepository weeksRepository;
+        private IWorkWeekRepository weeksRepository;
 
-        public WeeksController(IWeekRepository weeksRepository)
+        public WeeksController(IWorkWeekRepository weeksRepository)
         {
             this.weeksRepository = weeksRepository;
         }

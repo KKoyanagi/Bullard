@@ -12,7 +12,7 @@ namespace API.Models
         Job GetJobById(int job_id);
         IEnumerable<Job> GetJobsByEmployeeDayId(int employeeDay_id);
         Job RemoveJob(int job_id);
-        void UpdateJob(Job job);
-        void Save();
+        Job UpdateJob(Job job);
+        //void Save();
     }
 }
