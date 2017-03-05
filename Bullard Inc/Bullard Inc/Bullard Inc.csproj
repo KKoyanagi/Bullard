@@ -359,6 +359,7 @@
     <Content Include="Scripts\__mdb.min.js" />
     <Content Include="Scripts\__tether.js" />
     <Content Include="Scripts\__tether.min.js" />
+    <Content Include="Views\Responses\404.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -407,7 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Responses\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -12,17 +12,18 @@
     <title>Employees</title>
 </head>
 <body>
+    <h1>Employees </h1>
     <hr />
     @foreach (var employee in Model)
     {
         <div class="panel-group" id="accordion_@employee.Emp_Id">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@employee.Emp_Id">
                             @employee.FirstName @employee.LastName
                         </a>
-                    </h4>
+                    </h5>
                 </div>
                 <div id="collapse_@employee.Emp_Id" class="panel-collapse collapse">
                     <div class="panel-body">
