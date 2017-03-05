@@ -9,8 +9,8 @@ namespace API.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext()
+            : base(new DbContextOptionsBuilder().UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=BullardDB;Trusted_Connection=True;MultipleActiveResultSets=true").Options)
         { }
 
         public DbSet<Employee> Employees { get; set; }

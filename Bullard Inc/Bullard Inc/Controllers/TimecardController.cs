@@ -76,7 +76,7 @@ namespace Timecard.Controllers
         public async Task<ActionResult> empJobAdd(int day_id, JobModel job)
         {
             Job vr = new Job();
-            vr.EmployeeDay_Id = 1;
+            vr.EmployeeDay_Id = 2;
             vr.Project_Id = 1;
             vr.ActivityCode = 3050;
             vr.Hours = 12;

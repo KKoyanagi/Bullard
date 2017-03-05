@@ -12,7 +12,7 @@ namespace API.Models
         EmployeeDay GetEmployeeDayById(int employeeDay_id);
         IEnumerable<EmployeeDay> GetEmployeeDaysByTimesheet(int timesheet_id);
         EmployeeDay RemoveEmployeeDay(int employeeDay_id);
-        void UpdateEmployeeDay(EmployeeDay employeeDay);
-        void Save();
+        //EmployeeDay UpdateEmployeeDay(EmployeeDay employeeDay);
+        //void Save();
     }
 }

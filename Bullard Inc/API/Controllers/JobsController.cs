@@ -62,7 +62,7 @@ namespace API.Controllers
                 }
                 //Debug.WriteLine(job);
                 var jb = jobsRepository.InsertJob(job);
-                jobsRepository.Save();
+                //jobsRepository.Save();
                 return new ObjectResult(jb);
             }
             catch
@@ -81,7 +81,7 @@ namespace API.Controllers
                     return BadRequest();
                 }
 
-                var jb = jobsRepository.GetJobById(Int32.Parse(id));
+                /*var jb = jobsRepository.GetJobById(Int32.Parse(id));
                 if (jb == null)
                 {
                     return NotFound();
@@ -95,11 +95,14 @@ namespace API.Controllers
                 jb.Hours = job.Hours;
                 jb.Mileage = job.Mileage;
                 jb.Lunch = job.Lunch;
-                //Debug.WriteLine(jb);
-                jobsRepository.UpdateJob(jb);
-
-                jobsRepository.Save();
-                return new NoContentResult();
+                //Debug.WriteLine(jb);*/
+                var jb = jobsRepository.UpdateJob(job);
+                if (jb == null)
+                {
+                    return NotFound();
+                }
+                //jobsRepository.Save();
+                return new ObjectResult(jb);
             }
             catch
             {
@@ -119,7 +122,7 @@ namespace API.Controllers
                 }
 
                 jobsRepository.RemoveJob(Int32.Parse(id));
-                jobsRepository.Save();
+                //jobsRepository.Save();
                 return new NoContentResult();
             }
             catch

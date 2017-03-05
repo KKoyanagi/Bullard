@@ -11,7 +11,7 @@ namespace API.Models
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployeeById(int emp_id);
         Employee RemoveEmployee(int emp_id);
-        void UpdateEmployee(Employee employee);
-        void Save();
+        Employee UpdateEmployee(Employee employee);
+        //void Save();
     }
 }
