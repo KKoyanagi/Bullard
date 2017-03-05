@@ -12,9 +12,33 @@
     <title>Employees</title>
 </head>
 <body>
-    <div class="panel panel-default">
-        <div class="panel-body">A Basic Panel</div>
-    </div>
+    <hr />
+    @foreach (var employee in Model)
+    {
+        <div class="panel-group" id="accordion_@employee.Emp_Id">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@employee.Emp_Id">
+                            @employee.FirstName @employee.LastName
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse_@employee.Emp_Id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p style="margin-left: 40px">
+                            Employee Id: @employee.Emp_Id<br />
+                            Account Name: @employee.AccountName<br />
+                            Email: @employee.Email<br />
+                            Phone Number: @employee.Phone<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    }
+
 </body>
 </html>
 
