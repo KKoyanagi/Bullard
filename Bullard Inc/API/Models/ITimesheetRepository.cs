@@ -7,7 +7,7 @@ namespace API.Models
 {
     public interface ITimesheetRepository
     {
-        void InsertTimesheet(Timesheet timesheet);
+        Timesheet InsertTimesheet(Timesheet timesheet);
         IEnumerable<Timesheet> GetTimesheets();
         Timesheet GetTimesheetById(int timesheet_id);
         IEnumerable<Timesheet> GetTimesheetsByWeek(int wk_id);
@@ -17,8 +17,10 @@ namespace API.Models
         IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(int wk_id);
         IEnumerable<Timesheet> GetTimesheetsByEmp(int emp_id);
         Timesheet RemoveTimesheet(int timesheet_id);
+        Timesheet UpdateTimesheet(Timesheet timesheet);
+        Timesheet GetTimesheetCurrent(int emp_id);
 
         //void UpdateTimesheet(Timesheet timesheet);
-        void Save();
+        //void Save();
     }
 }

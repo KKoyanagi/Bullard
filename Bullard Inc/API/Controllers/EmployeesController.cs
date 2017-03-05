@@ -29,56 +29,91 @@ namespace API.Controllers
         [HttpGet("{id}", Name = "GetEmployeeById")]
         public IActionResult GetEmployeeById(string id)
         {
-            var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
-            if (emp == null)
+            try
             {
-                return NotFound();
+                var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
             }
-            return new ObjectResult(emp);
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public IActionResult Create([FromBody] Employee employee)
         {
-            Debug.WriteLine("Getting Here");
-            if (employee == null)
+            try
+            {
+                Debug.WriteLine("Getting Here");
+                if (employee == null)
+                {
+                    return BadRequest();
+                }
+                Debug.WriteLine(employee);
+                var emp = employeeRepository.InsertEmployee(employee);
+                //employeeRepository.Save();
+                return new ObjectResult(emp);
+            }
+            catch
             {
                 return BadRequest();
             }
-            Debug.WriteLine(employee);
-            employeeRepository.InsertEmployee(employee);
-            employeeRepository.Save();
-            return Created("GetEmployeeById",employee);
         }
 
+        
         [HttpPut("{id}")]
         public IActionResult Update(string id, [FromBody] Employee employee)
         {
-            if(employee==null || employee.Emp_Id != Int32.Parse(id))
+            try
+            {
+                if (employee == null || employee.Emp_Id != Int32.Parse(id))
+                {
+                    return BadRequest();
+                }
+
+                /*var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
+                
+                emp.AccountName = employee.AccountName;
+                emp.Email = employee.Email;
+                emp.FirstName = employee.FirstName;
+                emp.LastName = employee.LastName;
+                emp.Phone = employee.Phone;*/
+                var emp = employeeRepository.UpdateEmployee(employee);
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
+            }
+            catch
             {
                 return BadRequest();
             }
-
-            var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
-            if (emp == null)
-            {
-                return NotFound();
-            }
-            employeeRepository.UpdateEmployee(emp);
-            return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
-            if (emp == null)
+            try
             {
-                return NotFound();
-            }
+                var emp = employeeRepository.GetEmployeeById(Int32.Parse(id));
+                if (emp == null)
+                {
+                    return NotFound();
+                }
 
-            employeeRepository.RemoveEmployee(Int32.Parse(id));
-            return new NoContentResult();
+                employeeRepository.RemoveEmployee(Int32.Parse(id));
+                return new NoContentResult();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

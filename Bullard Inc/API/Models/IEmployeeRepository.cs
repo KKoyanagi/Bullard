@@ -7,11 +7,11 @@ namespace API.Models
 {
     public interface IEmployeeRepository
     {
-        void InsertEmployee(Employee employee);
+        Employee InsertEmployee(Employee employee);
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployeeById(int emp_id);
         Employee RemoveEmployee(int emp_id);
-        void UpdateEmployee(Employee employee);
-        void Save();
+        Employee UpdateEmployee(Employee employee);
+        //void Save();
     }
 }
