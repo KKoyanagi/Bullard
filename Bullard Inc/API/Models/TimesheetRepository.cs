@@ -188,6 +188,11 @@ namespace API.Models
             }
             ts.Approved = timesheet.Approved;
             ts.Submitted = timesheet.Submitted;*/
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var ts = context.Timesheets.Find(timesheet.Timesheet_Id);
@@ -215,6 +220,64 @@ namespace API.Models
                 return timesheet;
             }
         }
+        public Timesheet SubmitTimesheet(int timesheet_id)
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var timesheet = context.Timesheets.Find(timesheet_id);
+                if (timesheet == null)
+                {
+                    return null;
+                }
+                context.Entry(timesheet).Property(u => u.Submitted).CurrentValue = true;
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Submitted = {0} WHERE Timesheet_Id = {1}", true,  timesheet_id);
+                    //context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Week_Id = {0} WHERE Timesheet_Id = {1}", timesheet.Week_Id, timesheet.Timesheet_Id);
+                    Debug.WriteLine(ex.ToString());
+                }
+                return timesheet;
+            }
+        }
+        public Timesheet ApproveTimesheet(int timesheet_id)
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var timesheet = context.Timesheets.Find(timesheet_id);
+                if (timesheet == null)
+                {
+                    return null;
+                }
+                context.Entry(timesheet).Property(u => u.Approved).CurrentValue = true;
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Approved = {0} WHERE Timesheet_Id = {1}", true, timesheet_id);
+                    //context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Week_Id = {0} WHERE Timesheet_Id = {1}", timesheet.Week_Id, timesheet.Timesheet_Id);
+                    Debug.WriteLine(ex.ToString());
+                }
+                return timesheet;
+            }
+        }   
         /*public void Save()
         {
             context.SaveChanges();

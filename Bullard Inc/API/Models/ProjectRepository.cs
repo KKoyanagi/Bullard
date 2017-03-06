@@ -9,6 +9,8 @@ namespace API.Models
 {
     public class ProjectRepository : IProjectRepository
     {
+       
+
         public IEnumerable<Project> GetProjects()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
@@ -44,6 +46,7 @@ namespace API.Models
         }
         public Project UpdateProject(Project project)
         {
+            
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var p = context.Projects.Find(project.Project_Id);
