@@ -13,6 +13,7 @@ namespace Bullard_Inc.Controllers
 {
     public class EmployeeController : Controller
     {
+        private List<ActivityCode> activityCodes;
         HttpClient client;
         //The URL of the WEB API Service
         string url = "http://BullardAPI.azurewebsites.net/api/";
@@ -61,14 +62,35 @@ namespace Bullard_Inc.Controllers
                         List<Timesheet> timesheets = JsonConvert.DeserializeObject<List<Timesheet>>(responseData);
                         Debug.WriteLine(timesheets);
                         result.Timesheets = timesheets;
-                        return View(result);
-                    }
+                        responseMessage = await client.GetAsync("timesheets/employee/" + id);
+                        if (responseMessage.IsSuccessStatusCode)
+                        {
+                            responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
+                            List<ActivityCode> ac = JsonConvert.DeserializeObject<List<ActivityCode>>(responseData);
+                        //Debug.WriteLine(timesheets);
+                            activityCodes = ac;
+                            result.ActivityCodes = ac;
+                            return View(result);
+                        }
+                    }
+                    
                     return View("Error");
                }  
             
             
             return View("Error");
+        }
+        [HttpPost]
+        [Route("employee/timesheets")]
+        public JsonResult Index(string Prefix)
+        {
+            
+            //Searching records from list using LINQ query  
+            var actDes = (from N in activityCodes
+                            where N.ActivityDescription.StartsWith(Prefix)
+                            select new { N.ActivityDescription });
+            return Json(actDes, JsonRequestBehavior.AllowGet);
         }
     }
 }
