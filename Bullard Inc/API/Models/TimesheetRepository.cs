@@ -69,7 +69,7 @@ namespace API.Models
                 getContext = new ApplicationDbContext();
             }
             var timesheets = from t in getContext.Timesheets
-                                 where t.Week_Id == week_id && t.Submitted == true
+                                 where t.Week_Id == week_id && t.Submitted == true && t.Approved == false
                                  select t;
                 return timesheets;
             
@@ -235,6 +235,7 @@ namespace API.Models
                     return null;
                 }
                 context.Entry(timesheet).Property(u => u.Submitted).CurrentValue = true;
+                context.Entry(timesheet).Property(u => u.DateSubmitted).CurrentValue = DateTime.Now;
                 try
                 {
                     context.SaveChanges();
@@ -243,7 +244,7 @@ namespace API.Models
                 {
 
                     context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Submitted = {0} WHERE Timesheet_Id = {1}", true,  timesheet_id);
-                    //context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Week_Id = {0} WHERE Timesheet_Id = {1}", timesheet.Week_Id, timesheet.Timesheet_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET DateSubmitted = {0} WHERE Timesheet_Id = {1}", DateTime.Now, timesheet.Timesheet_Id);
                     Debug.WriteLine(ex.ToString());
                 }
                 return timesheet;
