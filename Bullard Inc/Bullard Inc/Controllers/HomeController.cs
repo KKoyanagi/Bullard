@@ -10,7 +10,7 @@ namespace Bullard_Inc.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Timecard/Index.cshtml");
         }
 
         public ActionResult About()

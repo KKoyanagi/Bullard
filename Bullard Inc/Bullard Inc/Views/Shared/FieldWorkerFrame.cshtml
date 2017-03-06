@@ -40,9 +40,10 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a href="/home/index" class="collapsible-header waves-effect arrow-r">
+                        <a @*href="/home/index"*@ onclick="signOut();" class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-sign-out"></i>
-                            <a href="#" onclick="signOut();">Sign out</a>
+                            Sign Out
+                            @*<a href="#" onclick="signOut();"> Sign out</a>*@
                             @*<i class="fa fa-angle-down rotate-icon"></i>*@
                         </a>
                     </li>
@@ -52,6 +53,13 @@
                             Timecard
                             @*<i class="fa fa-angle-down rotate-icon"></i>*@
                         </a> 
+                    </li>
+                    <li>
+                        <a href="/timecard/index" class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-address-book"></i>
+                            My Account
+                            @*<i class="fa fa-angle-down rotate-icon"></i>*@
+                        </a>
                     </li>
                     <li>
                         <a class="collapsible-header waves-effect arrow-r">
@@ -85,7 +93,7 @@
             </div>
             <!-- Breadcrumb-->
             <!-- Right-side navagation items -->
-            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            @*<ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-envelope"></i>
@@ -104,7 +112,7 @@
                         <span class="hidden-sm-down">Sign Out</span>
                     </a>
                 </li>
-            </ul>
+            </ul>*@
             <!-- ./Left-side navagation items -->
 
         </nav>
