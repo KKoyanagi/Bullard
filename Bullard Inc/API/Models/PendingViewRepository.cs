@@ -23,6 +23,7 @@ namespace API.Models
                 var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
                 tmp.FirstName = employee.FirstName;
                 tmp.LastName = employee.LastName;
+                tmp.Timesheet_Id = ts.Timesheet_Id;
                 tmp.DateSubmitted = ts.DateSubmitted;
                 IEnumerable<EmployeeDay> empDays = empDayRepo.GetEmployeeDaysByTimesheet(ts.Timesheet_Id);
                 foreach(var day in empDays)

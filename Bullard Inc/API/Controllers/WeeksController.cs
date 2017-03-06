@@ -39,5 +39,22 @@ namespace API.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("current", Name = "GetCurrentWeek")]
+        public IActionResult GetCurrentWeek()
+        {
+            try
+            {
+                var week = weeksRepository.GetWorkWeeks().Last();
+                if (week == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(week);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

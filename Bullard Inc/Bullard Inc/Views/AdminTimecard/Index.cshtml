@@ -1,4 +1,5 @@
 ﻿
+@model IEnumerable<Bullard_Inc.Models.PendingView>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
@@ -36,6 +37,38 @@
         <!--Panel 1-->
         <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
             <br>
+            
+                
+                    <h3># First Name Last Name Date Submitted Action</h3>
+                    
+            <hr />
+            @foreach (var timesheet in Model)
+            {<div class="panel-group" id="accordion_@timesheet.Timesheet_Id">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@timesheet.Timesheet_Id">
+                                @timesheet.Timesheet_Id @timesheet.FirstName @timesheet.LastName @timesheet.DateSubmitted <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+<a href="#" class="red-text"><i class="fa fa-times"></i></a>
+<a href="#" class="green-text"><i class="fa fa-check"></i></a> 
+                            </a>
+                        </h4><hr />
+                    </div>
+                    <div id="collapse_@timesheet.Timesheet_Id" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @foreach (var job in timesheet.Jobs)
+                            {
+                                <p style="margin-left: 40px">
+                                    @job.Job_Id 
+                                </p>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            <!--
             <table class="table">
                 <thead>
                     <tr>
@@ -47,7 +80,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                
+                
                     <tr>
+                        <td>timesheet.Timesheet_Id</td>
+                        <td>timesheet.FirstName</td>
+                        <td>timesheet.LastName</td>
+                        <td>timesheet.DateSubmitted</td>
+                        <td>
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="#" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                }
+                    <!--<tr>
                         <th scope="row">1</th>
                         <td>Lathsamy</td>
                         <td>Vongsavanh</td>
@@ -68,7 +115,7 @@
                             <a href="#" class="red-text"><i class="fa fa-times"></i></a>
                             <a href="#" class="green-text"><i class="fa fa-check"></i></a>
                         </td>
-                    </tr>
+                    </tr>-->
                 </tbody>
             </table>
         </div>
