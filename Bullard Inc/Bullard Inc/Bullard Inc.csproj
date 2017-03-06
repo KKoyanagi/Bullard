@@ -360,6 +360,7 @@
     <Content Include="Scripts\__tether.js" />
     <Content Include="Scripts\__tether.min.js" />
     <Content Include="Views\Responses\404.html" />
+    <Content Include="Views\Responses\Unauthorized.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
