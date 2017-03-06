@@ -58,31 +58,26 @@ namespace Timecard.Controllers
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<JobModel>(responseData);
+                var Employees = JsonConvert.DeserializeObject<Job>(responseData);
                 return View(Employees);
             }
             return View("Error");
         }
 
+
+        //add a job
         [Route("timecard/empjobview/{day_id}/empjobadd")]
         public ActionResult empJobAdd(int day_id)
         {
             ViewData["day"] = day_id;
-            return View(new JobModel());
+            return View(new Job());
         }
 
         [HttpPost]
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public async Task<ActionResult> empJobAdd(int day_id, JobModel job)
+        public async Task<ActionResult> empJobAdd(int day_id, Job job)
         {
-            Job vr = new Job();
-            vr.EmployeeDay_Id = 1;
-            vr.Project_Id = 1;
-            vr.ActivityCode = 3050;
-            vr.Hours = 12;
-            vr.Mileage = 8;
-            vr.Lunch = 0;
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, vr);
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
             Debug.WriteLine(responseMessage.Content);
             if (responseMessage.IsSuccessStatusCode)
@@ -91,49 +86,51 @@ namespace Timecard.Controllers
             }
             return RedirectToAction("Error" + response);
         }
+
+
         // This action will display a empty Timecard
-        /*[HttpPost]
-        [Route("timecard/empjobview/{day}/empjobadd")]
-        public async Task<RedirectToRouteResult> EmpJobAdd()
+        [Route("timecard/empjobview/{day_id}/empjobedit")]
+        public ActionResult EmpJobEdit(int day_id)
+        {
+            ViewData["day"] = day_id; // pass day selected into ViewData
+
+           /* var vr = new Job()
+            {
+                EmployeeDay_Id = day_id,
+                ActivityCode = 14 - 081,
+                //status = "OPEN",
+                Hours = 8.0,
+                Mileage = 125,
+                Lunch = 0.5,
+                //workPerformed = "Dry Wall"
+            };*/
+
+            return View(new Job());
+        }
+
+        [HttpPut]
+        [Route("timecard/empjobview/{day_id}/empjobedit")]
+        public async Task<ActionResult> EmpJobEdit(int day_id, Job job)
         {
             //  if (ModelState.IsValid)
             // {
-            JobModel vr = new JobModel();
-            vr.employeeDay_Id = 3;
-            vr.project_ID = 9;
-            vr.job_ID = 7;
-            vr.activityCode = 3050;
-            vr.hours = 12;
-            vr.mileage = 8;
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, vr);
+            /*Job vr = new Job();
+            vr.EmployeeDay_Id = 1;
+            vr.Project_Id = 1;
+            vr.Job_Id = 1;
+            vr.ActivityCode = 3050;
+            vr.Hours = 12;
+            vr.Mileage = 8;*/
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(url, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("timecard/empjobview/{day}");
+                return RedirectToAction("/empjobview/"+ day_id);
             }
             return RedirectToAction("Error " + response);
             // }
         }
-        */
-        // This action will display the user's selected Timecard
-        [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public ActionResult EmpJobEdit(int day_id)
-        {
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-
-            var vr = new JobModel()
-            {
-                employeeDay_Id = day_id,
-                activityCode = 14 - 081,
-                //status = "OPEN",
-                hours = 8.0,
-                mileage = 125,
-                lunch = 0.5,
-                //workPerformed = "Dry Wall"
-            };
-
-            return View(vr);
-        }
+        
 
         // This action will display the user's timecard history
         public ActionResult History()
@@ -147,13 +144,13 @@ namespace Timecard.Controllers
             switch (day_id)
             {
                 case 1: return "MONDAY";
-                case 2: return "TUESDAY"; 
-                case 3: return "WEDNESDAY"; 
-                case 4: return "THURSDAY"; 
-                case 5: return "FRIDAY"; 
-                case 6: return "SATURDAY"; 
+                case 2: return "TUESDAY";
+                case 3: return "WEDNESDAY";
+                case 4: return "THURSDAY";
+                case 5: return "FRIDAY";
+                case 6: return "SATURDAY";
                 case 7: return "SUNDAY";
-                default: return "N/A"; 
+                default: return "N/A";
             }
         }
     }
