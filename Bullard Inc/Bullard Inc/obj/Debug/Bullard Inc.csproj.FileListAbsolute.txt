@@ -914,3 +914,10 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Pr
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.dll
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Extensions.dll
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Formatting.dll
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Primitives.dll
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
+C:\Users\Kameryn\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
