@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public interface IWeekRepository
+    public interface IWorkWeekRepository
     {
         IEnumerable<WorkWeek> GetWorkWeeks();
         WorkWeek GetWeekById(int week_id);
         WorkWeek InsertWeek(WorkWeek week);
         WorkWeek RemoveWeek(int week_id);
-        void UpdateWeek(WorkWeek week);
+        WorkWeek UpdateWeek(WorkWeek week);
     }
 }
