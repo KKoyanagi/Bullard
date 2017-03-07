@@ -19,6 +19,8 @@ namespace API.Models
         Timesheet RemoveTimesheet(int timesheet_id);
         Timesheet UpdateTimesheet(Timesheet timesheet);
         Timesheet GetTimesheetCurrent(int emp_id);
+        Timesheet SubmitTimesheet(int timesheet_id);
+        Timesheet ApproveTimesheet(int timesheet_id);
 
         //void UpdateTimesheet(Timesheet timesheet);
         //void Save();

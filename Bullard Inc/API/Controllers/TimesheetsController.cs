@@ -114,6 +114,30 @@ namespace API.Controllers
                 return null;
             }
         }
+        [HttpGet("submit/{id}", Name = "SubmitTimesheet")]
+        public Timesheet SubmitTimesheet(string id)
+        {
+            try
+            {
+                return timesheetRepository.SubmitTimesheet(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        [HttpGet("approve/{id}", Name = "ApproveTimesheet")]
+        public Timesheet ApproveTimesheet(string id)
+        {
+            try
+            {
+                return timesheetRepository.ApproveTimesheet(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
         [HttpPost]
         public IActionResult Create([FromBody] Timesheet timesheet)
         {

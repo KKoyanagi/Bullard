@@ -71,7 +71,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Update(string id, [FromBody] Job job)
         {
             try
