@@ -8,13 +8,16 @@ namespace API.Models
 {
     public class EmployeeDayRepository : IEmployeeDayRepository
     {
-        //private ApplicationDbContext context;
+        private ApplicationDbContext getContext;
 
         //public EmployeeDayRepository(ApplicationDbContext context)
         //{
         //    this.context = context;
         //}
-        public EmployeeDayRepository() { }
+        public EmployeeDayRepository()
+        {
+            this.getContext = new ApplicationDbContext();
+        }
         public EmployeeDay GetEmployeeDayById(int employeeDay_id)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
@@ -24,13 +27,16 @@ namespace API.Models
         }
         public IEnumerable<EmployeeDay> GetEmployeeDaysByTimesheet(int timesheet_id)
         {
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            if (getContext != null)
             {
-                var employeeDays = from ed in context.EmployeeDays
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+            var employeeDays = from ed in getContext.EmployeeDays
                                    where ed.Timesheet_Id == timesheet_id
                                    select ed;
                 return employeeDays;
-            }
+            
         }
         
         //This now no longer just inserts, it will insert and return new object
