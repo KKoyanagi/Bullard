@@ -213,10 +213,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminTimecardController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="Controllers\TimecardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -362,6 +362,8 @@
     <Content Include="Scripts\__mdb.min.js" />
     <Content Include="Scripts\__tether.js" />
     <Content Include="Scripts\__tether.min.js" />
+    <Content Include="Views\Responses\404.html" />
+    <Content Include="Views\Responses\Unauthorized.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -405,12 +407,11 @@
     <Content Include="Views\Shared\LoginFrame.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\EmpTimesheetsView.cshtml" />
-    <Content Include="Views\AdminTimecard\Index.cshtml" />
+    <Content Include="Views\Scheduler\Index.cshtml" />
     <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Responses\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -8,12 +8,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewData["Title"] Bullard </title>
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
-   
-    <!--<link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css" rel="stylesheet">-->
     <link href="~/Content/compiled.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="~/Content/style.css">
-    <!--<link rel="stylesheet" href="~/Content/mdb.css">-->
    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -34,7 +30,7 @@
             <!-- Logo -->
             <li>
                 <div class="logo-wrapper waves-light">
-                    <a href="#"><img src="~/Images/headerlogo_website.png" class="img-fluid flex-center"></a>
+                    <a href=""><img src="~/Images/headerlogo_website.png" class="img-fluid flex-center"></a>
                 </div>
             </li>
             <!--/. Logo -->
@@ -44,13 +40,13 @@
                     <li>
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-sign-out"></i>
-                            Sign Out
+                            SIGN OUT
                         </a>
                     </li>
                     <li>
-                        <a class="collapsible-header waves-effect arrow-r">
+                        <a href="/scheduler/index" class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-clock-o"></i>
-                            TIME CARDS
+                            TIME CARD
                         </a>
                     </li>
                     <li>
@@ -62,20 +58,27 @@
                         <div class="collapsible-body">
                             <ul>
                                 <li>
-                                    <a href="#" class="waves-effect">USERS LIST</a>
+                                    <a href="/employee" class="waves-effect">USERS LIST</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="waves-effect">ADD USERS</a>
+                                    <a href="" class="waves-effect">ADD USERS</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
+                        <a href="/home/contact"class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-envelope"></i>
+                            HELP
+                            @*<i class="fa fa-angle-down rotate-icon"></i>*@
+                        </a>
+                    </li>
+                    @*<li>
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-address-book"></i>
                             My Account
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </li>
             <!--/. Side navigation links -->
@@ -89,7 +92,7 @@
 
             <!-- SideNav slide-out button -->
             <div class="float-xs-left">
-                <a href="#" data-activates="slide-out" class="button-collapse">
+                <a href="" data-activates="slide-out" class="button-collapse">
                     <i class="fa fa-bars"></i>
                     <img id="logo" src="~/Images/headerlogo_website.png">
                 </a>

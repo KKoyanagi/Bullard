@@ -11,13 +11,13 @@ using System.Net.Http.Headers;
 
 namespace Bullard_Inc.Controllers
 {
-    public class AdminTimecardController : Controller
+    public class SchedulerController : Controller
     {
         HttpClient client;
         //The URL of the WEB API Service
         string url = "http://BullardAPI.azurewebsites.net/api/";
 
-        public AdminTimecardController()
+        public SchedulerController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri(url);

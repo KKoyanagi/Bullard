@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" />
-  <setAcl path="C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

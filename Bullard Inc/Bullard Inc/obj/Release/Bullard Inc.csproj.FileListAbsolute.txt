@@ -169,3 +169,10 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Sec
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Bullard Inc.csprojResolveAssemblyReference.cache
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Bullard Inc.dll
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Release\Bullard Inc.pdb
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Extensions.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Formatting.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Primitives.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
+C:\Users\kenkoyanagi\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
