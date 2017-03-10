@@ -43,5 +43,9 @@ namespace Bullard_Inc.Controllers
             }
             return View("Error");
         }
+        public ActionResult AddUser()
+        {
+            return View();
+        }
     }
 }

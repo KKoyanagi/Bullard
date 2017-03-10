@@ -409,6 +409,7 @@
     <Content Include="Views\Employee\EmpTimesheetsView.cshtml" />
     <Content Include="Views\Scheduler\Index.cshtml" />
     <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
+    <Content Include="Views\Scheduler\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
