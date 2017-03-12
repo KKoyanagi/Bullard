@@ -16,7 +16,8 @@ namespace Bullard_Inc.Controllers
         private List<ActivityCode> activityCodes;
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://BullardAPI.azurewebsites.net/api/";
+        //string url = "http://BullardAPI.azurewebsites.net/api/";
+        string url = "http://localhost:62367/api/jobs";
 
         //Set the base address and the Header Formatter
         public EmployeeController()
