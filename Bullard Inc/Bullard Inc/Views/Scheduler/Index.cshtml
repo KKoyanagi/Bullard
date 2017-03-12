@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
+    string[] days = { "", "Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"};
 }
 
 <head>
@@ -34,31 +35,30 @@
     <!-- Tab panels -->
     <div class="tab-content card">
         <!--Panel 1-->
-        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-            <br>
+        
             
-                
-                    <h3># First Name Last Name Date Submitted Action</h3>
+            <!--    
+                    <h4># First Name Last Name Date Submitted Action</h4>
                     
             <hr />
-            @foreach (var timesheet in Model)
-            {<div class="panel-group" id="accordion_@timesheet.Timesheet_Id">
+            foreach (var timesheet in Model)
+            {<div class="panel-group" id="accordion_timesheet.Timesheet_Id">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@timesheet.Timesheet_Id">
-                                @timesheet.Timesheet_Id @timesheet.FirstName @timesheet.LastName @timesheet.DateSubmitted <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_timesheet.Timesheet_Id">
+                               timesheet.Timesheet_Id timesheet.FirstName timesheet.LastName timesheet.DateSubmitted <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
 <a href="" class="red-text"><i class="fa fa-times"></i></a>
 <a href="" class="green-text"><i class="fa fa-check"></i></a> 
                             </a>
                         </h4><hr />
                     </div>
-                    <div id="collapse_@timesheet.Timesheet_Id" class="panel-collapse collapse">
+                    <div id="collapse_timesheet.Timesheet_Id" class="panel-collapse collapse">
                         <div class="panel-body">
-                            @foreach (var job in timesheet.Jobs)
+                            foreach (var job in timesheet.Jobs)
                             {
                                 <p style="margin-left: 40px">
-                                    @job.Job_Id 
+                                    job.Job_Id 
                                 </p>
                             }
                             
@@ -66,6 +66,55 @@
                     </div>
                 </div>
             </div>
+            }-->
+            
+            @foreach (var timesheet in Model)
+            {
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.Timesheet_Id</td>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.FirstName</td>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
+                        <td>@timesheet.DateSubmitted</td>
+                        <td>
+                            
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="@Url.Action("Approve", "Scheduler", new { id = timesheet.Timesheet_Id })" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="test_@timesheet.Timesheet_Id" class="collapse">
+                    <tr>
+                        <td>Day</td>
+                        <td>Job Id</td>
+                        <td>Project Id</td>
+                        <td>Hours</td>
+                        <td>Mileage</td>
+                        <td>Lunch</td>
+                        <td>Activity Code</td>
+                        
+                    </tr>
+                    
+                    @foreach(var job in timesheet.Jobs)
+                    {
+                        <tr>
+                            <td>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
+                            <td>@job.Job_Id</td>
+                            <td>@job.Project_Id</td>
+                            <td>@job.Hours</td>
+                            <td>@job.Mileage</td>
+                            <td>@job.Lunch</td>
+                            <td>@job.ActivityCode</td>
+                           
+                        </tr>
+                        
+                    }
+
+                </tbody>
+                </table>
             }
             <!--
             <table class="table">
@@ -114,9 +163,9 @@
                             <a href="#" class="red-text"><i class="fa fa-times"></i></a>
                             <a href="#" class="green-text"><i class="fa fa-check"></i></a>
                         </td>
-                    </tr>-->
+                    </tr>
                 </tbody>
-            </table>
+            </table>-->
         </div>
         <!--/.Panel 1-->
         <!--Panel 2-->
