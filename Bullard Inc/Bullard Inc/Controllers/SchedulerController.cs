@@ -15,7 +15,8 @@ namespace Bullard_Inc.Controllers
     {
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://localhost:62367/api/";
+        //string url = "http://localhost:62367/api/";
+        string url = "http://bullardapi.azurewebsites.net/api/";
 
         public SchedulerController()
         {
