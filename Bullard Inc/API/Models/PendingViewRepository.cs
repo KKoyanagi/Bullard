@@ -25,12 +25,17 @@ namespace API.Models
                 tmp.LastName = employee.LastName;
                 tmp.Timesheet_Id = ts.Timesheet_Id;
                 tmp.DateSubmitted = ts.DateSubmitted;
-                IEnumerable<EmployeeDay> empDays = empDayRepo.GetEmployeeDaysByTimesheet(ts.Timesheet_Id);
-                foreach(var day in empDays)
+                tmp.Approved = ts.Approved;
+                List<EmployeeDay> empDays = empDayRepo.GetEmployeeDaysByTimesheet(ts.Timesheet_Id).ToList();
+                tmp.EmpDays = empDays;
+                if (ts.Submitted == true && ts.Approved == false)
                 {
-                    jobs.AddRange(jobRepo.GetJobsByEmployeeDayId(day.EmployeeDay_Id));
+                    foreach (var day in empDays)
+                    {
+                        jobs.AddRange(jobRepo.GetJobsByEmployeeDayId(day.EmployeeDay_Id));
+                    }
+                    tmp.Jobs = jobs;
                 }
-                tmp.Jobs = jobs;
                 views.Add(tmp);
             }
             return views;

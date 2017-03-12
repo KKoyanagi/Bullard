@@ -11,13 +11,13 @@ namespace Bullard_Inc.Models
 {
     public class Job
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int Job_Id { get; set; }
-        [ForeignKey("EmployeeDay")]
+        //[ForeignKey("EmployeeDay")]
         public int EmployeeDay_Id { get; set; }
         //Figure out composite key
-        [ForeignKey("Project")]
+        //[ForeignKey("Project")]
         public int Project_Id { get; set; }
         public int ActivityCode { get; set; }
         [Range(0, 24)]

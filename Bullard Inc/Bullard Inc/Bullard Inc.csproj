@@ -223,6 +223,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityCode.cs" />
+    <Compile Include="Models\EmployeeDay.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\Employee.cs" />
