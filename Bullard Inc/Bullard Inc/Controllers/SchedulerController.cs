@@ -15,7 +15,8 @@ namespace Bullard_Inc.Controllers
     {
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://BullardAPI.azurewebsites.net/api/";
+        //string url = "http://localhost:62367/api/";
+        string url = "http://bullardapi.azurewebsites.net/api/";
 
         public SchedulerController()
         {
@@ -42,6 +43,15 @@ namespace Bullard_Inc.Controllers
                 }
             }
             return View("Error");
+        }
+
+        [HttpGet]
+        [Route("Approve/{id}")]
+        public async Task<ActionResult> Approve(int id)
+        {
+
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
