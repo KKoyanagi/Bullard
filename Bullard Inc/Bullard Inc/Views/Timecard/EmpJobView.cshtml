@@ -1,4 +1,4 @@
-﻿@model Bullard_Inc.Models.Job
+﻿@model Bullard_Inc.Models.Job[]
 @{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
@@ -39,23 +39,28 @@
 </div>
 
 <p>Status: <span style="color: red"><b>Model.status</b></span></p>
-
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
-<a href="@Model.EmployeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
-<hr />
-<p>
-    JOB #: @Model.ActivityCode <br />
-    Hours: @Model.Hours <br />
-    Miles: @Model.Mileage <br />
-    Lunch: @Model.Lunch <br />
-    Work Perfomed: Model.workPerformed <br /> <br />
-    <div>
-        <a href="@Model.EmployeeDay_Id/empjobedit" class="btn btn-default">EDIT</a>
-        <a href="#" class="btn btn-default disabled">DEL</a>
-    </div>
-</p>
-<hr />
+<a href="@ViewData["day_int"]/empjobadd" class="btn btn-default">ADD</a>
+<form asp-action="@ViewData["day_int"]/empjobedit">
+    @foreach (var job in Model)
+    {
+        <hr />
+        <p>
+            JOB #: @job.ActivityCode <br />
+            Hours: @job.Hours <br />
+            Miles: @job.Mileage <br />
+            Lunch: @job.Lunch <br />
+            Work Perfomed: job.workPerformed <br /> <br />
+            <div>
+                <button type="submit" class="btn btn-default">EDIT</button>
+                <!--<button type="submit" class="btn btn-default disabled">DEL</button>-->
+            </div>
+        </p>
+        <hr />
+    }
+</form>
+
 
 <p>
     Total Hours: XXX <br />

@@ -19,8 +19,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        //string url = "http://localhost:62367/api/jobs";
-        string url = "http://bullardapi.azurewebsites.net/api/";
+        string url = "http://bullardapi.azurewebsites.net/api/jobs/employeeday";
 
         //Set the base address and the Header Formatter
         public TimecardController()
@@ -53,17 +52,19 @@ namespace Timecard.Controllers
             // this returns a list of jobs - List<job> jobs
 
             ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-
-            HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + 1);
+            ViewData["day_int"] = day_id;
+            HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + day_id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<Job>(responseData);
-                return View(Employees);
+                Job[] EmployeeDayJob = JsonConvert.DeserializeObject<Job[]>(responseData);
+                return View(EmployeeDayJob);
             }
             return View("Error");
+
         }
+
 
 
         //add a job
@@ -74,7 +75,7 @@ namespace Timecard.Controllers
             return View(new Job());
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("timecard/empjobview/{day_id}/empjobadd")]
         public async Task<ActionResult> empJobAdd(int day_id, Job job)
         {
@@ -91,27 +92,16 @@ namespace Timecard.Controllers
 
         // This action will display a empty Timecard
         [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public ActionResult EmpJobEdit(int day_id)
+        public ActionResult EmpJobEdit(int day_id, Job[] job)
         {
             ViewData["day"] = day_id; // pass day selected into ViewData
-
-           /* var vr = new Job()
-            {
-                EmployeeDay_Id = day_id,
-                ActivityCode = 14 - 081,
-                //status = "OPEN",
-                Hours = 8.0,
-                Mileage = 125,
-                Lunch = 0.5,
-                //workPerformed = "Dry Wall"
-            };*/
-
-            return View(new Job());
+            return RedirectToAction("Error");
+            //return View(new Job());
         }
 
         [HttpPut]
         [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public async Task<ActionResult> EmpJobEdit(int day_id, Job job)
+        public async Task<ActionResult> EmpJobEdit(int day_id, Job job, int x)
         {
             //  if (ModelState.IsValid)
             // {
@@ -126,12 +116,13 @@ namespace Timecard.Controllers
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("/empjobview/"+ day_id);
+                return RedirectToAction("Error");
+                //return RedirectToAction("/empjobview/"+ day_id);
             }
             return RedirectToAction("Error " + response);
             // }
         }
-        
+
 
         // This action will display the user's timecard history
         public ActionResult History()
