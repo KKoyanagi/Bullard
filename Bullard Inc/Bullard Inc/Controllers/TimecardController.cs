@@ -19,7 +19,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://bullardapi.azurewebsites.net/api/jobs/employeeday";
+        string url = "http://bullardapi.azurewebsites.net/api/jobs";
 
         //Set the base address and the Header Formatter
         public TimecardController()
@@ -53,7 +53,7 @@ namespace Timecard.Controllers
 
             ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
             ViewData["day_int"] = day_id;
-            HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + day_id);
+            HttpResponseMessage responseMessage = await client.GetAsync(url + "/employeeday/" + day_id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -91,14 +91,22 @@ namespace Timecard.Controllers
 
 
         // This action will display a empty Timecard
-        [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public ActionResult EmpJobEdit(int day_id, Job[] job)
-        {
-            ViewData["day"] = day_id; // pass day selected into ViewData
-            return RedirectToAction("Error");
-            //return View(new Job());
-        }
+        [Route("timecard/empjobview/{day_id}/empjobedit/")]
+        public async Task<ActionResult> EmpJobEdit(int day_id, int id)
+         {
+             ViewData["day_id"] = day_id; // pass day selected into ViewData
+             ViewData["day"] = dayToString(day_id);
+             HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + id);
+              if (responseMessage.IsSuccessStatusCode)
+              {
+                  var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
+                  Job EmployeeJob = JsonConvert.DeserializeObject<Job>(responseData);
+                 return View(EmployeeJob);
+              }
+              return View("Error");
+         }
+         
         [HttpPut]
         [Route("timecard/empjobview/{day_id}/empjobedit")]
         public async Task<ActionResult> EmpJobEdit(int day_id, Job job, int x)

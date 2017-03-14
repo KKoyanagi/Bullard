@@ -42,24 +42,25 @@
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
 <a href="@ViewData["day_int"]/empjobadd" class="btn btn-default">ADD</a>
-<form asp-action="@ViewData["day_int"]/empjobedit">
     @foreach (var job in Model)
     {
         <hr />
-        <p>
-            JOB #: @job.ActivityCode <br />
-            Hours: @job.Hours <br />
-            Miles: @job.Mileage <br />
-            Lunch: @job.Lunch <br />
-            Work Perfomed: job.workPerformed <br /> <br />
-            <div>
-                <button type="submit" class="btn btn-default">EDIT</button>
-                <!--<button type="submit" class="btn btn-default disabled">DEL</button>-->
-            </div>
-        </p>
-        <hr />
-    }
-</form>
+        <!--<form action="ViewData["day_int"]/empjobedit">-->
+            <p>
+                JOB #: @Html.DisplayFor(m => job.ActivityCode) <br />
+                Hours: @Html.DisplayFor(m => job.Hours) <br />
+                Miles: @Html.DisplayFor(m => job.Mileage) <br />
+                Lunch: @Html.DisplayFor(m => job.Lunch) <br />
+                Work Perfomed: job.workPerformed <br /> <br />
+                <div>
+                    @Html.ActionLink("Edit", "EmpJobEdit", new { id = job.Job_Id})
+                   <!--<button type="submit" class="btn btn-default" name="">EDIT</button>
+                   <button type="submit" class="btn btn-default disabled">DEL</button>-->
+                </div>
+            </p>
+       <!--</form>-->
+            <hr />
+            }
 
 
 <p>
