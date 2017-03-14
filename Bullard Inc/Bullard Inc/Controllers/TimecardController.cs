@@ -65,8 +65,6 @@ namespace Timecard.Controllers
 
         }
 
-
-
         //add a job
         [Route("timecard/empjobview/{day_id}/empjobadd")]
         public ActionResult empJobAdd(int day_id)
@@ -88,28 +86,9 @@ namespace Timecard.Controllers
             }
             return RedirectToAction("Error" + response);
         }
+   
 
-        [HttpPost]
-        [HttpPut]
-        [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public async Task<ActionResult> EmpJobEdit([Bind(Include = "EmployeeDay_Id,Project_Id,ActivityCode,Hours,Mileage,Lunch,")] Job job)
-        {
-
-            /*Job vr = new Job();
-            vr.EmployeeDay_Id = 1;
-            vr.Hours = 20;
-            vr.Lunch = 2;*/
-            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(url, job);
-            System.Net.HttpStatusCode response = responseMessage.StatusCode;
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Error");
-                //return RedirectToAction("/empjobview/"+ day_id);
-            }
-            return RedirectToAction("Error " + response);
-            // }
-        }
-        // This action will display a empty Timecard
+        // edit a job
         [Route("timecard/empjobview/{day_id}/empjobedit/")]
         public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
          {
@@ -125,8 +104,22 @@ namespace Timecard.Controllers
               }
               return View("Error");
          }
-        
 
+
+        [Route("timecard/empjobview/{day_id}/empjobupdate/")]
+        public async Task<ActionResult> EmpJobUpdate(int day_id, [Bind(Include = "Job_Id,EmployeeDay_Id,Project_Id,ActivityCode,Hours,Mileage,Lunch,")] Job job)
+        {
+            
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(url, job);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error " + response);
+            // }
+        }
+        
 
         // This action will display the user's timecard history
         public ActionResult History()
