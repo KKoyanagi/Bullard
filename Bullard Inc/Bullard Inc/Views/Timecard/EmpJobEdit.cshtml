@@ -45,7 +45,7 @@
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
 
-<form action="" method="post">
+<!--<form action="" method="post">
 
     <div class="btn-group">
         <button class="btn btn-primary dropdown-toggle" value=0 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name=Model.ActivityCode>Job Number:</button>
@@ -87,21 +87,27 @@
         <button type="submit" class="btn btn-default" name="">Submit</button>
     </div>
 
-</form>
-<!--using (Html.BeginForm("empjobview/" + Model.EmployeeDay_Id, "timecard", FormMethod.Post))
+</form>-->
+@using (Html.BeginForm("empjobedit", "timecard/empjobview/" + Model.EmployeeDay_Id, FormMethod.Post))
 {
-    <input name="_method" type="hidden" value="PUT">
+    // <input name="_method" type="hidden" value="PUT">
+    <p>
 
-    Html.TextBoxFor(m => m.Job_Id)
-    Html.TextBoxFor(model => model.Project_Id)
-    Html.TextBoxFor(model => model.ActivityCode)
-    Html.TextBoxFor(model => model.Hours)
-    Html.TextBoxFor(model => model.Mileage)
-    Html.TextBoxFor(model => model.Lunch)
+        Job_Id: @Html.TextBoxFor(m => m.Job_Id)
+        <!--Html.LabelFor(m => m.Project_Id, "Project #:")-->
+        Project #: @Html.TextBoxFor(m => m.Project_Id)
+        Hours: @Html.TextBoxFor(m => m.Hours)
+        Miles: @Html.TextBoxFor(m => m.Mileage)
+        Lunch: @Html.TextBoxFor(m => m.Lunch)
+        ActivityCode: @Html.DropDownListFor(m => m.ActivityCode, new SelectList(new[] { "14-081", "14-082", "14 - 083" }))
 
-    <input type="submit" class="btn btn-default btn-lg" value="Submit" />
-}-->
+        <div>
+            <!-- Html.ActionLink("Submit", "EmpJobEdit", new { job = Model})-->
+            <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+        </div>
+    </p>
+}
 
-<div align="right">
-    <a href="/Timecard/empjobview/@Model.EmployeeDay_Id" class="btn btn-default btn-lg">Back</a>
-</div>
+        <div align="right">
+            <a href="/Timecard/empjobview/@Model.EmployeeDay_Id" class="btn btn-default btn-lg">Back</a>
+        </div>
