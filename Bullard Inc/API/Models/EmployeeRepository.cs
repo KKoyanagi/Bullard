@@ -8,36 +8,84 @@ namespace API.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private ApplicationDbContext context;
+        //private ApplicationDbContext context;
 
-        public EmployeeRepository(ApplicationDbContext context)
+        //public EmployeeRepository(ApplicationDbContext context)
+        //{
+        //    this.context = context;
+        //}
+        public EmployeeRepository()
         {
-            this.context = context;
+            
         }
-
         public IEnumerable<Employee> GetEmployees()
         {
-            return context.Employees.ToList();
+            using(ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return context.Employees.ToList();
+            }
+            
         }
         public Employee GetEmployeeById(int emp_id)
         {
-            return context.Employees.Find(emp_id);
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return context.Employees.Find(emp_id);
+            }
         }
-        public void InsertEmployee(Employee employee)
+        public Employee InsertEmployee(Employee employee)
         {
-            context.Employees.Add(employee);
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                context.Employees.Add(employee);
+                context.SaveChanges();
+                return employee;
+            }
         }
         public Employee RemoveEmployee(int emp_id)
         {
-            Employee employee = context.Employees.Find(emp_id);
-            context.Employees.Remove(employee);
-            return employee;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                Employee employee = context.Employees.Find(emp_id);
+                context.Employees.Remove(employee);
+                context.SaveChanges();
+                return employee;
+            }
         }
-        public void UpdateEmployee(Employee employee)
+        public Employee UpdateEmployee(Employee employee)
         {
-            context.Entry(employee).State = EntityState.Modified;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var ts = context.Employees.Find(employee.Emp_Id);
+                
+                if (ts == null)
+                {
+                    return null;
+                }
+                context.Entry(ts).Property(u => u.FirstName).CurrentValue = employee.FirstName;
+                context.Entry(ts).Property(u => u.LastName).CurrentValue = employee.LastName;
+                context.Entry(ts).Property(u => u.AccountName).CurrentValue = employee.AccountName;
+                context.Entry(ts).Property(u => u.Email).CurrentValue = employee.Email;
+                context.Entry(ts).Property(u => u.Phone).CurrentValue = employee.Phone;
+                
+                
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch 
+                {
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Employees SET FirstName = {0} WHERE Emp_Id = {1}", employee.FirstName, employee.Emp_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Employees SET LastName = {0} WHERE Emp_Id = {1}", employee.LastName, employee.Emp_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Employees SET AccountName = {0} WHERE Emp_Id = {1}", employee.AccountName, employee.Emp_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Employees SET Email = {0} WHERE Emp_Id = {1}", employee.Email, employee.Emp_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Employees SET Phone = {0} WHERE Emp_Id = {1}", employee.Phone, employee.Emp_Id);
+
+                }
+                return employee;
+            }
         }
-        public void Save()
+        /*public void Save()
         {
             context.SaveChanges();
         }
@@ -62,6 +110,6 @@ namespace API.Models
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
+        */
     }
 }

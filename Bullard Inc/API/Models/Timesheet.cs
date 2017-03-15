@@ -22,5 +22,8 @@ namespace API.Models
         public Boolean Approved { get; set; }
         [Range(0, 1)]
         public Boolean Submitted { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0}:MM/dd/yyyy", ApplyFormatInEditMode = true)]
+        public DateTime DateSubmitted { get; set; }
     }
 }

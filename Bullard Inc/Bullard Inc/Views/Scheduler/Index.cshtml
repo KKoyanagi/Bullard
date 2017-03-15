@@ -1,0 +1,236 @@
+﻿
+@model IEnumerable<Bullard_Inc.Models.PendingView>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
+    string[] days = { "", "Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"};
+}
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] Bullard </title>
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link href="~/Content/compiled.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+
+   <div class="container-fluid">
+        <h1>TIMECARD</h1>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-3 Bullard_Color" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">PENDING</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">PAST DUE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">APPROVED</a>
+            </li>
+        </ul>
+   </div>
+    <!-- Tab panels -->
+    <div class="tab-content card">
+        <!--Panel 1-->
+        
+            
+            <!--    
+                    <h4># First Name Last Name Date Submitted Action</h4>
+                    
+            <hr />
+            foreach (var timesheet in Model)
+            {<div class="panel-group" id="accordion_timesheet.Timesheet_Id">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_timesheet.Timesheet_Id">
+                               timesheet.Timesheet_Id timesheet.FirstName timesheet.LastName timesheet.DateSubmitted <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+<a href="" class="red-text"><i class="fa fa-times"></i></a>
+<a href="" class="green-text"><i class="fa fa-check"></i></a> 
+                            </a>
+                        </h4><hr />
+                    </div>
+                    <div id="collapse_timesheet.Timesheet_Id" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            foreach (var job in timesheet.Jobs)
+                            {
+                                <p style="margin-left: 40px">
+                                    job.Job_Id 
+                                </p>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }-->
+            
+            @foreach (var timesheet in Model)
+            {
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.Timesheet_Id</td>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.FirstName</td>
+                        <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
+                        <td>@timesheet.DateSubmitted</td>
+                        <td>
+                            
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="@Url.Action("Approve", "Scheduler", new { id = timesheet.Timesheet_Id })" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="test_@timesheet.Timesheet_Id" class="collapse">
+                    <tr>
+                        <td>Day</td>
+                        <td>Job Id</td>
+                        <td>Project Id</td>
+                        <td>Hours</td>
+                        <td>Mileage</td>
+                        <td>Lunch</td>
+                        <td>Activity Code</td>
+                        
+                    </tr>
+                    
+                    @foreach(var job in timesheet.Jobs)
+                    {
+                        <tr>
+                            <td>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
+                            <td>@job.Job_Id</td>
+                            <td>@job.Project_Id</td>
+                            <td>@job.Hours</td>
+                            <td>@job.Mileage</td>
+                            <td>@job.Lunch</td>
+                            <td>@job.ActivityCode</td>
+                           
+                        </tr>
+                        
+                    }
+
+                </tbody>
+                </table>
+            }
+            <!--
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date Submitted</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                
+                    <tr>
+                        <td>timesheet.Timesheet_Id</td>
+                        <td>timesheet.FirstName</td>
+                        <td>timesheet.LastName</td>
+                        <td>timesheet.DateSubmitted</td>
+                        <td>
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="#" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                }
+                    <!--<tr>
+                        <th scope="row">1</th>
+                        <td>Lathsamy</td>
+                        <td>Vongsavanh</td>
+                        <td>02-28-2017</td>
+                        <td>
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="#" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Kameryn</td>
+                        <td>Taylor</td>
+                        <td>02-28-2017</td>
+                        <td>
+                            <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                            <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                            <a href="#" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>-->
+        </div>
+        <!--/.Panel 1-->
+        <!--Panel 2-->
+        <div class="tab-pane fade" id="panel2" role="tabpanel">
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date Submitted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Ken</td>
+                        <td>Koyanagi</td>
+                        <td>n/a</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Donald</td>
+                        <td>Murchisd</td>
+                        <td>n/a</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--/.Panel 2-->
+        <!--Panel 3-->
+        <div class="tab-pane fade" id="panel3" role="tabpanel">
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Maddie</td>
+                        <td>Whitfield</td>
+                        <td>02-27-2017</td>
+                        <td>
+                            <a href="" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Justin</td>
+                        <td>Tran</td>
+                        <td>02-27-2017</td>
+                        <td>
+                            <a href="" class="green-text"><i class="fa fa-check"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--/.Panel 3-->
+    </div>

@@ -19,9 +19,11 @@ namespace API.Models
         //Figure out composite key
         [ForeignKey("Project")]
         public int Project_Id { get; set; }
+        [ForeignKey("ActivityCode")]
         public int ActivityCode { get; set; }
         [Range(0, 24)]
-        public int Hours { get; set; }
+        public double Hours { get; set; }
         public int Mileage { get; set; }
+        public double Lunch { get; set; }
     }
 }

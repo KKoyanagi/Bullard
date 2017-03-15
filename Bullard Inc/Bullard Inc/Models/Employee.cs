@@ -24,9 +24,11 @@ namespace Bullard_Inc.Models
         //Look in to data type phone and email
     }
 
+    //This is just a testing class 
     public class EmpTimesheetsView : Employee
     {
         
         public List<Timesheet> Timesheets { get; set; }
+        public List<ActivityCode> ActivityCodes { get; set; }
     }
 }

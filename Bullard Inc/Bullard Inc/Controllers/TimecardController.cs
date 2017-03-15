@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
+//using Microsoft.AspNet.WebApi.Client;
+using System.Net.Http.Formatting;
+using System.Diagnostics;
 
 namespace Timecard.Controllers
 {
@@ -16,7 +19,7 @@ namespace Timecard.Controllers
 
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://BullardAPI.azurewebsites.net/api/jobs/1";
+        string url = "http://bullardapi.azurewebsites.net/api/jobs";
 
         //Set the base address and the Header Formatter
         public TimecardController()
@@ -31,6 +34,8 @@ namespace Timecard.Controllers
         // GET: /<controller>/
         public ActionResult Index()
         {
+            // get request to api/timesheets/employee/current/{id}
+            // return View(timesheet)
             return View();
         }
 
@@ -39,63 +44,82 @@ namespace Timecard.Controllers
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
         {
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
+            // Make a Post request to api/employeedays
+            // with the timesheet_id and day_id in the body
+            // api will return an employeeday object
+            // Deserialize and the use employeeDay_id to make a get request
+            // Make get request to api/jobs/employeedays/{employeeDay_id}
+            // this returns a list of jobs - List<job> jobs
 
-            HttpResponseMessage responseMessage = await client.GetAsync(url);
+            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
+            ViewData["day_int"] = day_id;
+            HttpResponseMessage responseMessage = await client.GetAsync(url + "/employeeday/" + day_id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Employees = JsonConvert.DeserializeObject<JobModel>(responseData);
-                return View(Employees);
+                Job[] EmployeeDayJob = JsonConvert.DeserializeObject<Job[]>(responseData);
+                return View(EmployeeDayJob);
             }
             return View("Error");
+
         }
 
-        public ActionResult Create()
-        {
-            return View(new JobModel());
-        }
-
-        // This action will display a empty Timecard
+        //add a job
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public ActionResult EmpJobAdd(int day_id)
+        public ActionResult empJobAdd(int day_id)
         {
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-
-            var vr = new JobModel()
-            {
-                employeeDay_Id = day_id, 
-                activityCode = "",
-                status = "OPEN",
-                hours = 0,
-                mileage = 0,
-                lunch = 0,
-                workPerformed = "N/A"
-            };
-
-            return View("EmpJobEdit",vr);
+            ViewData["day"] = day_id;
+            return View(new Job());
         }
 
-        // This action will display the user's selected Timecard
-        [Route("timecard/empjobview/{day_id}/empjobedit")]
-        public ActionResult EmpJobEdit(int day_id)
+        [HttpPost]
+        [Route("timecard/empjobview/{day_id}/empjobadd")]
+        public async Task<ActionResult> empJobAdd(int day_id, Job job)
         {
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-
-            var vr = new JobModel()
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, job);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                employeeDay_Id = day_id,
-                activityCode = "14 - 081",
-                status = "OPEN",
-                hours = 8.0,
-                mileage = 125,
-                lunch = 0.5,
-                workPerformed = "Dry Wall"
-            };
-
-            return View(vr);
+                return RedirectToAction("/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error" + response);
         }
+   
+
+        // edit a job
+        [Route("timecard/empjobview/{day_id}/empjobedit/")]
+        public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
+         {
+             ViewData["day_id"] = day_id; // pass day selected into ViewData
+             ViewData["day"] = dayToString(day_id);
+             HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + id);
+              if (responseMessage.IsSuccessStatusCode)
+              {
+                  var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                  Job EmployeeJob = JsonConvert.DeserializeObject<Job>(responseData);
+                 return View(EmployeeJob);
+              }
+              return View("Error");
+         }
+
+
+        [Route("timecard/empjobview/{day_id}/empjobupdate/")]
+        public async Task<ActionResult> EmpJobUpdate(int day_id, [Bind(Include = "Job_Id,EmployeeDay_Id,Project_Id,ActivityCode,Hours,Mileage,Lunch,")] Job job)
+        {
+            
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(url, job);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error " + response);
+            // }
+        }
+        
 
         // This action will display the user's timecard history
         public ActionResult History()
@@ -109,13 +133,13 @@ namespace Timecard.Controllers
             switch (day_id)
             {
                 case 1: return "MONDAY";
-                case 2: return "TUESDAY"; 
-                case 3: return "WEDNESDAY"; 
-                case 4: return "THURSDAY"; 
-                case 5: return "FRIDAY"; 
-                case 6: return "SATURDAY"; 
+                case 2: return "TUESDAY";
+                case 3: return "WEDNESDAY";
+                case 4: return "THURSDAY";
+                case 5: return "FRIDAY";
+                case 6: return "SATURDAY";
                 case 7: return "SUNDAY";
-                default: return "N/A"; 
+                default: return "N/A";
             }
         }
     }

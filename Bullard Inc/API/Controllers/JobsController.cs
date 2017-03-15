@@ -21,69 +21,114 @@ namespace API.Controllers
         [HttpGet("employeeday/{id}", Name = "GetJobsByEmployeeDayId")]
         public IEnumerable<Job> GetJobsByEmployeeDay(string id)
         {
-            return jobsRepository.GetJobsByEmployeeDayId(Int32.Parse(id));
+            try
+            {
+                return jobsRepository.GetJobsByEmployeeDayId(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
         [HttpGet("{id}", Name = "GetJobById")]
         public IActionResult GetJobsById(string id)
         {
-            var job = jobsRepository.GetJobById(Int32.Parse(id));
-            if (job == null)
+            try
             {
-                return NotFound();
+                var job = jobsRepository.GetJobById(Int32.Parse(id));
+                if (job == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(job);
             }
-            return new ObjectResult(job);
+            catch
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPost]
         public IActionResult Create([FromBody] Job job)
         {
-            Debug.WriteLine("Getting Here");
-            if (job == null)
+            try
+            {
+                Debug.WriteLine("Getting Here");
+                if (job == null)
+                {
+                    return BadRequest();
+                }
+                //Debug.WriteLine(job);
+                var jb = jobsRepository.InsertJob(job);
+                //jobsRepository.Save();
+                return new ObjectResult(jb);
+            }
+            catch
             {
                 return BadRequest();
             }
-            Debug.WriteLine(job);
-            jobsRepository.InsertJob(job);
-            jobsRepository.Save();
-            return Created("GetJobsById", job);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody] Job job)
+        [HttpPut]
+        public IActionResult Update([FromBody] Job job)
         {
-            if (job == null)
+            try
+            {
+                if (job == null)
+                {
+                    return BadRequest();
+                }
+
+                /*var jb = jobsRepository.GetJobById(Int32.Parse(id));
+                if (jb == null)
+                {
+                    return NotFound();
+                }
+                //Conflicting key error unless use specific jb element
+                //so for now using this work around
+                //jb
+                jb.EmployeeDay_Id = job.EmployeeDay_Id;
+                jb.Project_Id = job.Project_Id;
+                jb.ActivityCode = job.ActivityCode;
+                jb.Hours = job.Hours;
+                jb.Mileage = job.Mileage;
+                jb.Lunch = job.Lunch;
+                //Debug.WriteLine(jb);*/
+                var jb = jobsRepository.UpdateJob(job);
+                if (jb == null)
+                {
+                    return NotFound();
+                }
+                //jobsRepository.Save();
+                return new ObjectResult(jb);
+            }
+            catch
             {
                 return BadRequest();
             }
-
-            var jb = jobsRepository.GetJobById(Int32.Parse(id));
-            if (jb == null)
-            {
-                return NotFound();
-            }
-            //Conflicting key error unless use specific jb element
-            //so for now using this work around
-            jb.EmployeeDay_Id = job.EmployeeDay_Id;
-            jb.Project_Id = job.Project_Id;
-            jb.ActivityCode = job.ActivityCode;
-            jb.Hours = job.Hours;
-            jb.Mileage = job.Mileage;
-            jobsRepository.UpdateJob(jb);
-            return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var job = jobsRepository.GetJobById(Int32.Parse(id));
-            if (job == null)
+            try
             {
-                return NotFound();
-            }
+                var job = jobsRepository.GetJobById(Int32.Parse(id));
+                if (job == null)
+                {
+                    return NotFound();
+                }
 
-            jobsRepository.RemoveJob(Int32.Parse(id));
-            return new NoContentResult();
+                jobsRepository.RemoveJob(Int32.Parse(id));
+                //jobsRepository.Save();
+                return new NoContentResult();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 

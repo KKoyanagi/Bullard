@@ -1,10 +1,11 @@
-﻿@model Bullard_Inc.Models.JobModel
+﻿@model Bullard_Inc.Models.Job
 
 @{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string startDate = "12/6/17";
     string endDate = "12/13/17";
+    //Model.EmployeeDay_Id = (int)ViewData["day"];
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -39,15 +40,15 @@
     </div>
 </div>
 
-<p>Status: <span style="color: red"><b>@Model.status</b></span></p>
+<p>Status: <span style="color: red"><b>Model.status</b></span></p>
 
 <button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
 <br />
 
-<form>
+<!--<form action="" method="post">
 
     <div class="btn-group">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Job Number: @Model.activityCode</button>
+        <button class="btn btn-primary dropdown-toggle" value=0 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name=Model.ActivityCode>Job Number:</button>
 
         <div class="dropdown-menu">
             <a class="dropdown-item" href="#">14-081</a>
@@ -58,29 +59,55 @@
 
         </div>
     </div><br /><br />
+    <div class="md-form">
+        <input value=0 type="text" id="form6" class="form-control" name="@Model.Project_Id">
+        <label class="active" for="form6">project_ID</label>
+    </div>
 
     <div class="md-form">
-        <input value=@Model.hours type="text" id="form6" class="form-control">
+        <input value=@Model.Hours type="text" id="form6" class="form-control" name=@Model.Hours>
         <label class="active" for="form6">Hours</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.mileage type="text" id="form6" class="form-control">
+        <input value=0 type="text" id="form6" class="form-control" name=@Model.Mileage>
         <label class="active" for="form6">Miles</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.lunch type="text" id="form6" class="form-control">
+        <input value=0 type="text" id="form6" class="form-control" name=@Model.Lunch>
         <label class="active" for="form6">Lunch</label>
     </div>
 
     <div class="md-form">
-        <textarea type="text" id="form7" class="md-textarea">@Model.workPerformed</textarea>
-        <label for="form7">Work Preferred</label>
+        <textarea type="text" id="form7" class="md-textarea">Model.workPerformed</textarea>
+        <label for="form7">Work Performed</label>
+    </div>
+    <div align="left">
+        <button type="submit" class="btn btn-default" name="">Submit</button>
     </div>
 
-</form>
+</form>-->
+@using (Html.BeginForm("empjobupdate", "timecard/empjobview/" + Model.EmployeeDay_Id, FormMethod.Post))
+{
+    // <input name="_method" type="hidden" value="PUT">
+    <p>
 
-<div align="right">
-    <a href="/Timecard/empjobview/@Model.employeeDay_Id" class="btn btn-default btn-lg">Back</a>
-</div>
+        Job_Id: @Html.TextBoxFor(m => m.Job_Id)
+        <!--Html.LabelFor(m => m.Project_Id, "Project #:")-->
+        Project #: @Html.TextBoxFor(m => m.Project_Id)
+        Hours: @Html.TextBoxFor(m => m.Hours)
+        Miles: @Html.TextBoxFor(m => m.Mileage)
+        Lunch: @Html.TextBoxFor(m => m.Lunch)
+        ActivityCode: @Html.DropDownListFor(m => m.ActivityCode, new SelectList(new[] { "14-081", "14-082", "14 - 083" }))
+
+        <div>
+            <!-- Html.ActionLink("Submit", "EmpJobEdit", new { job = Model})-->
+            <input type="submit" class="btn btn-default btn-lg" value="Submit" />
+        </div>
+    </p>
+}
+
+        <div align="right">
+            <a href="/Timecard/empjobview/@Model.EmployeeDay_Id" class="btn btn-default btn-lg">Back</a>
+        </div>

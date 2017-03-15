@@ -19,7 +19,6 @@ namespace API
     {
         public Startup(IHostingEnvironment env)
         {
-            Debug.WriteLine("Testing");
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -43,8 +42,8 @@ namespace API
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             Debug.WriteLine("Testing");
             services.AddMvc();
 
@@ -53,6 +52,9 @@ namespace API
             services.AddSingleton<IEmployeeDayRepository, EmployeeDayRepository>();
             services.AddSingleton<IJobRepository, JobRepository>();
             services.AddSingleton<IActivityCodeRepository, ActivityCodeRepository>();
+            services.AddSingleton<IWorkWeekRepository, WorkWeekRepository>();
+            services.AddSingleton<IProjectRepository, ProjectRepository>();
+            services.AddSingleton<IPendingViewRepository, PendingViewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
