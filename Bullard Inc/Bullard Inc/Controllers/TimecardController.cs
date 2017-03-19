@@ -31,16 +31,13 @@ namespace Timecard.Controllers
         }
 
         // Homepage of TimeCard Controller
-        // GET: /<controller>/
         public ActionResult Index()
         {
-            // get request to api/timesheets/employee/current/{id}
-            // return View(timesheet)
+            // TODO get request to api/timesheets/employee/current/{id}
             return View();
         }
 
         // This action will display the number of Jobs the user has worked on a particular day. 
-        // GET: EmployeeInfo
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
         {
@@ -51,8 +48,8 @@ namespace Timecard.Controllers
             // Make get request to api/jobs/employeedays/{employeeDay_id}
             // this returns a list of jobs - List<job> jobs
 
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-            ViewData["day_int"] = day_id;
+            ViewData["dayString"] = dayToString(day_id); // pass day selected into ViewData
+            ViewData["day_id"] = day_id;
             HttpResponseMessage responseMessage = await client.GetAsync(url + "/employeeday/" + day_id);
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -65,17 +62,19 @@ namespace Timecard.Controllers
 
         }
 
-        //add a job
+        // ADD JOB ACTION
         [Route("timecard/empjobview/{day_id}/empjobadd")]
         public ActionResult empJobAdd(int day_id)
         {
-            ViewData["day"] = day_id;
+            ViewData["day_id"] = day_id.ToString();
+            ViewData["dayString"] = dayToString(day_id);
             return View(new Job());
         }
 
+        // ADD JOB ACTION SUBMIT TIMECARD
         [HttpPost]
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public async Task<ActionResult> empJobAdd(int day_id, Job job)
+        public async Task<ActionResult> empJobAdd(int day_id, Job job)  
         {
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
@@ -88,12 +87,11 @@ namespace Timecard.Controllers
         }
    
 
-        // edit a job
+        // EDIT JOB ACTION
         [Route("timecard/empjobview/{day_id}/empjobedit/")]
         public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
          {
              ViewData["day_id"] = day_id; // pass day selected into ViewData
-             ViewData["day"] = dayToString(day_id);
              HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + id);
               if (responseMessage.IsSuccessStatusCode)
               {
@@ -105,7 +103,7 @@ namespace Timecard.Controllers
               return View("Error");
          }
 
-
+        // EDIT JOB ACTION UPDATE
         [Route("timecard/empjobview/{day_id}/empjobupdate/")]
         public async Task<ActionResult> EmpJobUpdate(int day_id, [Bind(Include = "Job_Id,EmployeeDay_Id,Project_Id,ActivityCode,Hours,Mileage,Lunch,")] Job job)
         {
@@ -117,7 +115,6 @@ namespace Timecard.Controllers
                 return RedirectToAction("/empjobview/" + day_id);
             }
             return RedirectToAction("Error " + response);
-            // }
         }
         
 

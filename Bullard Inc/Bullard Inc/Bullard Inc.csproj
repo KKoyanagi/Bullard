@@ -224,7 +224,6 @@
     <Compile Include="Models\ActivityCode.cs" />
     <Compile Include="Models\EmployeeDay.cs" />
     <Compile Include="Models\Job.cs" />
-    <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -402,7 +401,6 @@
     <Content Include="Views\Scheduler\Index.cshtml" />
     <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
     <Content Include="Views\Scheduler\AddUser.cshtml" />
-    <Content Include="Views\Timecard\EmpJobUpdate.cshtml" />
     <Content Include="Views\Scheduler\Help.cshtml" />
     <Content Include="Views\Timecard\Help.cshtml" />
   </ItemGroup>

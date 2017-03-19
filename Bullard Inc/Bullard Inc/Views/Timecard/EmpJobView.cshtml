@@ -4,6 +4,11 @@
 
     string startDate = "12/6/17";
     string endDate = "12/13/17";
+
+    string dayString = (string)ViewData["dayString"];
+
+    double totalHours = 0;
+    double totalMiles = 0; 
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -22,7 +27,7 @@
                     </li>
                     <li class="page-item active">
                         <a class="page-link" href="history">
-                            @startDate - @endDate
+                            @startDate-@endDate
                         </a>
                     </li>
                     <li class="page-item">
@@ -39,32 +44,35 @@
 </div>
 
 <p>Status: <span style="color: red"><b>Model.status</b></span></p>
-<button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
+<button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
-<a href="@ViewData["day_int"]/empjobadd" class="btn btn-default">ADD</a>
+
+<a href="@ViewData["day_id"]/empjobadd" class="btn btn-default">ADD</a>
     @foreach (var job in Model)
     {
         <hr />
-
             <p>
                 JOB #: @Html.DisplayFor(m => job.Project_Id, "Project #:") <br />
                 Hours: @Html.DisplayFor(m => job.Hours) <br />
+
                 Miles: @Html.DisplayFor(m => job.Mileage) <br />
                 Lunch: @Html.DisplayFor(m => job.Lunch) <br />
                 Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br /> <br />
+                @{
+                    // accumilate total hours and milage
+                    totalHours += job.Hours;
+                    totalMiles += job.Mileage;
+                }
                 <div>
                     @Html.ActionLink("Edit", "EmpJobEdit", new { id = job.Job_Id})
-                   <!--<button type="submit" class="btn btn-default" name="">EDIT</button>
-                   <button type="submit" class="btn btn-default disabled">DEL</button>-->
                 </div>
             </p>
 
-            }
-
+     }
 
 <p>
-    Total Hours: XXX <br />
-    Total Miles: XXX <br />
+    Total Hours: @totalHours <br />
+    Total Miles: @totalMiles <br />
 </p>
 
 <div align="right">
