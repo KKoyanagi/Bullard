@@ -226,11 +226,13 @@
     <Compile Include="Models\ActivityCode.cs" />
     <Compile Include="Models\EmployeeDay.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobInformation.cs" />
     <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PendingView.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Timesheet.cs" />
     <Compile Include="Models\WorkWeek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
