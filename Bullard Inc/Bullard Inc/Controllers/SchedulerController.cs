@@ -26,6 +26,10 @@ namespace Bullard_Inc.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        public ActionResult AddUser()
+        {
+            return View();
+        }
         public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");

@@ -104,7 +104,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(string id, [FromBody] Job job)
+        public IActionResult Update([FromBody] Job job)
         {
             try
             {
