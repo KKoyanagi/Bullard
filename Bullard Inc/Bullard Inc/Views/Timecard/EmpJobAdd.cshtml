@@ -1,11 +1,13 @@
-﻿@model Bullard_Inc.Models.Job
+﻿@model Bullard_Inc.Models.Timecard_EmpJobAddEdit
 
 @{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
+    string status = "OPEN";
     string startDate = "12/6/17";
     string endDate = "12/13/17";
 
+    int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
 }
 
@@ -41,7 +43,7 @@
     </div>
 </div>
 
-<p>Status: <span style="color: red"><b>Model.status</b></span></p>
+<p>Status: <span style="color: red"><b>@status</b></span></p>
 
 <button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
@@ -49,32 +51,29 @@
 <form action="EmpJobAdd" method="post">
 
     <div class="md-form">
-        <input value=@Int32.Parse((string)ViewData["day_id"]) type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
+        <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
+    <!-- ActivityCode (Work Performed) Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Project #:</label>
-        <select id="Project_Id" name="Project_Id">
-            <option value="1">Project_Id 1</option>
-            <option value="2">Project_Id 2</option>
-            <option value="3">Project_Id 3</option>
-            <option value="4">Project_Id 4</option>
-            <option value="5">Project_Id 5</option>
+        <select id="ActivityCode" name="ActivityCode">
+            @foreach (var code in Model.ActivityCodes)
+            {
+                <option value=@code.ActivityCode_Id>@code.ActivityDescription </option>
+            }
         </select>
     </div>
-    <br />
 
+    <!-- Projects Drowndown List-->
     <div class="md-form">
-        <div class="md-form">
-            <label class="active" for="form6">Work Performed: </label>
-            <select id="ActivityCode" name="ActivityCode">
-                <option value="1">Dry Wall</option>
-                <option value="2">Electric</option>
-                <option value="3">Pluming</option>
-                <option value="4">Carpenter</option>
-                <option value="5">Landscaping</option>
-            </select>
-        </div>
+        <label class="active" for="form6">Work Performed:</label>
+        <select id="Project_Id" name="Project_Id">
+            @foreach (var project in Model.Projects)
+            {
+                <option value=@project.Project_Id> @project.Project_Num - @project.Location </option>
+            }
+        </select>
     </div>
 
     <div class="md-form">
@@ -96,7 +95,7 @@
         <input type="submit" class="btn btn-default" value="Submit">
 
         <div align="right">
-            <a class="btn btn-default" href="/Timecard/empjobview/@Model.EmployeeDay_Id">Cancel</a>
+            <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
         </div>
     </div>
 </form>
