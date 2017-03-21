@@ -139,18 +139,51 @@ namespace Timecard.Controllers
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
 
-            // custom url
+            // values for view model: Timecard_EmpJobAddEdit
+            ActivityCode[] activityCodes;
+            Project[] projects;
+            Job job; 
+
+            // custom urls
+            string activityCodesURL = url + "activitycodes";
+            string projectsURL = url + "projects";
             string empJobEditURL = url + "jobs/" + id; 
 
-             HttpResponseMessage responseMessage = await client.GetAsync(empJobEditURL);
-              if (responseMessage.IsSuccessStatusCode)
-              {
-                  var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                  Job EmployeeJob = JsonConvert.DeserializeObject<Job>(responseData);
-                 return View(EmployeeJob);
-              }
-            
+            // get list of activity codes 
+            HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(responseData);
+
+                // get list of project numbers
+                responseMessage = await client.GetAsync(projectsURL);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    projects = JsonConvert.DeserializeObject<Project[]>(responseData);
+
+                    // get job
+                    responseMessage = await client.GetAsync(empJobEditURL);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                        job = JsonConvert.DeserializeObject<Job>(responseData);
+
+                        // initialize view model: Timecard_EmpJobAddEdit
+                        Timecard_EmpJobAddEdit employeeJob = new Timecard_EmpJobAddEdit
+                        {
+                            Job = job,
+                            ActivityCodes = activityCodes.ToList(),
+                            Projects = projects.ToList()
+                        };
+
+                        return View(employeeJob);
+                    }
+                }
+            }
+
             // if  api call fail, return error. 
             return View("Error");
          }

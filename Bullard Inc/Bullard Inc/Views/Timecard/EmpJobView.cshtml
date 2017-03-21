@@ -5,6 +5,7 @@
     string status = "OPEN";
     string startDate = "12/6/17";
     string endDate = "12/13/17";
+    string date = startDate + " - " + endDate;
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string)ViewData["dayString"];
@@ -29,7 +30,7 @@
                     </li>
                     <li class="page-item active">
                         <a class="page-link" href="history">
-                            @startDate-@endDate
+                            @date
                         </a>
                     </li>
                     <li class="page-item">
