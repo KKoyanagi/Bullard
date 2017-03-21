@@ -116,7 +116,7 @@ namespace Timecard.Controllers
 
         // ADD JOB ACTION SUBMIT TIMECARD
         [HttpPost]
-        [Route("timecard/empjobview/{day_id}/empjobadd")]
+        [Route("timecard/empjobview/{day_id}/empjobsubmit")]
         public async Task<ActionResult> EmpJobSubmit(int day_id, Job job)  
         {
             // custom url
