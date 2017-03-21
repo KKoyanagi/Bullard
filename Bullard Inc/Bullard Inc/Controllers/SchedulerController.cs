@@ -13,10 +13,8 @@ namespace Bullard_Inc.Controllers
 {
     public class SchedulerController : Controller
     {
-        HttpClient client;
-        //The URL of the WEB API Service
-        //string url = "http://localhost:62367/api/";
-        string url = "http://bullardapi.azurewebsites.net/api/";
+        HttpClient client; 
+        string url = "http://bullardapi.azurewebsites.net/api/"; // The URL of the WEB API Service
 
         public SchedulerController()
         {
@@ -26,10 +24,6 @@ namespace Bullard_Inc.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public ActionResult AddUser()
-        {
-            return View();
-        }
         public async Task<ActionResult> Index()
         {
             HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
@@ -49,11 +43,34 @@ namespace Bullard_Inc.Controllers
             return View("Error");
         }
 
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SubmitUser(Employee user)
+        {
+            // custom url
+            string addUserURL = url + "employees";
+
+            // post employee information
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(addUserURL, user);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return View("AddUser"); // will need to redirect to the employees page
+            }
+
+            // if api call fails, return error
+            return RedirectToAction("Error" + response);
+        }
+
         [HttpGet]
         [Route("Approve/{id}")]
         public async Task<ActionResult> Approve(int id)
         {
-
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return Redirect(Request.UrlReferrer.ToString());
         }
