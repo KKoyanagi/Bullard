@@ -48,6 +48,7 @@ namespace Bullard_Inc.Controllers
             return View();
         }
 
+        // makes a post request to employees table. 
         [HttpPost]
         public async Task<ActionResult> SubmitUser(Employee user)
         {
@@ -74,6 +75,7 @@ namespace Bullard_Inc.Controllers
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return Redirect(Request.UrlReferrer.ToString());
         }
+
         public ActionResult Help()
         {
             //ViewBag.Message = "Your contact page.";
