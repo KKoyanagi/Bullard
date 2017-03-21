@@ -49,7 +49,7 @@
 <button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
 
-<form action="" method="post">
+<form action="EmpJobSubmit" method="post">
 
     <div class="md-form">
         <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
@@ -58,7 +58,7 @@
     <!-- Projects Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Project #:</label>
-        <select id="Project_Id" name="Project_Id">
+        <select class ="browser-default" id="Project_Id" name="Project_Id">
             @foreach (var project in Model.Projects)
             {
                 if (project.Project_Id != Model.Job.Project_Id)
@@ -76,7 +76,7 @@
     <!-- ActivityCode (Work Performed) Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Work Performed:</label>
-        <select id="ActivityCode" name="ActivityCode">
+        <select class ="browser-default" id="ActivityCode" name="ActivityCode">
             @foreach (var code in Model.ActivityCodes)
             {
                 if (code.ActivityCode_Id != Model.Job.ActivityCode)

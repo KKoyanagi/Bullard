@@ -63,6 +63,7 @@ namespace Timecard.Controllers
                 Job[] EmployeeDayJob = JsonConvert.DeserializeObject<Job[]>(responseData);
                 return View(EmployeeDayJob);
             }
+            // if api call fails, return error
             return View("Error");
         }
 
@@ -82,6 +83,7 @@ namespace Timecard.Controllers
             string activityCodesURL = url + "activitycodes";
             string projectsURL = url + "projects";
 
+            // API CALLS
             // get list of activity codes 
             HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
             if (responseMessage.IsSuccessStatusCode)
@@ -114,8 +116,8 @@ namespace Timecard.Controllers
 
         // ADD JOB ACTION SUBMIT TIMECARD
         [HttpPost]
-        [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public async Task<ActionResult> empJobAdd(int day_id, Job job)  
+        [Route("timecard/empjobview/{day_id}/empjobsubmit")]
+        public async Task<ActionResult> EmpJobSubmit(int day_id, Job job)  
         {
             // custom url
             string empJobAddURL = url + "jobs"; 
@@ -147,9 +149,9 @@ namespace Timecard.Controllers
             // custom urls
             string activityCodesURL = url + "activitycodes";
             string projectsURL = url + "projects";
-            string empJobEditURL = url + "jobs/" + id; 
+            string empJobEditURL = url + "jobs/" + id;
 
-
+            // API CALLS
             // get list of activity codes 
             HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
             if (responseMessage.IsSuccessStatusCode)
