@@ -203,12 +203,15 @@ C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\EmployeeRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IActivityCodeRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IEmployeeDayRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IEmployeeRepository.cs
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IJobInformationRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IJobRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IPendingViewRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IProjectRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\ITimesheetRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\IWorkWeekRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\Job.cs
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\JobInformation.cs
+C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\JobInformationRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\JobRepository.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\PendingView.cs
 C:\Users\Don\Source\Repos\Bullard\Bullard Inc\API\Models\PendingViewRepository.cs
