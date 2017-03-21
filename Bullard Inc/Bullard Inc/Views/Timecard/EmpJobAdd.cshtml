@@ -1,11 +1,15 @@
-﻿@model Bullard_Inc.Models.Job
+﻿@model Bullard_Inc.Models.Timecard_EmpJobAddEdit
 
 @{
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
+    string status = "OPEN";
     string startDate = "12/6/17";
     string endDate = "12/13/17";
-    Model.EmployeeDay_Id = (int)ViewData["day"];
+    string date = startDate + " - " + endDate;
+
+    int day_id = (int) ViewData["day_id"];
+    string dayString = (string) ViewData["dayString"];
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -24,7 +28,7 @@
                     </li>
                     <li class="page-item active">
                         <a class="page-link" href="history">
-                            @startDate - @endDate
+                            @date
                         </a>
                     </li>
                     <li class="page-item">
@@ -40,74 +44,62 @@
     </div>
 </div>
 
-<p>Status: <span style="color: red"><b>Model.status</b></span></p>
+<p>Status: <span style="color: red"><b>@status</b></span></p>
 
-<button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
+<button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
 
-<!--<form action="" method="post">
+<form action="EmpJobAdd" method="post">
 
-    <div class="btn-group">
-        <button class="btn btn-primary dropdown-toggle" value=0 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name=@Model.ActivityCode>Job Number:</button>
-
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">14-081</a>
-            <a class="dropdown-item" href="#">14-082</a>
-            <a class="dropdown-item" href="#">14-083</a>
-            <a class="dropdown-item" href="#">14-084</a>
-            <a class="dropdown-item" href="#">14-085</a>
-
-        </div>
-    </div><br /><br />
     <div class="md-form">
-        <input value=0 type="text" id="form6" class="form-control" name=@Model.EmployeeDay_Id>
-        <label class="active" for="form6">employeeDay_Id</label>
-    </div>
-    <div class="md-form">
-        <input value=0 type="text" id="form6" class="form-control" name="Project_Id">
-        <label class="active" for="form6">project_ID</label>
+        <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
+    <!-- Projects Drowndown List-->
     <div class="md-form">
-    <input value=0 type="text" id="form6" class="form-control" name=@Model.Hours>
-    <label class="active" for="form6">Hours</label>
+        <label class="active" for="form6">Project #:</label>
+        <select id="Project_Id" name="Project_Id">
+            @foreach (var project in Model.Projects)
+            {
+                <option value=@project.Project_Id> @project.Project_Num - @project.Location </option>
+            }
+        </select>
+    </div>
+
+    <!-- ActivityCode (Work Performed) Drowndown List-->
+    <div class="md-form">
+        <label class="active" for="form6">Work Performed:</label>
+        <select id="ActivityCode" name="ActivityCode">
+            @foreach (var code in Model.ActivityCodes)
+            {
+                <option value=@code.ActivityCode_Id>@code.ActivityDescription </option>
+            }
+
+
+        </select>
     </div>
 
     <div class="md-form">
-        <input value=0 type="text" id="form6" class="form-control" name=@Model.Mileage>
+        <input value=0 type="text" id="Hours" class="form-control" name="Hours">
+        <label class="active" for="form6">Hours</label>
+    </div>
+
+    <div class="md-form">
+        <input value=0 type="text" id="Mileage" class="form-control" name="Mileage">
         <label class="active" for="form6">Miles</label>
     </div>
 
     <div class="md-form">
-        <input value=0 type="text" id="form6" class="form-control" name=@Model.Lunch>
+        <input value=0 type="text" id="Lunch" class="form-control" name="Lunch">
         <label class="active" for="form6">Lunch</label>
     </div>
 
-    <div class="md-form">
-        <textarea type="text" id="form7" class="md-textarea">Model.workPerformed</textarea>
-        <label for="form7">Work Performed</label>
+    <div>
+        <input type="submit" class="btn btn-default" value="Submit">
+
+        <div align="right">
+            <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
+        </div>
     </div>
-    <div align="left">
-        <input type="submit" class="btn btn-default btn-lg" value="Submit">
-    </div>
+</form>
 
-</form>-->
-
-@using (Html.BeginForm("EmpJobAdd", "timecard/empjobview/" + Model.EmployeeDay_Id, FormMethod.Post))
-{
-    <p>
-        Day_id: @Html.TextBoxFor(model => model.EmployeeDay_Id)
-        Job #: @Html.TextBoxFor(model => model.Project_Id)
-        Hours: @Html.TextBoxFor(model => model.Hours)
-        Miles: @Html.TextBoxFor(model => model.Mileage)
-        Lunch: @Html.TextBoxFor(model => model.Lunch)
-        Work Performed: @Html.TextBoxFor(model => model.ActivityCode)
-
-        <input type="submit" class="btn btn-default btn-lg" value="Submit" />
-    </p>
-
-}
-
-<div align="right">
-    <a href="/Timecard/empjobview/@Model.EmployeeDay_Id" class="btn btn-default btn-lg">Cancel</a>
-</div>

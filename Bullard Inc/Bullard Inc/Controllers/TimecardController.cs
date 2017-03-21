@@ -16,12 +16,10 @@ namespace Timecard.Controllers
 {
     public class TimecardController : Controller
     {
-
         HttpClient client;
-        //The URL of the WEB API Service
-        string url = "http://bullardapi.azurewebsites.net/api/jobs";
+        string url = "http://bullardapi.azurewebsites.net/api/";  //The URL of the WEB API Service
 
-        //Set the base address and the Header Formatter
+        // Set the base address and the Header Formatter
         public TimecardController()
         {
             client = new HttpClient();
@@ -31,29 +29,33 @@ namespace Timecard.Controllers
         }
 
         // Homepage of TimeCard Controller
-        // GET: /<controller>/
         public ActionResult Index()
         {
-            // get request to api/timesheets/employee/current/{id}
-            // return View(timesheet)
+            // TODO: get request to api/timesheets/employee/current/{id}
             return View();
         }
 
         // This action will display the number of Jobs the user has worked on a particular day. 
-        // GET: EmployeeInfo
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
         {
-            // Make a Post request to api/employeedays
-            // with the timesheet_id and day_id in the body
-            // api will return an employeeday object
-            // Deserialize and the use employeeDay_id to make a get request
-            // Make get request to api/jobs/employeedays/{employeeDay_id}
-            // this returns a list of jobs - List<job> jobs
+            /* TODO: 
+                - Make a POST request to api/employeedays
+                    with the "timesheet_id" and "day_id" in the body
+                - API will return an employeeday object.
+                - Deserialize and the use employeeDay_id to make a get request
+                - Make get request to api/jobs/employeedays/{employeeDay_id}
+                    this returns a list of jobs - List<job> jobs
+            */
 
-            ViewData["day"] = dayToString(day_id); // pass day selected into ViewData
-            ViewData["day_int"] = day_id;
-            HttpResponseMessage responseMessage = await client.GetAsync(url + "/employeeday/" + day_id);
+            // pass in day information into the view
+            ViewData["day_id"] = day_id;
+            ViewData["dayString"] = dayToString(day_id);
+
+            // custom url
+            string empJobViewURL = url + "jobs/employeeday/" + day_id; 
+
+            HttpResponseMessage responseMessage = await client.GetAsync(empJobViewURL);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -62,22 +64,63 @@ namespace Timecard.Controllers
                 return View(EmployeeDayJob);
             }
             return View("Error");
-
         }
 
-        //add a job
+        // ADD JOB ACTION
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public ActionResult empJobAdd(int day_id)
+        public async Task<ActionResult> empJobAdd(int day_id)
         {
-            ViewData["day"] = day_id;
-            return View(new Job());
+            // pass in day information into the view
+            ViewData["day_id"] = day_id;
+            ViewData["dayString"] = dayToString(day_id);
+
+            // values for view model: Timecard_EmpJobAddEdit
+            ActivityCode[] activityCodes;
+            Project[] projects;
+
+            // custom urls
+            string activityCodesURL = url + "activitycodes";
+            string projectsURL = url + "projects";
+
+            // get list of activity codes 
+            HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(responseData);
+
+                // and then get list of project numbers
+                responseMessage = await client.GetAsync(projectsURL);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    projects = JsonConvert.DeserializeObject<Project[]>(responseData);
+
+                    // if successful on both API calls
+                    // initialize view model: Timecard_EmpJobAddEdit
+                    Timecard_EmpJobAddEdit employeeJob = new Timecard_EmpJobAddEdit
+                    {
+                        Job = new Job(),
+                        ActivityCodes = activityCodes.ToList(),
+                        Projects = projects.ToList()
+                    };
+                    return View(employeeJob);
+                }
+            }
+
+            // if either api call fails, return error. 
+            return View("Error");
         }
 
+        // ADD JOB ACTION SUBMIT TIMECARD
         [HttpPost]
         [Route("timecard/empjobview/{day_id}/empjobadd")]
-        public async Task<ActionResult> empJobAdd(int day_id, Job job)
+        public async Task<ActionResult> empJobAdd(int day_id, Job job)  
         {
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(url, job);
+            // custom url
+            string empJobAddURL = url + "jobs"; 
+
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobAddURL, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
             Debug.WriteLine(responseMessage.Content);
             if (responseMessage.IsSuccessStatusCode)
@@ -88,36 +131,77 @@ namespace Timecard.Controllers
         }
    
 
-        // edit a job
+        // EDIT JOB ACTION
         [Route("timecard/empjobview/{day_id}/empjobedit/")]
         public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
          {
-             ViewData["day_id"] = day_id; // pass day selected into ViewData
-             ViewData["day"] = dayToString(day_id);
-             HttpResponseMessage responseMessage = await client.GetAsync(url + "/" + id);
-              if (responseMessage.IsSuccessStatusCode)
-              {
-                  var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+            // pass in day information into the view
+            ViewData["day_id"] = day_id;
+            ViewData["dayString"] = dayToString(day_id);
 
-                  Job EmployeeJob = JsonConvert.DeserializeObject<Job>(responseData);
-                 return View(EmployeeJob);
-              }
-              return View("Error");
+            // values for view model: Timecard_EmpJobAddEdit
+            ActivityCode[] activityCodes;
+            Project[] projects;
+            Job job; 
+
+            // custom urls
+            string activityCodesURL = url + "activitycodes";
+            string projectsURL = url + "projects";
+            string empJobEditURL = url + "jobs/" + id; 
+
+
+            // get list of activity codes 
+            HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(responseData);
+
+                // get list of project numbers
+                responseMessage = await client.GetAsync(projectsURL);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    projects = JsonConvert.DeserializeObject<Project[]>(responseData);
+
+                    // get job
+                    responseMessage = await client.GetAsync(empJobEditURL);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                        job = JsonConvert.DeserializeObject<Job>(responseData);
+
+                        // initialize view model: Timecard_EmpJobAddEdit
+                        Timecard_EmpJobAddEdit employeeJob = new Timecard_EmpJobAddEdit
+                        {
+                            Job = job,
+                            ActivityCodes = activityCodes.ToList(),
+                            Projects = projects.ToList()
+                        };
+
+                        return View(employeeJob);
+                    }
+                }
+            }
+
+            // if  api call fail, return error. 
+            return View("Error");
          }
 
-
+        // EDIT JOB ACTION UPDATE
         [Route("timecard/empjobview/{day_id}/empjobupdate/")]
         public async Task<ActionResult> EmpJobUpdate(int day_id, [Bind(Include = "Job_Id,EmployeeDay_Id,Project_Id,ActivityCode,Hours,Mileage,Lunch,")] Job job)
         {
-            
-            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(url, job);
+            // custom url
+            string empJobUpdateURL = url + "jobs/"; 
+
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(empJobUpdateURL, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("/empjobview/" + day_id);
             }
             return RedirectToAction("Error " + response);
-            // }
         }
         
 
@@ -126,6 +210,8 @@ namespace Timecard.Controllers
         {
             return View();
         }
+
+        // --------------- LOGIC MODULES ---------------
 
         // converts the day_id into a string
         private string dayToString(int day_id)

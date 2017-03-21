@@ -12,12 +12,12 @@ namespace Bullard_Inc.Models
     public class EmployeeDay
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int EmployeeDay_Id { get; set; }
-        //[ForeignKey("Timesheet")]
+        [ForeignKey("Timesheet")]
         public int Timesheet_Id { get; set; }
         //Figure out composite key
-        //[ForeignKey("WorkDay")]
+        [ForeignKey("WorkDay")]
         public int Day_Id { get; set; }
         
     }

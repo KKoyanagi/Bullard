@@ -10,7 +10,6 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewData["Title"] Bullard </title>
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
-    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css" rel="stylesheet">
     <link href="~/Content/compiled.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/style.css">
 
@@ -20,16 +19,28 @@
 <!--LOGIN PAGE-->
 <body>
     <div class="jumbotron">
-        <center><h1 class="display-3">Bullard Employee Portal</h1></center>
+        <center><h1 class="display-3">Employee Portal</h1></center>
         <center><p class="lead">Welcome to your new Timecard application</p></center>
         <hr class="my-4">
         <center></<p>We use google for login accounts and they must be registered with the Scheduler for access</p></center>
         <p class="lead">
-            <center><a class="btn btn-primary btn-lg" href="#" role="button">Login</a></center>
+            <center>
+                <div id="my-signin2"></div>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Help" aria-expanded="false" aria-controls="collapseExample">
+                    Help
+                </button>
+            </center> 
+
+            <div class="collapse" id="Help">
+                <div class="card card-block">
+                    Use the google account registered with the Bullard Scheduler for access to the Timecard. </br>
+                    For Assitance with registering your google account with Bullard, Call: (916) 485-4370
+                </div>
+            </div>
+
         </p>
     </div>
 
-    <div id="my-signin2"></div>
     <script>
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
