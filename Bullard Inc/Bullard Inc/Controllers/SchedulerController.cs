@@ -57,5 +57,11 @@ namespace Bullard_Inc.Controllers
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return Redirect(Request.UrlReferrer.ToString());
         }
+        public ActionResult Help()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

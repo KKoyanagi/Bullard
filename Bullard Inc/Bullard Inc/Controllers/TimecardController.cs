@@ -142,5 +142,11 @@ namespace Timecard.Controllers
                 default: return "N/A";
             }
         }
+        public ActionResult Help()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }
