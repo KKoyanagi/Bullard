@@ -13,8 +13,10 @@ namespace Bullard_Inc.Controllers
 {
     public class SchedulerController : Controller
     {
-        HttpClient client; 
-        string url = "http://bullardapi.azurewebsites.net/api/"; // The URL of the WEB API Service
+        HttpClient client;
+        //The URL of the WEB API Service
+        //string url = "http://localhost:62367/api/";
+        string url = "http://bullardapi.azurewebsites.net/api/";
 
         public SchedulerController()
         {
@@ -24,7 +26,16 @@ namespace Bullard_Inc.Controllers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> GetPending()
         {
             HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
             if (responseMessage.IsSuccessStatusCode)
@@ -32,55 +43,60 @@ namespace Bullard_Inc.Controllers
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
                 WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-                responseMessage = await client.GetAsync("pendingview/1");
+                responseMessage = await client.GetAsync("view/pending/1");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     responseData = responseMessage.Content.ReadAsStringAsync().Result;
                     List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
-                    return View(views);
+                    return PartialView("_PendingPanel", views);
                 }
             }
-            return View("Error");
+            return PartialView();
         }
-
-        public ActionResult AddUser()
+        public async Task<ActionResult> GetPastDue()
         {
-            return View();
-        }
-
-        // makes a post request to employees table. 
-        [HttpPost]
-        public async Task<ActionResult> SubmitUser(Employee user)
-        {
-            // custom url
-            string addUserURL = url + "employees";
-
-            // post employee information
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(addUserURL, user);
-            System.Net.HttpStatusCode response = responseMessage.StatusCode;
-            Debug.WriteLine(responseMessage.Content);
+            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
             if (responseMessage.IsSuccessStatusCode)
             {
-                return View("AddUser"); // will need to redirect to the employees page
-            }
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-            // if api call fails, return error
-            return RedirectToAction("Error" + response);
+                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                responseMessage = await client.GetAsync("view/pastdue/3");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<PastDueView> views = JsonConvert.DeserializeObject<List<PastDueView>>(responseData);
+                    return PartialView("_PastDuePanel", views);
+                }
+            }
+            return PartialView();
+        }
+        public async Task<ActionResult> GetApproved()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                responseMessage = await client.GetAsync("view/approved/1");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<ApprovedView> views = JsonConvert.DeserializeObject<List<ApprovedView>>(responseData);
+                    return PartialView("_ApprovedPanel", views);
+                }
+            }
+            return PartialView();
         }
 
         [HttpGet]
         [Route("Approve/{id}")]
         public async Task<ActionResult> Approve(int id)
         {
+
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return Redirect(Request.UrlReferrer.ToString());
-        }
-
-        public ActionResult Help()
-        {
-            //ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
