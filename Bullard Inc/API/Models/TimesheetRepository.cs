@@ -55,7 +55,7 @@ namespace API.Models
                 getContext = new ApplicationDbContext();
             }
             var timesheets = from t in getContext.Timesheets
-                                 where t.Week_Id == week_id && t.Approved == true
+                                 where t.Week_Id == week_id && t.Approved == true && t.Submitted == true
                                  select t;
                 return timesheets;
             
@@ -87,6 +87,20 @@ namespace API.Models
                                  select t;
                 return timesheets;
             
+        }
+        public IEnumerable<Timesheet> GetUnapprovedTimesheets()
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+
+            var timesheets = from t in getContext.Timesheets
+                             where t.Approved == false
+                             select t;
+            return timesheets;
+
         }
         public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(int week_id)
         {

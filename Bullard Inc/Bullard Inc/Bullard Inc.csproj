@@ -222,12 +222,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActivityCode.cs" />
+    <Compile Include="Models\ApprovedView.cs" />
     <Compile Include="Models\EmployeeDay.cs" />
     <Compile Include="Models\Job.cs" />
-    <Compile Include="Models\JobInformation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PastDueView.cs" />
     <Compile Include="Models\PendingView.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Timesheet.cs" />
@@ -414,6 +415,8 @@
     <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
     <Content Include="Views\Scheduler\AddUser.cshtml" />
     <Content Include="Views\Scheduler\_PendingPanel.cshtml" />
+    <Content Include="Views\Scheduler\_PastDuePanel.cshtml" />
+    <Content Include="Views\Scheduler\_ApprovedPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
