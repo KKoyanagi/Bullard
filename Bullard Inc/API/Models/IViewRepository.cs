@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public interface IPendingViewRepository
+    public interface IViewRepository
     {
         List<PendingView> GetPendingViews(int week_id);
+        List<ApprovedView> GetApprovedViews(int week_id);
     }
 }

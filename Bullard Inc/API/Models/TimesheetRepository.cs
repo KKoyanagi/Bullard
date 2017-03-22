@@ -55,7 +55,7 @@ namespace API.Models
                 getContext = new ApplicationDbContext();
             }
             var timesheets = from t in getContext.Timesheets
-                                 where t.Week_Id == week_id && t.Approved == true
+                                 where t.Week_Id == week_id && t.Approved == true && t.Submitted == true
                                  select t;
                 return timesheets;
             

@@ -10,16 +10,16 @@ namespace API.Controllers
 {
     
     [Route("api/[controller]")]
-    public class PendingViewController : Controller
+    public class ViewController : Controller
     {
-        private IPendingViewRepository viewRepository;
+        private IViewRepository viewRepository;
 
-        public PendingViewController(IPendingViewRepository viewRepository)
+        public ViewController(IViewRepository viewRepository)
         {
             this.viewRepository = viewRepository;
         }
 
-        [HttpGet("{week_id}")]
+        [HttpGet("pending/{week_id}")]
         public IEnumerable<PendingView> GetPendingViews(string week_id)
         {
             try
@@ -31,6 +31,19 @@ namespace API.Controllers
                 return null;
             }
             
+        }
+        [HttpGet("approved/{week_id}")]
+        public IEnumerable<ApprovedView> GetApprovedViews(string week_id)
+        {
+            try
+            {
+                return viewRepository.GetApprovedViews(Int32.Parse(week_id));
+            }
+            catch
+            {
+                return null;
+            }
+
         }
     }
 }

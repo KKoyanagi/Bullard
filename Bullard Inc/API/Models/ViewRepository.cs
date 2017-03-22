@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class PendingViewRepository : IPendingViewRepository
+    public class ViewRepository : IViewRepository
     {
         public List<PendingView> GetPendingViews(int week_id)
         {
@@ -36,6 +36,29 @@ namespace API.Models
                     }
                     tmp.Jobs = jobs;
                 }
+                views.Add(tmp);
+            }
+            return views;
+        }
+
+        public List<ApprovedView> GetApprovedViews(int week_id)
+        {
+            TimesheetRepository timesheetsRepo = new TimesheetRepository();
+            EmployeeRepository employeeRepo = new EmployeeRepository();
+            
+
+            List<ApprovedView> views = new List<ApprovedView>();
+            IEnumerable<Timesheet> timesheets = timesheetsRepo.GetApprovedTimesheetsByWeek(week_id);
+            foreach (var ts in timesheets)
+            {
+                ApprovedView tmp = new ApprovedView();
+                var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
+                tmp.FirstName = employee.FirstName;
+                tmp.LastName = employee.LastName;
+                tmp.Timesheet_Id = ts.Timesheet_Id;
+                tmp.DateSubmitted = ts.DateSubmitted;
+                tmp.Approved = ts.Approved;
+                
                 views.Add(tmp);
             }
             return views;

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Bullard_Inc.Models.ApprovedView>
+
+@foreach (var timesheet in Model)
+            {
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Timesheet Id</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Date Submitted</td>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@timesheet.Timesheet_Id</td>
+                <td>@timesheet.FirstName</td>
+                <td>@timesheet.LastName</td>
+                <td>@timesheet.DateSubmitted</td>
+                <td><i class="fa fa-check"></i></td>
+                <td>
+                    <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+

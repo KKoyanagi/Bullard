@@ -57,12 +57,48 @@ namespace Bullard_Inc.Controllers
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
                 WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-                responseMessage = await client.GetAsync("pendingview/1");
+                responseMessage = await client.GetAsync("view/pending/1");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     responseData = responseMessage.Content.ReadAsStringAsync().Result;
                     List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
                     return PartialView("_PendingPanel", views);
+                }
+            }
+            return PartialView();
+        }
+        public async Task<ActionResult> GetPastDue()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                responseMessage = await client.GetAsync("view/pastdue/1");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                    return PartialView("_PastDuePanel", views);
+                }
+            }
+            return PartialView();
+        }
+        public async Task<ActionResult> GetApproved()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                responseMessage = await client.GetAsync("view/approved/1");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                    return PartialView("_ApprovedPanel", views);
                 }
             }
             return PartialView();
