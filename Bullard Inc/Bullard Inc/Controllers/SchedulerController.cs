@@ -30,23 +30,9 @@ namespace Bullard_Inc.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-                responseMessage = await client.GetAsync("pendingview/1");
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
-                    return View(views);
-                }
-            }
-            return View("Error");
+            return View();
         }
 
         public async Task<ActionResult> GetPending()
@@ -79,7 +65,7 @@ namespace Bullard_Inc.Controllers
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                    List<PastDueView> views = JsonConvert.DeserializeObject<List<PastDueView>>(responseData);
                     return PartialView("_PastDuePanel", views);
                 }
             }
@@ -97,7 +83,7 @@ namespace Bullard_Inc.Controllers
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                    List<ApprovedView> views = JsonConvert.DeserializeObject<List<ApprovedView>>(responseData);
                     return PartialView("_ApprovedPanel", views);
                 }
             }
