@@ -49,6 +49,25 @@ namespace Bullard_Inc.Controllers
             return View("Error");
         }
 
+        public async Task<ActionResult> GetPending()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                responseMessage = await client.GetAsync("pendingview/1");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                    return PartialView("_PendingPanel", views);
+                }
+            }
+            return PartialView();
+        }
+
         [HttpGet]
         [Route("Approve/{id}")]
         public async Task<ActionResult> Approve(int id)

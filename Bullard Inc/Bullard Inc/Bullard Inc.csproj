@@ -213,10 +213,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="Controllers\TimecardController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,7 +225,6 @@
     <Compile Include="Models\EmployeeDay.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobInformation.cs" />
-    <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -414,6 +411,7 @@
     <Content Include="Views\Scheduler\Index.cshtml" />
     <Content Include="Views\Timecard\EmpJobAdd.cshtml" />
     <Content Include="Views\Scheduler\AddUser.cshtml" />
+    <Content Include="Views\Scheduler\_PendingPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

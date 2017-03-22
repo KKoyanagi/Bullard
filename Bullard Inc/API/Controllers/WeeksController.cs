@@ -49,6 +49,45 @@ namespace API.Controllers
                 {
                     return NotFound();
                 }
+                DateTime dt = DateTime.Today;
+                if(week.EndDate < dt)
+                {
+                    WorkWeek wk = new WorkWeek();
+                    switch (dt.DayOfWeek)
+                    {
+                        case DayOfWeek.Monday:
+                            wk.StartDate = dt.AddDays(-1);
+                            wk.EndDate = dt.AddDays(5);
+                            break;
+                        case DayOfWeek.Tuesday:
+                            wk.StartDate = dt.AddDays(-2);
+                            wk.EndDate = dt.AddDays(4);
+                            break;
+                        case DayOfWeek.Wednesday:
+                            wk.StartDate = dt.AddDays(-3);
+                            wk.EndDate = dt.AddDays(3);
+                            break;
+                        case DayOfWeek.Thursday:
+                            wk.StartDate = dt.AddDays(-4);
+                            wk.EndDate = dt.AddDays(2);
+                            break;
+                        case DayOfWeek.Friday:
+                            wk.StartDate = dt.AddDays(-5);
+                            wk.EndDate = dt.AddDays(1);
+                            break;
+                        case DayOfWeek.Saturday:
+                            wk.StartDate = dt.AddDays(-6);
+                            wk.EndDate = dt;
+                            break;
+                        default:
+                            wk.StartDate = dt;
+                            wk.EndDate = dt.AddDays(6);
+                            break;
+
+                    }
+                    week = weeksRepository.InsertWeek(wk);
+                   
+                }
                 return new ObjectResult(week);
             }
             catch

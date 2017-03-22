@@ -146,6 +146,8 @@ namespace API.Models
             
         }
 
+        // Checks if there are any timesheets with this emp ID and week ID
+        // otherwise create new one 
         public Timesheet InsertTimesheet(Timesheet timesheet)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
@@ -293,7 +295,7 @@ namespace API.Models
                 {
                     return null;
                 }
-                context.Entry(timesheet).Property(u => u.Approved).CurrentValue = true;
+                context.Entry(timesheet).Property(u => u.Approved).CurrentValue = false;
                 try
                 {
                     context.SaveChanges();

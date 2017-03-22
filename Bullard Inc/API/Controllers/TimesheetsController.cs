@@ -138,7 +138,7 @@ namespace API.Controllers
                 return null;
             }
         }
-        [HttpGet("unapprove/{id}", Name = "ApproveTimesheet")]
+        [HttpGet("unapprove/{id}", Name = "UnApproveTimesheet")]
         public Timesheet UnApproveTimesheet(string id)
         {
             try
