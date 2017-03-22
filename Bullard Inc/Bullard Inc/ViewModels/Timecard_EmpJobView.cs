@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Bullard_Inc.Models
 {
-    public class JobInformation
+    public class Timecard_EmpJobView
     {
         public List<Job> Jobs { get; set; }
         public List<ActivityCode> ActivityCodes { get; set; }
