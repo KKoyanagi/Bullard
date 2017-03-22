@@ -75,7 +75,7 @@ namespace Bullard_Inc.Controllers
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
                 WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-                responseMessage = await client.GetAsync("view/pastdue/1");
+                responseMessage = await client.GetAsync("view/pastdue/3");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     responseData = responseMessage.Content.ReadAsStringAsync().Result;

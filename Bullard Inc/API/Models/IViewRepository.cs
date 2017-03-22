@@ -9,5 +9,6 @@ namespace API.Models
     {
         List<PendingView> GetPendingViews(int week_id);
         List<ApprovedView> GetApprovedViews(int week_id);
+        List<PastDueView> GetPastDueViews(int week_id);
     }
 }

@@ -88,6 +88,20 @@ namespace API.Models
                 return timesheets;
             
         }
+        public IEnumerable<Timesheet> GetUnapprovedTimesheets()
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+
+            var timesheets = from t in getContext.Timesheets
+                             where t.Approved == false
+                             select t;
+            return timesheets;
+
+        }
         public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(int week_id)
         {
             if (getContext != null)

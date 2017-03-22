@@ -45,6 +45,20 @@ namespace API.Controllers
             }
 
         }
+
+        [HttpGet("pastdue/{week_id}")]
+        public IEnumerable<PastDueView> GetPastDueViews(string week_id)
+        {
+            try
+            {
+                return viewRepository.GetPastDueViews(Int32.Parse(week_id));
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
     }
 }
 

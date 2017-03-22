@@ -90,6 +90,18 @@ namespace API.Controllers
                 return null;
             }
         }
+        [HttpGet("unapproved", Name = "GetUnapprovedTimesheets")]
+        public IEnumerable<Timesheet> GetUnapprovedTimesheets()
+        {
+            try
+            {
+                return timesheetRepository.GetUnapprovedTimesheets();
+            }
+            catch
+            {
+                return null;
+            }
+        }
         [HttpGet("notsubmitted/week/{id}", Name = "GetNotsubmittedTimesheetByWeek")]
         public IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(string id)
         {

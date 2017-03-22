@@ -1,1 +1,25 @@
-﻿
+﻿@model IEnumerable<Bullard_Inc.Models.PastDueView>
+
+@foreach (var timesheet in Model)
+            {
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Timesheet Id</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Date of Week</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@timesheet.Timesheet_Id</td>
+                <td>@timesheet.FirstName</td>
+                <td>@timesheet.LastName</td>
+                <td>@timesheet.StartDate.ToShortDateString()-@timesheet.EndDate.ToShortDateString()</td>
+                
+            </tr>
+        </tbody>
+    </table>
+}

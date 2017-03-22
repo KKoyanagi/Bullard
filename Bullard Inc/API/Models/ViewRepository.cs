@@ -63,5 +63,33 @@ namespace API.Models
             }
             return views;
         }
+
+        public List<PastDueView> GetPastDueViews(int week_id)
+        {
+            TimesheetRepository timesheetsRepo = new TimesheetRepository();
+            EmployeeRepository employeeRepo = new EmployeeRepository();
+            WorkWeekRepository weekRepo = new WorkWeekRepository();
+
+            List<PastDueView> views = new List<PastDueView>();
+            IEnumerable<Timesheet> timesheets = timesheetsRepo.GetUnapprovedTimesheets();
+            foreach (var ts in timesheets)
+            {
+                if(ts.Week_Id < week_id)
+                {
+                    PastDueView tmp = new PastDueView();
+                    var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
+                    var week = weekRepo.GetWeekById(ts.Week_Id);
+                    tmp.FirstName = employee.FirstName;
+                    tmp.LastName = employee.LastName;
+                    tmp.Timesheet_Id = ts.Timesheet_Id;
+                    tmp.StartDate = week.StartDate;
+                    tmp.EndDate = week.EndDate;
+
+                    views.Add(tmp);
+                }
+                
+            }
+            return views;
+        }
     }
 }

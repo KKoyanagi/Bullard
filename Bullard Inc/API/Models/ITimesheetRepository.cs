@@ -14,6 +14,7 @@ namespace API.Models
         IEnumerable<Timesheet> GetApprovedTimesheetsByWeek(int wk_id);
         IEnumerable<Timesheet> GetSubmittedTimesheetsByWeek(int wk_id);
         IEnumerable<Timesheet> GetUnapprovedTimesheetsByWeek(int wk_id);
+        IEnumerable<Timesheet> GetUnapprovedTimesheets();
         IEnumerable<Timesheet> GetNotsubmittedTimesheetsByWeek(int wk_id);
         IEnumerable<Timesheet> GetTimesheetsByEmp(int emp_id);
         Timesheet RemoveTimesheet(int timesheet_id);
