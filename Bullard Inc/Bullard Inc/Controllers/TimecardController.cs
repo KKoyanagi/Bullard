@@ -68,7 +68,7 @@ namespace Timecard.Controllers
         }
 
         // ADD JOB ACTION
-        /*[Route("timecard/empjobview/{day_id}/empjobadd")]
+        [Route("timecard/empjobview/{day_id}/empjobadd")]
         public async Task<ActionResult> empJobAdd(int day_id)
         {
             // pass in day information into the view
@@ -112,7 +112,7 @@ namespace Timecard.Controllers
 
             // if either api call fails, return error. 
             return View("Error");
-        }*/
+        }
 
         // ADD JOB ACTION SUBMIT TIMECARD
         [HttpPost]
@@ -134,7 +134,7 @@ namespace Timecard.Controllers
    
 
         // EDIT JOB ACTION
-       /* [Route("timecard/empjobview/{day_id}/empjobedit/")]
+        [Route("timecard/empjobview/{day_id}/empjobedit/")]
         public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
          {
             // pass in day information into the view
@@ -188,7 +188,7 @@ namespace Timecard.Controllers
 
             // if  api call fail, return error. 
             return View("Error");
-         }*/
+         }
 
         // EDIT JOB ACTION UPDATE
         [Route("timecard/empjobview/{day_id}/empjobupdate/")]
