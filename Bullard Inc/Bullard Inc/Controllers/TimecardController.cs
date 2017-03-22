@@ -106,7 +106,7 @@ namespace Timecard.Controllers
                         ActivityCodes = activityCodes.ToList(),
                         Projects = projects.ToList()
                     };
-                    return View(employeeJob);
+                    return View("EmpJobEdit", employeeJob);
                 }
             }
 
@@ -213,6 +213,14 @@ namespace Timecard.Controllers
             return View();
         }
 
+
+        public ActionResult Help()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
         // --------------- LOGIC MODULES ---------------
 
         // converts the day_id into a string
@@ -230,11 +238,7 @@ namespace Timecard.Controllers
                 default: return "N/A";
             }
         }
-        public ActionResult Help()
-        {
-            //ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+        // 
     }
 }
