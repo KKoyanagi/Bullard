@@ -146,6 +146,8 @@ namespace API.Models
             
         }
 
+        // Checks if there are any timesheets with this emp ID and week ID
+        // otherwise create new one 
         public Timesheet InsertTimesheet(Timesheet timesheet)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
@@ -278,7 +280,36 @@ namespace API.Models
                 }
                 return timesheet;
             }
-        }   
+        }
+        public Timesheet UnApproveTimesheet(int timesheet_id)
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var timesheet = context.Timesheets.Find(timesheet_id);
+                if (timesheet == null)
+                {
+                    return null;
+                }
+                context.Entry(timesheet).Property(u => u.Approved).CurrentValue = false;
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Approved = {0} WHERE Timesheet_Id = {1}", false, timesheet_id);
+                    //context.Database.ExecuteSqlCommand("UPDATE dbo.Timesheets SET Week_Id = {0} WHERE Timesheet_Id = {1}", timesheet.Week_Id, timesheet.Timesheet_Id);
+                    Debug.WriteLine(ex.ToString());
+                }
+                return timesheet;
+            }
+        }
         /*public void Save()
         {
             context.SaveChanges();

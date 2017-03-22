@@ -138,6 +138,18 @@ namespace API.Controllers
                 return null;
             }
         }
+        [HttpGet("unapprove/{id}", Name = "UnApproveTimesheet")]
+        public Timesheet UnApproveTimesheet(string id)
+        {
+            try
+            {
+                return timesheetRepository.UnApproveTimesheet(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
         [HttpPost]
         public IActionResult Create([FromBody] Timesheet timesheet)
         {
