@@ -35,6 +35,10 @@ namespace Bullard_Inc.Controllers
             return View();
         }
 
+        public ActionResult Help()
+        {
+            return View();
+        }
         public async Task<ActionResult> GetPending()
         {
             HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
