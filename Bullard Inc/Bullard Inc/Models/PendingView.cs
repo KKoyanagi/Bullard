@@ -14,5 +14,6 @@ namespace Bullard_Inc.Models
         public bool Approved { get; set; }
         public List<EmployeeDay> EmpDays { get; set; }
         public List<Job> Jobs { get; set; }
+        public int WeekId { get; set; }
     }
 }

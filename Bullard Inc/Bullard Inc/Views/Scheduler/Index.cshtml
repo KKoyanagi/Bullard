@@ -1,4 +1,5 @@
 ﻿
+@model Bullard_Inc.Models.WorkWeek
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
@@ -27,15 +28,17 @@
    <div class="container-fluid">
         <h1>TIMECARD</h1>
         <!-- Nav tabs -->
+       <input id="tmp" name="tmp" type="text" />
+       <a href="#" class="btn btn-default" onclick="changeWeek();">Test Week</a>
         <ul class="nav nav-tabs tabs-3 Bullard_Color" role="tablist">
             <li class="nav-item">
-                <a id="panel1bt" class="nav-link" data-toggle="tab" href="#panel1" onclick="getPending();" role="tab">PENDING</a>
+                <a id="panel1bt" class="nav-link" data-toggle="tab" href="#panel1" onclick="getPending(@Model.Week_Id);" role="tab">PENDING</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel2" onclick="getPastDue();" role="tab">PAST DUE</a>
+                <a class="nav-link" data-toggle="tab" href="#panel2" onclick="getPastDue(@Model.Week_Id);" role="tab">PAST DUE</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel3" onclick="getApproved();" role="tab">APPROVED</a>
+                <a class="nav-link" data-toggle="tab" href="#panel3" onclick="getApproved(@Model.Week_Id);" role="tab">APPROVED</a>
             </li>
         </ul>
    </div>
@@ -59,14 +62,25 @@
         </div>
 
 <script type="text/javascript">
-    function getPending() {
-        $("#panel1").load("@Url.Action("GetPending", "Scheduler")");
+    function getPending(week) {
+        var action = '@Url.Action("GetPending", "Scheduler", new { week = "-1" })'
+        action = action.replace("-1", week);
+        $("#panel1").load(action)
     }
-    function getPastDue() {
-        $("#panel2").load("@Url.Action("GetPastDue", "Scheduler")");
+    function getPastDue(week) {
+        var action = '@Url.Action("GetPastDue", "Scheduler", new { week = "-1" })'
+        action = action.replace("-1", week);
+        $("#panel2").load(action);
     }
-    function getApproved() {
-        $("#panel3").load("@Url.Action("GetApproved", "Scheduler")");
+    function getApproved(week) {
+        var action = '@Url.Action("GetApproved", "Scheduler", new { week = "-1" })'
+        action = action.replace("-1", week);
+        $("#panel3").load(action);
     }
-
+    function changeWeek() {
+        var week = document.getElementById('tmp').value;
+        var action = '@Url.Action("ChangeWeek", "Scheduler", new { week = "-1" })'
+        action = action.replace("-1", week);
+        window.location.href = action;
+    }
 </script>
