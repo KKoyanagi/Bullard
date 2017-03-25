@@ -52,6 +52,10 @@
 <form action="EmpJobUpdate" method="post">
 
     <div class="md-form">
+        <input value=@Model.Job.Job_Id type="hidden" id="Job_Id" class="form-control" name="Job_Id">
+    </div>
+
+    <div class="md-form">
         <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
