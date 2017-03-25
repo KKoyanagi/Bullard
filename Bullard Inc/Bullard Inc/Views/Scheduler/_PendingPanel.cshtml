@@ -17,7 +17,7 @@
 
                     <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
                     <a href="#" class="red-text"><i class="fa fa-times"></i></a>
-                    <a href="@Url.Action("Approve", "Scheduler", new { id = timesheet.Timesheet_Id })" class="green-text"><i class="fa fa-check"></i></a>
+                    <a href='javascript:approve(@timesheet.Timesheet_Id, @timesheet.WeekId)' class="green-text"><i class="fa fa-check"></i></a>
                 </td>
             </tr>
         </thead>
@@ -51,3 +51,11 @@
         </tbody>
     </table>
 }
+<script type="text/javascript">
+    function approve(id, week) {
+        var action = '@Url.Action("Approve", "Scheduler", new { id = "-1", week = "-2" })';
+        action = action.replace("-1", id);
+        action = action.replace("-2", week);
+        $("#panel1").load(action);
+    }
+</script>

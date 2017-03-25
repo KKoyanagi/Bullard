@@ -11,6 +11,7 @@ namespace API.Models
         public string LastName { get; set; }
         public int Timesheet_Id { get; set; }
         public int Day_Id { get; set; }
+        public int WeekId { get; set; }
         public DateTime DateSubmitted { get; set; }
         public bool Approved { get; set; }
         public List<EmployeeDay> EmpDays{get;set;}
