@@ -10,7 +10,6 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewData["Title"] Bullard </title>
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
-    <link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css" rel="stylesheet">
     <link href="~/Content/compiled.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/style.css">
 
@@ -20,17 +19,25 @@
 <!--LOGIN PAGE-->
 <body>
     <div class="jumbotron">
-        <center><h1 class="display-3">Bullard Employee Portal</h1></center>
+        <center><h1 class="display-3">Employee Portal</h1></center>
         <center><p class="lead">Welcome to your new Timecard application</p></center>
         <hr class="my-4">
-        <center></<p>We use google for login accounts and they must be registered with the Scheduler for access</p></center>
         <p class="lead">
-            <center><a class="btn btn-primary btn-lg" href="#" role="button">Login</a></center>
+            <center>
+                <a href="/timecard/index">Time Card</a>
+            </center> 
         </p>
     </div>
 
-    <div id="my-signin2"></div>
     <script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     }
