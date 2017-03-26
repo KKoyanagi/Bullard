@@ -11,7 +11,7 @@
     <link href="~/Content/compiled.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/style.css">
    
-    
+    <meta name="google-signin-client_id" content="406443094985-shdphq6vl46gjqh10tfimphl7batk1vm.apps.googleusercontent.com">
 </head>
 
 <body class="fixed-sn mdb-skin">
@@ -30,7 +30,7 @@
             <!--/. Logo -->
             <!-- Side navigation links -->
             <li>
-                <ul class="collapsible collapsible-accordion">
+                <ul href="/timecard/signout" class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-sign-out"></i>
@@ -40,7 +40,7 @@
                     <li>
                         <a href="/scheduler/index" class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-clock-o"></i>
-                            TIME CARD
+                            MANAGE TIME CARD
                         </a>
                     </li>
                     <li>
@@ -146,6 +146,7 @@
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            @*@Url.Action("SignOut", "Timecard");*@
         });
         }
     </script>

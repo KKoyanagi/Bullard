@@ -32,6 +32,11 @@ namespace Bullard_Inc.Controllers
         {
             return View();
         }
+
+        public ActionResult Help()
+        {
+            return View();
+        }
         public async Task<ActionResult> Index(string weekid = "0")
         {
             

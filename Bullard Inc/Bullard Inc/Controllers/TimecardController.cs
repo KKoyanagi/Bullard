@@ -31,6 +31,11 @@ namespace Timecard.Controllers
             // TODO: get request to api/timesheets/employee/current/{id}
             return View();
         }
+        public ActionResult SignOut()
+        {
+            // TODO: get request to api/timesheets/employee/current/{id}
+            return View();
+        }
 
         // This action will display the number of Jobs the user has worked on a particular day. 
         [Route("timecard/empjobview/{day_id}")]
