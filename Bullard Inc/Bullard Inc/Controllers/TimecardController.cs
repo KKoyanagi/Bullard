@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bullard_Inc.Models;
@@ -8,8 +7,6 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
-//using Microsoft.AspNet.WebApi.Client;
-using System.Net.Http.Formatting;
 using System.Diagnostics;
 
 namespace Timecard.Controllers
@@ -106,7 +103,7 @@ namespace Timecard.Controllers
                         ActivityCodes = activityCodes.ToList(),
                         Projects = projects.ToList()
                     };
-                    return View("EmpJobEdit", employeeJob);
+                    return View(employeeJob);
                 }
             }
 
@@ -134,7 +131,7 @@ namespace Timecard.Controllers
    
 
         // EDIT JOB ACTION
-        [Route("timecard/empjobview/{day_id}/empjobedit/")]
+       [Route("timecard/empjobview/{day_id}/empjobedit/")]
         public async Task<ActionResult> EmpJobEdit(int day_id, int? id)
          {
             // pass in day information into the view
@@ -238,7 +235,5 @@ namespace Timecard.Controllers
                 default: return "N/A";
             }
         }
-
-        // 
     }
 }

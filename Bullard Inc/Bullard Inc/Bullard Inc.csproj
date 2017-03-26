@@ -235,8 +235,8 @@
     <Compile Include="Models\WorkWeek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Views\ViewModels\Timecard_EmpJobAddEdit.cs" />
-    <Compile Include="Views\ViewModels\Timecard_EmpJobView.cs" />
+    <Compile Include="ViewModels\Timecard_EmpJobAddEdit.cs" />
+    <Compile Include="ViewModels\Timecard_EmpJobView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="android-chrome-144x144.png" />

@@ -1,30 +1,39 @@
 ﻿@model IEnumerable<Bullard_Inc.Models.ApprovedView>
 
-@foreach (var timesheet in Model)
-            {
 
     <table class="table">
         <thead>
             <tr>
-                <td>Timesheet Id</td>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Date Submitted</td>
+                <th>Timesheet Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Submitted</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
+            @foreach (var timesheet in Model)
+            {
+
             <tr>
                 <td>@timesheet.Timesheet_Id</td>
                 <td>@timesheet.FirstName</td>
                 <td>@timesheet.LastName</td>
                 <td>@timesheet.DateSubmitted</td>
-                <td><a href="#" class="green-text"><i class="fa fa-check"></i></a></td>
+                <td><i class="fa fa-check green-text"></i></td>
                 <td>
-                    <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                    <a href="javascript:unapprove(@timesheet.Timesheet_Id, @timesheet.WeekId)" class="red-text"><i class="fa fa-times"></i></a>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
-}
+<script type="text/javascript">
+    function unapprove(id,week) {
+        var action = '@Url.Action("UnApprove", "Scheduler", new { id = "-1" , week = "-2"})';
+        action = action.replace("-1", id);
+        action = action.replace("-2", week);
+        $("#panel3").load(action);
+    }
+</script>
 

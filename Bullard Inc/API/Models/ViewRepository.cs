@@ -28,6 +28,7 @@ namespace API.Models
                 tmp.Approved = ts.Approved;
                 List<EmployeeDay> empDays = empDayRepo.GetEmployeeDaysByTimesheet(ts.Timesheet_Id).ToList();
                 tmp.EmpDays = empDays;
+                tmp.WeekId = ts.Week_Id;
                 if (ts.Submitted == true && ts.Approved == false)
                 {
                     foreach (var day in empDays)
@@ -58,6 +59,7 @@ namespace API.Models
                 tmp.Timesheet_Id = ts.Timesheet_Id;
                 tmp.DateSubmitted = ts.DateSubmitted;
                 tmp.Approved = ts.Approved;
+                tmp.WeekId = ts.Week_Id;
                 
                 views.Add(tmp);
             }
@@ -84,6 +86,7 @@ namespace API.Models
                     tmp.Timesheet_Id = ts.Timesheet_Id;
                     tmp.StartDate = week.StartDate;
                     tmp.EndDate = week.EndDate;
+                    tmp.Submitted = ts.Submitted;
 
                     views.Add(tmp);
                 }

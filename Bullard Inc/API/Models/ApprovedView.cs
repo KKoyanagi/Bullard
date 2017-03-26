@@ -12,5 +12,6 @@ namespace API.Models
         public int Timesheet_Id { get; set; }
         public DateTime DateSubmitted { get; set; }
         public bool Approved { get; set; }
+        public int WeekId { get; set; }
     }
 }
