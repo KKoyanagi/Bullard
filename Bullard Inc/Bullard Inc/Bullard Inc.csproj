@@ -329,6 +329,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="manifest.json" />
+    <None Include="Properties\PublishProfiles\Bullard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardInc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardMobile - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -367,7 +368,9 @@
     <Content Include="Scripts\__tether.min.js" />
     <Content Include="Views\Responses\404.html" />
     <Content Include="Views\Responses\Unauthorized.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -376,7 +379,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\AdminFrame.cshtml" />
     <Content Include="Views\Shared\FieldWorkerFrame.cshtml" />
     <Content Include="Views\Timecard\History.cshtml" />
@@ -395,6 +397,7 @@
     <Content Include="Views\Scheduler\Help.cshtml" />
     <Content Include="Views\Timecard\Help.cshtml" />
     <Content Include="Views\Employee\EmpEdit.cshtml" />
+    <Content Include="Views\Timecard\SignOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

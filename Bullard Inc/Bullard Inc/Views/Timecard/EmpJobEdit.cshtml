@@ -62,6 +62,7 @@
     <!-- Projects Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Project #:</label>
+        <br>
         <select class ="browser-default" id="Project_Id" name="Project_Id">
             @foreach (var project in Model.Projects)
             {
@@ -75,11 +76,13 @@
                 }
             }
         </select>
+        <br>
     </div>
 
     <!-- ActivityCode (Work Performed) Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Work Performed:</label>
+        <br>
         <select class ="browser-default" id="ActivityCode" name="ActivityCode">
             @foreach (var code in Model.ActivityCodes)
             {
@@ -93,6 +96,7 @@
                 }
             }
         </select>
+        <br>
     </div>
 
     <div class="md-form">
@@ -111,10 +115,17 @@
     </div>
         
     <div>
-        <input type="submit" class="btn btn-default" value="Submit">
-
-        <div align="right">
-            <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
+        <div class="row">
+            <div class="col">
+                <div align="left">
+                    <a class="btn btn-default" href="#">SUBMIT</a>
+                </div>
+            </div>
+            <div class="col">
+                <div align="right">
+                    <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
+                </div>
+            </div>
         </div>
     </div>
 

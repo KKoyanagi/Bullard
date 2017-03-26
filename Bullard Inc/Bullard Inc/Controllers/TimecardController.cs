@@ -31,14 +31,12 @@ namespace Timecard.Controllers
             // TODO: get request to api/timesheets/employee/current/{id}
             return View();
         }
-        // Submit 
-        public async Task<ActionResult> Submit(int id)
+        public ActionResult SignOut()
         {
-            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/submit/" + id.ToString());
-            
-            return RedirectToAction("Index", "Timecard");
-            
+            // TODO: get request to api/timesheets/employee/current/{id}
+            return View();
         }
+
         // This action will display the number of Jobs the user has worked on a particular day. 
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
