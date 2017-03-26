@@ -37,6 +37,14 @@ namespace Timecard.Controllers
             return View();
         }
 
+        // Submit 
+        public async Task<ActionResult> Submit(int id)
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/submit/" + id.ToString());
+
+            return RedirectToAction("Index", "Timecard");
+
+        }
         // This action will display the number of Jobs the user has worked on a particular day. 
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
