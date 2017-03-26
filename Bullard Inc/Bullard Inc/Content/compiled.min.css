@@ -11350,7 +11350,7 @@ a.text-gray-dark:hover {
 }
 
 .info-color {
-    background-color: #33b5e5!important
+    background-color: #2471A3!important
 }
 
 .info-color-dark {
@@ -16248,7 +16248,7 @@ button:focus {
 }
 
 .btn-default {
-    background: #2BBBAD
+    background: #1a6398
 }
 
 .btn-default:active,
@@ -16276,7 +16276,7 @@ button:focus {
 }
 
 .btn-info {
-    background: #33b5e5
+    background: #2471A3
 }
 
 .btn-info:focus,
@@ -16385,7 +16385,7 @@ button:focus {
 }
 
 .btn-outline-info {
-    border: 2px solid #33b5e5;
+    border: 2px solid #2471A3;
     color: #09C!important;
     background-color: transparent
 }
@@ -16394,8 +16394,8 @@ button:focus {
 .btn-outline-info:active:focus,
 .btn-outline-info:focus,
 .btn-outline-info:hover {
-    color: #33b5e5;
-    border-color: #33b5e5;
+    color: #2471A3;
+    border-color: #2471A3;
     background-color: transparent
 }
 
@@ -17220,7 +17220,7 @@ i.btn-primary {
 }
 
 i.btn-default {
-    background: #2BBBAD!important
+    background: #1a6398!important
 }
 
 i.btn-success {
@@ -17228,7 +17228,7 @@ i.btn-success {
 }
 
 i.btn-info {
-    background: #33b5e5!important
+    background: #2471A3!important
 }
 
 i.btn-warning {
@@ -19023,7 +19023,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .md-pills.pills-info .nav-item .nav-link.active {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .md-pills.pills-warning .nav-item .nav-link.active {
@@ -20963,7 +20963,7 @@ input[type=range]:focus::-ms-fill-upper {
 .dropdown-info .dropdown-content li a:hover,
 .dropdown-info .dropdown-content li span:hover,
 .dropdown-info .dropdown-content li.active {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .dropdown-warning .dropdown-content li a:hover,
@@ -21010,7 +21010,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .dropdown .dropdown-menu.dropdown-info .dropdown-item:hover {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .dropdown .dropdown-menu.dropdown-warning .dropdown-item:hover {
@@ -25191,7 +25191,7 @@ button.toast-close-button {
 .mdb-skin .stepper li.completed a .circle,
 .stepper li.active a .mdb-skin .circle,
 .stepper li.completed a .mdb-skin .circle {
-    background-color: #33b5e5!important
+    background-color: #2471A3!important
 }
 
 .mdb-skin .navbar {
@@ -25218,7 +25218,7 @@ button.toast-close-button {
 }
 
 .mdb-skin .side-nav .social a:hover .fa {
-    color: #33b5e5;
+    color: #2471A3;
     transition: all .3s linear
 }
 
@@ -25241,7 +25241,7 @@ button.toast-close-button {
 
 .mdb-skin .side-nav .collapsible li a.active,
 .mdb-skin .side-nav .collapsible li a:hover {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .mdb-skin .side-nav .fa {
@@ -25254,7 +25254,7 @@ button.toast-close-button {
 .mdb-skin input[type=text]:focus:not([readonly])+label,
 .mdb-skin input[type=password]:focus:not([readonly])+label,
 .mdb-skin textarea.md-textarea:focus:not([readonly])+label {
-    color: #33b5e5
+    color: #2471A3
 }
 
 .mdb-skin .side-nav .sidenav-bg.mask-strong:after,
@@ -25275,7 +25275,7 @@ button.toast-close-button {
 }
 
 .mdb-skin .btn-primary {
-    background: #33b5e5
+    background: #2471A3
 }
 
 .mdb-skin .btn-primary:focus,
@@ -25321,13 +25321,13 @@ button.toast-close-button {
 .mdb-skin input[type=text]:focus:not([readonly]),
 .mdb-skin input[type=password]:focus:not([readonly]),
 .mdb-skin textarea.md-textarea:focus:not([readonly]) {
-    border-color: #33b5e5;
-    box-shadow: 0 1px 0 0 #33b5e5
+    border-color: #2471A3;
+    box-shadow: 0 1px 0 0 #2471A3
 }
 
 .mdb-skin input[type=checkbox]:checked+label:before {
-    border-right: 2px solid #33b5e5;
-    border-bottom: 2px solid #33b5e5
+    border-right: 2px solid #2471A3;
+    border-bottom: 2px solid #2471A3
 }
 
 .mdb-skin input[type=checkbox].filled-in:checked+label:before {
@@ -25336,8 +25336,8 @@ button.toast-close-button {
 }
 
 .mdb-skin input[type=checkbox].filled-in:checked+label:after {
-    background-color: #33b5e5;
-    border-color: #33b5e5
+    background-color: #2471A3;
+    border-color: #2471A3
 }
 
 .mdb-skin .top-nav-collapse {
@@ -25347,29 +25347,29 @@ button.toast-close-button {
 .mdb-skin .carousel-multi-item .carousel-indicators li,
 .mdb-skin .carousel-multi-item .carousel-indicators li.active,
 .mdb-skin .carousel-multi-item .controls-top>a {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .mdb-skin .card-header,
 .mdb-skin .form-header {
-    background-color: #3cb8e6
+    background-color: #2471A3
 }
 
 .mdb-skin .spinner-primary-color,
 .mdb-skin .spinner-primary-color-only {
-    border-color: #33b5e5
+    border-color: #2471A3
 }
 
 .mdb-skin .pagination-primary-color .page-item.active .page-link,
 .mdb-skin .pagination-primary-color .page-item.active .page-link:focus,
 .mdb-skin .pagination-primary-color .page-item.active .page-link:hover {
     color: #fff;
-    background-color: #33b5e5;
-    border-color: #33b5e5
+    background-color: #2471A3;
+    border-color: #2471A3
 }
 
 .mdb-skin .pagination-primary-color .page-link {
-    color: #33b5e5
+    color: #2471A3
 }
 
 .chip {
@@ -27655,7 +27655,7 @@ div.bbp-submit-wrapper button:hover {
 }
 
 .side-nav .current-menu-item a {
-    background: #33b5e5
+    background: #2471A3
 }
 
 #menu-item-403 {
@@ -27957,7 +27957,7 @@ pre[class*=language-] {
 
 .mdb-skin-custom .side-nav .collapsible li a.active,
 .mdb-skin-custom .side-nav .collapsible li a:hover {
-    background-color: #33b5e5
+    background-color: #2471A3
 }
 
 .mdb-skin-custom .side-nav .fa {
@@ -27977,7 +27977,7 @@ pre[class*=language-] {
 }
 
 .mdb-skin-custom .btn-ptc {
-    background: #33b5e5
+    background: #2471A3
 }
 
 .mdb-skin-custom .btn-ptc:focus,
