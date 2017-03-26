@@ -30,7 +30,7 @@
             <!--/. Logo -->
             <!-- Side navigation links -->
             <li>
-                <ul class="collapsible collapsible-accordion">
+                <ul href="/timecard/signout" class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-sign-out"></i>
@@ -146,6 +146,7 @@
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            @*@Url.Action("SignOut", "Timecard");*@
         });
         }
     </script>
