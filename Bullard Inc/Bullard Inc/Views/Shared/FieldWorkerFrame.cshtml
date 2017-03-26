@@ -136,6 +136,15 @@
     <script type="text/javascript" src="~/Scripts/compiled.min.js"></script>
 
     <script>
+        @*function signOut() {
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                @Override
+                public void onResult(Status status) {
+            // ...
+        }
+        });
+        }*@
         function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
@@ -143,6 +152,7 @@
         });
         }
     </script>
+
 
     <script>
     $('#myModal').on('shown.bs.modal', function () {
