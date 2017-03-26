@@ -15,7 +15,9 @@ namespace Bullard_Inc.Controllers
     {
         HttpClient client;
         //The URL of the WEB API Service
-        string url = "http://BullardAPI.azurewebsites.net/api/";
+        //string url = "http://localhost:62367/api/";
+        string url = "http://bullardapi.azurewebsites.net/api/";
+        
 
         public SchedulerController()
         {
@@ -23,25 +25,102 @@ namespace Bullard_Inc.Controllers
             client.BaseAddress = new Uri(url);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult AddUser()
         {
-            HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+            return View();
+        }
+        public async Task<ActionResult> Index(string weekid = "0")
+        {
+            
+            WorkWeek week = null;
+            if (weekid == "0")
+            {
+                HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                    week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                    
+                }
+            }
+            else
+            {
+                HttpResponseMessage responseMessage = await client.GetAsync("weeks/" +weekid);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                    week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+
+                }
+            }
+            return View(week);
+        }
+
+        public ActionResult ChangeWeek(int week)
+        {
+           
+            return RedirectToAction("Index", "Scheduler", new { weekid = week.ToString() });
+        }
+
+        public async Task<ActionResult> GetPending(int week)
+        {
+            
+            HttpResponseMessage responseMessage = await client.GetAsync("view/pending/"+week.ToString());
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
+                return PartialView("_PendingPanel", views);
+            }
+            return PartialView();
+        }
 
-                WorkWeek currentWeek = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-                responseMessage = await client.GetAsync("pendingview/1");
+        public async Task<ActionResult> GetPastDue(int week)
+        {
+           
+                HttpResponseMessage responseMessage = await client.GetAsync("view/pastdue/"+week.ToString());
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    List<PendingView> views = JsonConvert.DeserializeObject<List<PendingView>>(responseData);
-                    return View(views);
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<PastDueView> views = JsonConvert.DeserializeObject<List<PastDueView>>(responseData);
+                    return PartialView("_PastDuePanel", views);
                 }
-            }
-            return View("Error");
+            
+            return PartialView();
+        }
+        public async Task<ActionResult> GetApproved(int week)
+        {
+            
+                HttpResponseMessage responseMessage = await client.GetAsync("view/approved/" + week.ToString());
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                    List<ApprovedView> views = JsonConvert.DeserializeObject<List<ApprovedView>>(responseData);
+                    return PartialView("_ApprovedPanel", views);
+                }
+            
+            return PartialView();
+        }
+
+        
+        public async Task<ActionResult> Approve(int id, int week)
+        {
+
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
+            return await GetPending(week);
+        }
+
+        
+        public async Task<ActionResult> UnApprove(int id, int week)
+        {
+
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/unapprove/" + id.ToString());
+            return await GetApproved(week);
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Bullard_Inc.Models.PendingView>
+@{ 
+    string[] days = { "", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+}
+
+@foreach (var timesheet in Model)
+            {
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.Timesheet_Id</td>
+                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.FirstName</td>
+                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
+                <td>@timesheet.DateSubmitted</td>
+                <td>
+
+                    <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
+                    <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                    <a href='javascript:approve(@timesheet.Timesheet_Id, @timesheet.WeekId)' class="green-text"><i class="fa fa-check"></i></a>
+                </td>
+            </tr>
+        </thead>
+        <tbody id="test_@timesheet.Timesheet_Id" class="collapse">
+            <tr>
+                <td>Day</td>
+                <td>Job Id</td>
+                <td>Project Id</td>
+                <td>Hours</td>
+                <td>Mileage</td>
+                <td>Lunch</td>
+                <td>Activity Code</td>
+
+            </tr>
+
+            @foreach (var job in timesheet.Jobs)
+            {
+                <tr>
+                    <td>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
+                    <td>@job.Job_Id</td>
+                    <td>@job.Project_Id</td>
+                    <td>@job.Hours</td>
+                    <td>@job.Mileage</td>
+                    <td>@job.Lunch</td>
+                    <td>@job.ActivityCode</td>
+
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+}
+<script type="text/javascript">
+    function approve(id, week) {
+        var action = '@Url.Action("Approve", "Scheduler", new { id = "-1", week = "-2" })';
+        action = action.replace("-1", id);
+        action = action.replace("-2", week);
+        $("#panel1").load(action);
+    }
+</script>

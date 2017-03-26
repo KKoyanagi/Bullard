@@ -17,5 +17,7 @@ namespace API.Models
         public int Project_Num { get; set; }
         [StringLength(50)]
         public string Location { get; set; }
+        [StringLength(50)]
+        public string Address { get; set; }
     }
 }

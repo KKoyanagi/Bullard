@@ -22,22 +22,26 @@
         <center><h1 class="display-3">Employee Portal</h1></center>
         <center><p class="lead">Welcome to your new Timecard application</p></center>
         <hr class="my-4">
+        <center></<p>We use google for login accounts and they must be registered with the Scheduler for access</p></center>
         <p class="lead">
             <center>
-                <a href="/timecard/index">Time Card</a>
+                <div id="my-signin2"></div>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Help" aria-expanded="false" aria-controls="collapseExample">
+                    Help
+                </button>
             </center> 
+
+            <div class="collapse" id="Help">
+                <div class="card card-block">
+                    Use the google account registered with the Bullard Scheduler for access to the Timecard. </br>
+                    For Assitance with registering your google account with Bullard, Call: (916) 485-4370
+                </div>
+            </div>
+
         </p>
     </div>
 
     <script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     }

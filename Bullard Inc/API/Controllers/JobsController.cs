@@ -12,10 +12,12 @@ namespace API.Controllers
     public class JobsController : Controller
     {
         private IJobRepository jobsRepository;
+        private IJobInformationRepository jobInfoRepository;
 
         public JobsController(IJobRepository jobsRepository)
         {
             this.jobsRepository = jobsRepository;
+            this.jobInfoRepository = new JobInformationRepository();
         }
 
         [HttpGet("employeeday/{id}", Name = "GetJobsByEmployeeDayId")]
@@ -28,6 +30,19 @@ namespace API.Controllers
             catch
             {
                 return null;
+            }
+
+        }
+        [HttpGet("employeeday/jobinfo/{id}", Name = "GetJobInfoByEmployeeDayId")]
+        public IActionResult GetJobInfoByEmployeeDay(string id)
+        {
+            try
+            {
+                return new ObjectResult(jobInfoRepository.GetJobsByEmployeeDayId(Int32.Parse(id)));
+            }
+            catch
+            {
+                return BadRequest();
             }
 
         }
@@ -50,6 +65,23 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("jobinfo/{id}", Name = "GetJobInfoById")]
+        public IActionResult GetJobInfoById(string id)
+        {
+            try
+            {
+                JobInformation jobInfo = jobInfoRepository.GetJobInfoById(Int32.Parse(id));
+                if (jobInfo == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(jobInfo);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
         [HttpPost]
         public IActionResult Create([FromBody] Job job)
         {
@@ -72,7 +104,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(string id, [FromBody] Job job)
+        public IActionResult Update([FromBody] Job job)
         {
             try
             {

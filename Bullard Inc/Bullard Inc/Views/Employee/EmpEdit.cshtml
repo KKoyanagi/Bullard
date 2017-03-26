@@ -1,0 +1,121 @@
+﻿@model Bullard_Inc.Models.Employee
+@{
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
+}
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] Bullard </title>
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link href="~/Content/compiled.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+
+<form action="EmpUpdate" method="post">
+    <div @*class="text-center"*@>
+        <h1>EDIT USER</h1>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-block">
+            <div class="form-header">
+                <i class="fa fa-user"></i> USER INFORMATION
+            </div>
+            <div class="md-form">
+                <input type="hidden" value=@Model.Emp_Id id="Emp_Id" name="Emp_Id" class="form-control">
+            </div>
+            <div class="md-form">
+                <input type="text" value=@Model.FirstName id="FirstName" name="FirstName" class="form-control">
+                <label for="form02">First Name</label>
+            </div>
+            <div class="md-form">
+                <input type="text" value=@Model.LastName id="LastName" name="LastName" class="form-control">
+                <label for="form03">Last Name</label>
+            </div>
+            <div class="md-form">
+                <input type="text" value=@Model.Phone id="Phone" name="Phone" class="form-control">
+                <label for="form04">Phone Number</label>
+            </div>
+            <div class="md-form">
+                <input type="text" value=@Model.Email id="Email" name="Email" class="form-control">
+                <label for="form05">Email</label>
+            </div>
+            <div class="md-form">
+                <input type="text" value=@Model.AccountName id="AccountName" name="AccountName" class="form-control">
+                <label for="form06">Username</label>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-default" value="Submit">
+            </div>
+        </div>
+    </div>
+    @*<form action="EmpUpdate" method="post">
+            <div class="container-fluid">
+
+                <h1>EDIT USER</h1>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="hidden" value=@Model.Emp_Id id="Emp_Id" name="Emp_Id" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" value=@Model.FirstName id="FirstName" name="FirstName" class="form-control">
+                            <label for="form02">First Name</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" value=@Model.LastName id="LastName" name="LastName" class="form-control">
+                            <label for="form03">Last Name</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" value=@Model.Phone id="Phone" name="Phone" class="form-control">
+                            <label for="form04">Phone Number</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" value=@Model.Email id="Email" name="Email" class="form-control">
+                            <label for="form05">Email</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="md-form">
+                            <input type="text" value=@Model.AccountName id="AccountName" name="AccountName" class="form-control">
+                            <label for="form06">Username</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-default" value="Submit">
+                    </div>
+                </div>
+
+            </div>
+        </form>*@
