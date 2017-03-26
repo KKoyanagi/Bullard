@@ -330,6 +330,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="manifest.json" />
+    <None Include="Properties\PublishProfiles\Bullard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardInc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardMobile - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -377,7 +378,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
