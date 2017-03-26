@@ -408,6 +408,7 @@
     <Content Include="Views\Scheduler\_ApprovedPanel.cshtml" />
     <Content Include="Views\Scheduler\Help.cshtml" />
     <Content Include="Views\Timecard\Help.cshtml" />
+    <Content Include="Views\Employee\EmpEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

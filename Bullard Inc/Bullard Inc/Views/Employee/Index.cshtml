@@ -32,6 +32,9 @@
                             Account Name: @employee.AccountName<br />
                             Email: @employee.Email<br />
                             Phone Number: @employee.Phone<br />
+                            <div>
+                                @Html.ActionLink("Edit", "EmpEdit", new { id = employee.Emp_Id})
+                            </div>
                         </p>
                     </div>
                 </div>
