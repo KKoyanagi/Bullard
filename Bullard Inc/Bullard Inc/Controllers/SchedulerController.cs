@@ -39,8 +39,8 @@ namespace Bullard_Inc.Controllers
         }
         public async Task<ActionResult> Index(string weekid = "0")
         {
+            SchedulerIndexView view = new SchedulerIndexView();
             
-            WorkWeek week = null;
             if (weekid == "0")
             {
                 HttpResponseMessage responseMessage = await client.GetAsync("weeks/current");
@@ -48,7 +48,8 @@ namespace Bullard_Inc.Controllers
                 {
                     var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                    week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                    view.Current_Week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                    
                     
                 }
             }
@@ -59,11 +60,20 @@ namespace Bullard_Inc.Controllers
                 {
                     var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                    week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+                    view.Current_Week= JsonConvert.DeserializeObject<WorkWeek>(responseData);
 
                 }
             }
-            return View(week);
+            HttpResponseMessage responseMessage1 = await client.GetAsync("weeks");
+            if (responseMessage1.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage1.Content.ReadAsStringAsync().Result;
+
+                view.Weeks = JsonConvert.DeserializeObject<IEnumerable<WorkWeek>>(responseData);
+
+
+            }
+            return View(view);
         }
 
         public ActionResult ChangeWeek(int week)
