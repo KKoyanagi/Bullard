@@ -1,5 +1,5 @@
 ﻿
-@model Bullard_Inc.Models.WorkWeek
+@model Bullard_Inc.Models.SchedulerIndexView
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
@@ -26,22 +26,40 @@
 </head>
 
    <div class="container-fluid">
-        <h1>MANAGE TIMECARD</h1>
+        <h1>MANAGE TIMECARD:</h1>
+       <h4>@Model.Current_Week.StartDate.ToShortDateString() - @Model.Current_Week.EndDate.ToShortDateString()</h4>
         <!-- Nav tabs -->
-       <input id="tmp" name="tmp" type="text" />
-       <a href="#" class="btn btn-default" onclick="changeWeek();">Test Week</a>
-        <ul class="nav nav-tabs tabs-3 Bullard_Color" role="tablist">
-            <li class="nav-item">
-                <a id="panel1bt" class="nav-link" data-toggle="tab" href="#panel1" onclick="getPending(@Model.Week_Id);" role="tab">PENDING</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel2" onclick="getPastDue(@Model.Week_Id);" role="tab">PAST DUE</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel3" onclick="getApproved(@Model.Week_Id);" role="tab">APPROVED</a>
-            </li>
-        </ul>
-   </div>
+       <br />
+       <form>
+           <div class="row">
+               <div class="col-lg-6">
+                   <div class="md-form">
+                       
+                       <select id="Week_Id" name="Week_Id">
+                           @foreach (var week in Model.Weeks)
+            {
+                               <option value=@week.Week_Id> @week.StartDate.ToShortDateString() - @week.EndDate.ToShortDateString() </option>
+                           }
+                       </select>
+                       <a href="#" class="btn btn-default" onclick="changeWeek();">Change Week</a>
+                   </div>
+               </div>
+               
+           </div>
+           
+        </form>
+           <ul class="nav nav-tabs tabs-3 Bullard_Color" role="tablist">
+               <li class="nav-item">
+                   <a id="panel1bt" class="nav-link" data-toggle="tab" href="#panel1" onclick="getPending(@Model.Current_Week.Week_Id);" role="tab">PENDING</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#panel2" onclick="getPastDue(@Model.Current_Week.Week_Id);" role="tab">PAST DUE</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#panel3" onclick="getApproved(@Model.Current_Week.Week_Id);" role="tab">APPROVED</a>
+               </li>
+           </ul>
+</div>
     <!-- Tab panels -->
     <div class="tab-content card">
         <!--Panel 1-->
@@ -78,7 +96,7 @@
         $("#panel3").load(action);
     }
     function changeWeek() {
-        var week = document.getElementById('tmp').value;
+        var week = document.getElementById('Week_Id').value;
         var action = '@Url.Action("ChangeWeek", "Scheduler", new { week = "-1" })'
         action = action.replace("-1", week);
         window.location.href = action;
