@@ -4,9 +4,7 @@
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = "OPEN";
-    string startDate = "12/6/17";
-    string endDate = "12/13/17";
-    string date = startDate + " - " + endDate; 
+    string date = (string)ViewData["weekDate"];
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
