@@ -257,8 +257,6 @@ namespace Timecard.Controllers
         {
             return View();
         }
-
-
         public ActionResult Help()
         {
             //ViewBag.Message = "Your contact page.";
@@ -266,6 +264,12 @@ namespace Timecard.Controllers
             return View();
         }
 
+        public ActionResult SignOut()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
         // --------------- LOGIC MODULES ---------------
 
         // converts the day_id into a string

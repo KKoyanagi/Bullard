@@ -37,6 +37,11 @@ namespace Bullard_Inc.Controllers
         {
             return View();
         }
+
+        public ActionResult SignOut()
+        {
+            return View();
+        }
         public async Task<ActionResult> Index(string weekid = "0")
         {
             SchedulerIndexView view = new SchedulerIndexView();
