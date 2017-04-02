@@ -1,12 +1,11 @@
 ﻿@model Bullard_Inc.Models.Timecard_EmpJobAddEdit
 
 @{
+    ViewBag.Title = "Add Job";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = "OPEN";
-    string startDate = "12/6/17";
-    string endDate = "12/13/17";
-    string date = startDate + " - " + endDate;
+    string date = (string)ViewData["weekDate"];
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
@@ -55,26 +54,30 @@
         <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
-    <!-- Projects Drowndown List-->
+ <!-- Projects Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Project #:</label>
-        <select class ="browser-default" id="Project_Id" name="Project_Id">
+        <br>
+        <select id="Project_Id" name="Project_Id">
             @foreach (var project in Model.Projects)
             {
                 <option value=@project.Project_Id> @project.Project_Num - @project.Location </option>
             }
         </select>
+        <br>
     </div>
 
     <!-- ActivityCode (Work Performed) Drowndown List-->
     <div class="md-form">
         <label class="active" for="form6">Work Performed:</label>
-        <select class ="browser-default" id="ActivityCode" name="ActivityCode">
+        <br>
+        <select id="ActivityCode" name="ActivityCode">
             @foreach (var code in Model.ActivityCodes)
             {
                 <option value=@code.ActivityCode_Id>@code.ActivityDescription </option>
             }
         </select>
+        <br>
     </div>
 
     <div class="md-form">
@@ -93,10 +96,17 @@
     </div>
 
     <div>
-        <input type="submit" class="btn btn-default" value="Submit">
-
-        <div align="right">
-            <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
+        <div class="row">
+            <div class="col">
+                <div align ="left">
+                    <a class="btn btn-default" href="#">SUBMIT</a>
+                </div>
+            </div>
+            <div class="col">
+                <div align="right">
+                    <a class="btn btn-default" href="/Timecard/empjobview/@day_id">Cancel</a>
+                </div>
+            </div>
         </div>
     </div>
 </form>

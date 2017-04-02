@@ -14,8 +14,6 @@
                 <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
                 <td>@timesheet.DateSubmitted</td>
                 <td>
-
-                    <a href="#" class="blue-text"><i class="fa fa-pencil"></i></a>
                     <a href="#" class="red-text"><i class="fa fa-times"></i></a>
                     <a href='javascript:approve(@timesheet.Timesheet_Id, @timesheet.WeekId)' class="green-text"><i class="fa fa-check"></i></a>
                 </td>
@@ -43,6 +41,7 @@
                     <td>@job.Mileage</td>
                     <td>@job.Lunch</td>
                     <td>@job.ActivityCode</td>
+                    <td><a href="@Url.Action("EmpJobEdit","Timecard", new { day_id = job.EmployeeDay_Id , id= job.Job_Id })" class="blue-text"><i class="fa fa-pencil"></i></a></td>
 
                 </tr>
 

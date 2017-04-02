@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@ViewData["Title"] Bullard </title>
+    <title>@ViewData["Title"] - Bullard Inc</title>
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
     <link href="~/Content/compiled.min.css" rel="stylesheet">s
     <link rel="stylesheet" href="~/Content/style.css">
@@ -40,7 +40,7 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a @*href="/home/index"*@ onclick="signOut();" class="collapsible-header waves-effect arrow-r">
+                        <a href="/Timecard/SignOut" onclick="signOut();" class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-sign-out"></i>
                             SIGN OUT
                             @*<a href="#" onclick="signOut();"> Sign out</a>*@
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/timecard/index" class="collapsible-header waves-effect arrow-r">
+                        <a href="/Timecard/Index" class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-clock-o"></i>
                             TIME CARD
                             @*<i class="fa fa-angle-down rotate-icon"></i>*@
@@ -136,19 +136,11 @@
     <script type="text/javascript" src="~/Scripts/compiled.min.js"></script>
 
     <script>
-        @*function signOut() {
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                    new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status) {
-            // ...
-        }
-        });
-        }*@
         function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
             console.log('User signed out.');
+            @*@Url.Action("SignOut", "Timecard");*@
         });
         }
     </script>
