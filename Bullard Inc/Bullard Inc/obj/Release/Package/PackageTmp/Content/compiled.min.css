@@ -18511,17 +18511,17 @@ ul.instagram-photos li img {
 
 select {
     display: block;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    border:hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    min-width:100%;
 }
 
-select.browser-default {
-    display:
-}
 
 .switch label .lever,
 .switch label .lever:after {
     content: "";
-    display: inline-block
+    display: inline-block;
 }
 
 select:enabled {

@@ -291,6 +291,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="Content\__bootstrap.css" />
     <Content Include="Content\__bootstrap.min.css" />
     <Content Include="Content\__mdb.css" />
@@ -305,7 +306,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404MEssageDog.jpg" />
     <Content Include="Images\brand.png" />
+    <Content Include="Images\donald3.jpg" />
     <Content Include="Images\headerlogo_website.png" />
+    <Content Include="Images\justin_tran.jpg" />
+    <Content Include="Images\kameryn.jpg" />
+    <Content Include="Images\ken.jpg" />
+    <Content Include="Images\maddie.jpg" />
+    <Content Include="Images\sammy.jpg" />
     <Content Include="Images\Square.png" />
     <Content Include="Images\__brand.png" />
     <Content Include="Images\__headerlogo_website.png" />
@@ -330,6 +337,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="manifest.json" />
+    <None Include="Properties\PublishProfiles\Bullard - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Bullard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardInc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardMobile - Web Deploy.pubxml" />
@@ -399,6 +407,7 @@
     <Content Include="Views\Timecard\Help.cshtml" />
     <Content Include="Views\Employee\EmpEdit.cshtml" />
     <Content Include="Views\Timecard\SignOut.cshtml" />
+    <Content Include="Views\Scheduler\SignOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

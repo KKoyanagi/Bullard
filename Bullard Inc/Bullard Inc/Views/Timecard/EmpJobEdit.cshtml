@@ -1,12 +1,13 @@
 ﻿@model Bullard_Inc.Models.Timecard_EmpJobAddEdit
 
 @{
+    ViewBag.Title = "Job Edit";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = "OPEN";
     string startDate = "12/6/17";
     string endDate = "12/13/17";
-    string date = startDate + " - " + endDate; 
+    string date = startDate + " - " + endDate;
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];

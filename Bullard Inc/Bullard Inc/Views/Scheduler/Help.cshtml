@@ -1,10 +1,49 @@
 ﻿@{
-    Layout = "~/Views/Shared/LoginFrame.cshtml";
     ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>*@
+@*<link rel="stylesheet" href="~/Content/nav3.css">*@
 
+<h1><b>Team OmniCom Developers</b></h1>
+<!-- Team Photos -->
+<div class="image123">
+    <div>
+        <img src="~/Images/ken.jpg" />
+        <p>Ken Koyanagi</p>
+        <p>Team Lead</p>
+    </div>
+    <div>
+        <img class="middle-img" src="~/Images/donald3.jpg" />
+        <p>Donald Murchison</p>
+        <p>Team Member</p>
+    </div>
+    <div>
+        <img src="~/Images/maddie.jpg" />
+        <p>Madeline Lewis-Whitfield</p>
+        <p>Team Member</p>
+    </div>
+    <div>
+        <img src="~/Images/justin_tran.jpg" />
+        <p>Justin Tran</p>
+        <p>Meeting Chair</p>
+    </div>
+    <div>
+        <img src="~/Images/kameryn.jpg" />
+        <p>Kameryn Taylor</p>
+        <p>Team Member</p>
+    </div>
+    <div>
+        <img src="~/Images/sammy.jpg" />
+        <p>Lathsamy Vongsavanh</p>
+        <p>Client Liason</p>
+    </div>
+</div>
+
+
+<!-- Contact us section -->
+<h2><b>Contact Us</b></h2>
 <address>
     OmniCom Service<br />
     Redmond, WA 98052-6399<br />
@@ -16,7 +55,3 @@
     <strong>Support:</strong>   <a href="mailto:Support@OmniCom.com">Support@OmniCom.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@OmniCom.com">Marketing@OmniCom.com</a>
 </address>
-
-<div align="right">
-    <a href="/Scheduler/Index" class="btn btn-default btn-lg">Back</a>
-</div>
