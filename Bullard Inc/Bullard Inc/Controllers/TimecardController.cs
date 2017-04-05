@@ -29,6 +29,7 @@ namespace Timecard.Controllers
         public ActionResult Index()
         {
             // TODO: get request to api/timesheets/employee/current/{id}
+            ViewData["weekDate"] = currentWeekDate();
             return View();
         }
         public ActionResult SignOut()
@@ -61,6 +62,7 @@ namespace Timecard.Controllers
             // pass in day information into the view
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
+            ViewData["weekDate"] = currentWeekDate();
 
             // custom url
             string empJobViewURL = url + "jobs/employeeday/" + day_id; 
@@ -83,6 +85,7 @@ namespace Timecard.Controllers
             // pass in day information into the view
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
+            ViewData["weekDate"] = currentWeekDate();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -149,6 +152,7 @@ namespace Timecard.Controllers
             // pass in day information into the view
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
+            ViewData["weekDate"] = currentWeekDate();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -246,6 +250,15 @@ namespace Timecard.Controllers
                 case 7: return "SUNDAY";
                 default: return "N/A";
             }
+        }
+
+        //gets the current week dates (start and end) and formats it to mm/dd/yyyy - mm/dd/yyyy
+        private string currentWeekDate()
+        {
+            string SundayDate = DateTime.Today.AddDays((int)(DateTime.Today.DayOfWeek) * -1).ToShortDateString();
+            string SaturdayDate = DateTime.Today.AddDays(((int)(DateTime.Today.DayOfWeek) * -1) + 6).ToShortDateString();
+            string weekDates = SundayDate + "-" + SaturdayDate;
+            return weekDates;
         }
     }
 }
