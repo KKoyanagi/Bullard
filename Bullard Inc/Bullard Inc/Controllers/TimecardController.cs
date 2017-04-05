@@ -15,6 +15,8 @@ namespace Timecard.Controllers
     {
         HttpClient client;
         string url = "http://bullardapi.azurewebsites.net/api/";  //The URL of the WEB API Service
+        static int EmpDayId;
+        static int TimesheetId;
 
         // Set the base address and the Header Formatter
         public TimecardController()
@@ -26,11 +28,26 @@ namespace Timecard.Controllers
         }
 
         // Homepage of TimeCard Controller
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             // TODO: get request to api/timesheets/employee/current/{id}
             ViewData["weekDate"] = currentWeekDate();
-            return View();
+            string currentEmpURL = url + "timesheets/employee/current/" + 1;
+            Timesheet currentTimesheet;
+            HttpResponseMessage responseMessage = await client.GetAsync(currentEmpURL);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                currentTimesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
+                TimesheetId = currentTimesheet.Timesheet_Id;
+
+            }
+            else
+            {
+                return View("Error2");
+            }
+            return View(currentTimesheet);
         }
         public ActionResult SignOut()
         {
@@ -65,17 +82,37 @@ namespace Timecard.Controllers
             ViewData["weekDate"] = currentWeekDate();
 
             // custom url
-            string empJobViewURL = url + "jobs/employeeday/" + day_id; 
+            string empJobTimesheetURL = url + "employeedays/";
+            string empJobURL = url + "jobs/employeeday/";
+            EmployeeDay empDayTest = new EmployeeDay();
+            EmployeeDay NewEmployeeDay;
+            empDayTest.Day_Id = day_id;
+            empDayTest.Timesheet_Id = TimesheetId;
 
-            HttpResponseMessage responseMessage = await client.GetAsync(empJobViewURL);
-            var response = responseMessage.Content.ReadAsStringAsync().Result;
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobTimesheetURL, empDayTest);
             if (responseMessage.IsSuccessStatusCode)
             {
-                Job[] EmployeeDayJob = JsonConvert.DeserializeObject<Job[]>(response);
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                NewEmployeeDay = JsonConvert.DeserializeObject<EmployeeDay>(responseData);
+                EmpDayId = NewEmployeeDay.EmployeeDay_Id;
+
+            }
+            else
+            {
+                return View("Error1");
+            }
+            HttpResponseMessage responseMessage2 = await client.GetAsync(empJobURL + "/" + NewEmployeeDay.EmployeeDay_Id);
+            if (responseMessage2.IsSuccessStatusCode)
+            {
+                var responseData2 = responseMessage2.Content.ReadAsStringAsync().Result;
+
+                Job[] EmployeeDayJob = JsonConvert.DeserializeObject<Job[]>(responseData2);
+                EmpDayId = NewEmployeeDay.EmployeeDay_Id;
                 return View(EmployeeDayJob);
             }
             // if api call fails, return error
-            return RedirectToAction("Error " + response);
+            return View("Error");
         }
 
         // ADD JOB ACTION
@@ -85,6 +122,7 @@ namespace Timecard.Controllers
             // pass in day information into the view
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
+            ViewData["empDayId"] = EmpDayId;
             ViewData["weekDate"] = currentWeekDate();
 
             // values for view model: Timecard_EmpJobAddEdit

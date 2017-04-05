@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = "OPEN";
-
+    if (Model.Submitted == true)
+    {
+        status = "CLOSED";
+    }
     string date = (string)ViewData["weekDate"];
 }
 <h2 align="center"><b>TIMECARD</b></h2>

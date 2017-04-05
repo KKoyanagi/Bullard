@@ -9,6 +9,7 @@
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
+    int empDayId = (int)ViewData["empDayId"];
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -51,7 +52,7 @@
 <form action="EmpJobSubmit" method="post">
 
     <div class="md-form">
-        <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
+        <input value=@empDayId type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
  <!-- Projects Drowndown List-->
