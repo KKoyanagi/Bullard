@@ -13,14 +13,12 @@ namespace Timecard.Controllers
 {
     public class TimecardController : Controller
     {
-        
-            HttpClient client;
-            string url = "http://bullardapi.azurewebsites.net/api/";  //The URL of the WEB API Service
-            static int EmpDayId;
-            static int TimesheetId;
-            static DateTime SundayDate;
-            static DateTime SaturdayDate;
-
+        HttpClient client;
+        string url = "http://bullardapi.azurewebsites.net/api/";  //The URL of the WEB API Service
+        static int EmpDayId;
+        static int TimesheetId;
+        static bool status;
+        static string state;
         // Set the base address and the Header Formatter
         public TimecardController()
         {
@@ -28,17 +26,15 @@ namespace Timecard.Controllers
             client.BaseAddress = new Uri(url);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
         }
 
         // Homepage of TimeCard Controller
         public async Task<ActionResult> Index()
         {
+            // TODO: get request to api/timesheets/employee/current/{id}
+            ViewData["weekDate"] = currentWeekDate();
             string currentEmpURL = url + "timesheets/employee/current/" + 1;
             Timesheet currentTimesheet;
-            ViewData["weekDate"] = currentWeekDate();
-
-            // TODO: get request to api/timesheets/employee/current/{id}
             HttpResponseMessage responseMessage = await client.GetAsync(currentEmpURL);
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -46,15 +42,30 @@ namespace Timecard.Controllers
 
                 currentTimesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
                 TimesheetId = currentTimesheet.Timesheet_Id;
+                status = currentTimesheet.Submitted;
 
             }
             else
             {
                 return View("Error2");
             }
+            ViewData["status"]=getState();
             return View(currentTimesheet);
         }
+        public ActionResult SignOut()
+        {
+            // TODO: get request to api/timesheets/employee/current/{id}
+            return View();
+        }
 
+        // Submit 
+        public async Task<ActionResult> Submit(int id)
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/submit/" + id.ToString());
+
+            return RedirectToAction("Index", "Timecard");
+
+        }
         // This action will display the number of Jobs the user has worked on a particular day. 
         [Route("timecard/empjobview/{day_id}")]
         public async Task<ActionResult> EmpJobView(int day_id)
@@ -71,6 +82,8 @@ namespace Timecard.Controllers
             // pass in day information into the view
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
+            ViewData["weekDate"] = currentWeekDate();
+            ViewData["status"] = getState();
 
             // custom url
             string empJobTimesheetURL = url + "employeedays/";
@@ -79,8 +92,6 @@ namespace Timecard.Controllers
             EmployeeDay NewEmployeeDay;
             empDayTest.Day_Id = day_id;
             empDayTest.Timesheet_Id = TimesheetId;
-            ViewData["weekDate"] = currentWeekDate();
-            //empDayTest.EmployeeDay_Id = 1;
 
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobTimesheetURL, empDayTest);
             if (responseMessage.IsSuccessStatusCode)
@@ -117,6 +128,7 @@ namespace Timecard.Controllers
             ViewData["dayString"] = dayToString(day_id);
             ViewData["empDayId"] = EmpDayId;
             ViewData["weekDate"] = currentWeekDate();
+            ViewData["status"] = getState();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -129,17 +141,17 @@ namespace Timecard.Controllers
             // API CALLS
             // get list of activity codes 
             HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            var response = responseMessage.Content.ReadAsStringAsync().Result;
             if (responseMessage.IsSuccessStatusCode)
             {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(responseData);
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(response);
 
                 // and then get list of project numbers
                 responseMessage = await client.GetAsync(projectsURL);
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    projects = JsonConvert.DeserializeObject<Project[]>(responseData);
+                    response = responseMessage.Content.ReadAsStringAsync().Result;
+                    projects = JsonConvert.DeserializeObject<Project[]>(response);
 
                     // if successful on both API calls
                     // initialize view model: Timecard_EmpJobAddEdit
@@ -154,9 +166,8 @@ namespace Timecard.Controllers
             }
 
             // if either api call fails, return error. 
-            return View("Error");
+            return RedirectToAction("Error " + response);
         }
-
 
         // SUBMIT JOB ACTION
         [HttpPost]
@@ -164,7 +175,7 @@ namespace Timecard.Controllers
         public async Task<ActionResult> EmpJobSubmit(int day_id, Job job)  
         {
             // custom url
-            string empJobAddURL = url + "jobs";
+            string empJobAddURL = url + "jobs"; 
 
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobAddURL, job);
             System.Net.HttpStatusCode response = responseMessage.StatusCode;
@@ -185,6 +196,8 @@ namespace Timecard.Controllers
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
             ViewData["weekDate"] = currentWeekDate();
+            ViewData["empDayId"] = EmpDayId;
+            ViewData["status"] = getState();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -250,13 +263,27 @@ namespace Timecard.Controllers
             }
             return RedirectToAction("Error " + response);
         }
-        
+
+        [Route("timecard/empjobview/{day_id}/empjobdelete/")]
+        public async Task<ActionResult> EmpJobDelete(int day_id, int? id)
+        {
+            string empJobDeleteURL = url + "jobs/" + id;
+            HttpResponseMessage responseMessage = await client.DeleteAsync(empJobDeleteURL);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error " + response);
+        }
 
         // This action will display the user's timecard history
         public ActionResult History()
         {
             return View();
         }
+
+
         public ActionResult Help()
         {
             //ViewBag.Message = "Your contact page.";
@@ -264,12 +291,6 @@ namespace Timecard.Controllers
             return View();
         }
 
-        public ActionResult SignOut()
-        {
-            //ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         // --------------- LOGIC MODULES ---------------
 
         // converts the day_id into a string
@@ -287,12 +308,26 @@ namespace Timecard.Controllers
                 default: return "N/A";
             }
         }
+
+        //gets the current week dates (start and end) and formats it to mm/dd/yyyy - mm/dd/yyyy
         private string currentWeekDate()
         {
             string SundayDate = DateTime.Today.AddDays((int)(DateTime.Today.DayOfWeek) * -1).ToShortDateString();
             string SaturdayDate = DateTime.Today.AddDays(((int)(DateTime.Today.DayOfWeek) * -1) + 6).ToShortDateString();
             string weekDates = SundayDate + "-" + SaturdayDate;
             return weekDates;
+        }
+        private string getState()
+        {
+            if (status)
+            {
+                state = "CLOSED";
+            }
+            else
+            {
+                state = "OPEN";
+            }
+            return state;
         }
     }
 }

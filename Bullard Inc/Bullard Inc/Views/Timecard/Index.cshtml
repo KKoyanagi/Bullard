@@ -3,11 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
-    string status = "OPEN";
-    if (Model.Submitted == true)
-    {
-        status = "CLOSED";
-    }
+    string status = (string)ViewData["status"];
     string date = (string)ViewData["weekDate"];
 }
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -25,7 +21,9 @@
                         </a>
                     </li>
                     <li class="page-item active">
-                        <a class="page-link" href="timecard/history">@date</a>
+                        <a class="page-link" href="history">
+                            @date
+                        </a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
@@ -46,6 +44,7 @@
     </div>
 </div>
 <!-- need to pass timesheet id and day id-->
+
 <a href="/timecard/empjobview/7" class="btn btn-default btn-lg btn-block">SUNDAY</a>
 <a href="/timecard/empjobview/1" class="btn btn-default btn-lg btn-block">MONDAY</a>
 <a href="/timecard/empjobview/2" class="btn btn-default btn-lg btn-block">TUESDAY</a>
