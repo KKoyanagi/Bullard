@@ -263,7 +263,19 @@ namespace Timecard.Controllers
             }
             return RedirectToAction("Error " + response);
         }
-        
+
+        [Route("timecard/empjobview/{day_id}/empjobdelete/")]
+        public async Task<ActionResult> EmpJobDelete(int day_id, int? id)
+        {
+            string empJobDeleteURL = url + "jobs/" + id;
+            HttpResponseMessage responseMessage = await client.DeleteAsync(empJobDeleteURL);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/empjobview/" + day_id);
+            }
+            return RedirectToAction("Error " + response);
+        }
 
         // This action will display the user's timecard history
         public ActionResult History()
