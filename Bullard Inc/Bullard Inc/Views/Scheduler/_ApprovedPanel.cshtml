@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<Bullard_Inc.Models.ApprovedView>
 
 
-    <table class="table">
+    <table class="table" style="table-layout:fixed;width:100%">
         <thead>
             <tr>
-                <th>Timesheet Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date Submitted</th>
-                <th>Status</th>
+                <th style='width: 10%;'>Timesheet Id</th>
+                <th style='width: 25%;'>First Name</th>
+                <th style='width: 25%;'>Last Name</th>
+                <th style='width: 20%;'>Date Submitted</th>
+                <th style='width: 10%;'>Status</th>
+                <th style='width: 1%;'></th>
             </tr>
         </thead>
         <tbody>
@@ -16,12 +17,12 @@
             {
 
             <tr>
-                <td>@timesheet.Timesheet_Id</td>
-                <td>@timesheet.FirstName</td>
-                <td>@timesheet.LastName</td>
-                <td>@timesheet.DateSubmitted</td>
-                <td><i class="fa fa-check green-text"></i></td>
-                <td>
+                <td style='width: 10%;'>@timesheet.Timesheet_Id</td>
+                <td style='width: 25%;'>@timesheet.FirstName</td>
+                <td style='width: 25%;'>@timesheet.LastName</td>
+                <td style='width: 20%;'>@timesheet.DateSubmitted</td>
+                <td style='width: 10%;'><i class="fa fa-check green-text"></i></td>
+                <td style='width: 10%;'>
                     <a href="javascript:unapprove(@timesheet.Timesheet_Id, @timesheet.WeekId)" class="red-text"><i class="fa fa-times"></i></a>
                 </td>
             </tr>
