@@ -33,7 +33,7 @@ namespace Timecard.Controllers
         {
             // TODO: get request to api/timesheets/employee/current/{id}
             ViewData["weekDate"] = currentWeekDate();
-            string currentEmpURL = url + "timesheets/employee/current/" + 1;
+            string currentEmpURL = url + "timesheets/employee/current/" + 2;
             Timesheet currentTimesheet;
             HttpResponseMessage responseMessage = await client.GetAsync(currentEmpURL);
             if (responseMessage.IsSuccessStatusCode)
