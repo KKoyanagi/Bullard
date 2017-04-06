@@ -3,10 +3,8 @@
     ViewBag.Title = "Job View";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
-    string status = "OPEN";
-    string startDate = "12/6/17";
-    string endDate = "12/13/17";
-    string date = startDate + " - " + endDate;
+    string status = (string)ViewData["status"];
+    string date = (string)ViewData["weekDate"];
 
     int day_id = (int) ViewData["day_id"];
     string dayString = (string)ViewData["dayString"];
@@ -70,6 +68,8 @@
                 }
                 <div>
                     @Html.ActionLink("Edit", "EmpJobEdit", new { id = job.Job_Id})
+                    &emsp;&emsp;&emsp;&emsp;&emsp;<!--adds space between Edit & Delete-->
+                    @Html.ActionLink("Delete", "EmpJobDelete", new { id = job.Job_Id })
                 </div>
             </p>
          <hr />

@@ -3,14 +3,12 @@
 @{
     ViewBag.Title = "Job Add";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
-
-    string status = "OPEN";
-    string startDate = "12/6/17";
-    string endDate = "12/13/17";
-    string date = startDate + " - " + endDate;
-
+    
+    string date = (string)ViewData["weekDate"];
+    string status = (string)ViewData["status"];
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
+    int empDayId = (int)ViewData["empDayId"];
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -53,7 +51,7 @@
 <form action="EmpJobSubmit" method="post">
 
     <div class="md-form">
-        <input value=@day_id type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
+        <input value=@empDayId type="hidden" id="EmployeeDay_Id" class="form-control" name="EmployeeDay_Id">
     </div>
 
  <!-- Projects Drowndown List-->
