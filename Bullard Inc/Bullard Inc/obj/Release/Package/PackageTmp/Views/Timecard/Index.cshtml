@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Bullard_Inc.Models.Timesheet
+@{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = "OPEN";
@@ -54,5 +56,14 @@
 <br />
 
 <div align="right">
-    <a class="btn btn-default" href="#">Submit</a>
+    <a class="btn btn-default" href="javascript:submit(8)">Submit</a>
 </div>
+
+<script type="text/javascript">
+    function submit(id) {
+        var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
+        action = action.replace("-1", id);
+        window.location.href = action;
+        alert("Submitted")
+    }
+</script>

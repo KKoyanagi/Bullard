@@ -291,7 +291,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\w3.css" />
     <Content Include="Content\__bootstrap.css" />
     <Content Include="Content\__bootstrap.min.css" />
     <Content Include="Content\__mdb.css" />
