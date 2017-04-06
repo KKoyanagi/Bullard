@@ -3,11 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
-    string status = "OPEN";
-    if (Model.Submitted == true)
-    {
-        status = "CLOSED";
-    }
+    string status = (string)ViewData["status"];
     string date = (string)ViewData["weekDate"];
 }
 <h2 align="center"><b>TIMECARD</b></h2>

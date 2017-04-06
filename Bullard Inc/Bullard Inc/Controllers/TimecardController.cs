@@ -17,7 +17,8 @@ namespace Timecard.Controllers
         string url = "http://bullardapi.azurewebsites.net/api/";  //The URL of the WEB API Service
         static int EmpDayId;
         static int TimesheetId;
-
+        static bool status;
+        static string state;
         // Set the base address and the Header Formatter
         public TimecardController()
         {
@@ -41,12 +42,14 @@ namespace Timecard.Controllers
 
                 currentTimesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
                 TimesheetId = currentTimesheet.Timesheet_Id;
+                status = currentTimesheet.Submitted;
 
             }
             else
             {
                 return View("Error2");
             }
+            ViewData["status"]=getState();
             return View(currentTimesheet);
         }
         public ActionResult SignOut()
@@ -80,6 +83,7 @@ namespace Timecard.Controllers
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
             ViewData["weekDate"] = currentWeekDate();
+            ViewData["status"] = getState();
 
             // custom url
             string empJobTimesheetURL = url + "employeedays/";
@@ -124,6 +128,7 @@ namespace Timecard.Controllers
             ViewData["dayString"] = dayToString(day_id);
             ViewData["empDayId"] = EmpDayId;
             ViewData["weekDate"] = currentWeekDate();
+            ViewData["status"] = getState();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -191,6 +196,8 @@ namespace Timecard.Controllers
             ViewData["day_id"] = day_id;
             ViewData["dayString"] = dayToString(day_id);
             ViewData["weekDate"] = currentWeekDate();
+            ViewData["empDayId"] = EmpDayId;
+            ViewData["status"] = getState();
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -297,6 +304,18 @@ namespace Timecard.Controllers
             string SaturdayDate = DateTime.Today.AddDays(((int)(DateTime.Today.DayOfWeek) * -1) + 6).ToShortDateString();
             string weekDates = SundayDate + "-" + SaturdayDate;
             return weekDates;
+        }
+        private string getState()
+        {
+            if (status)
+            {
+                state = "CLOSED";
+            }
+            else
+            {
+                state = "OPEN";
+            }
+            return state;
         }
     }
 }

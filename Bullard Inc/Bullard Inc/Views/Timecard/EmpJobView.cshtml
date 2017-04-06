@@ -3,7 +3,7 @@
     ViewBag.Title = "Job View";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
-    string status = "OPEN";
+    string status = (string)ViewData["status"];
     string date = (string)ViewData["weekDate"];
 
     int day_id = (int) ViewData["day_id"];

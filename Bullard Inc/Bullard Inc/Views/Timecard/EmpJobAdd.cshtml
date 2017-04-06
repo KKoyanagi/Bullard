@@ -3,10 +3,9 @@
 @{
     ViewBag.Title = "Job Add";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
-
-    string status = "OPEN";
+    
     string date = (string)ViewData["weekDate"];
-
+    string status = (string)ViewData["status"];
     int day_id = (int) ViewData["day_id"];
     string dayString = (string) ViewData["dayString"];
     int empDayId = (int)ViewData["empDayId"];
