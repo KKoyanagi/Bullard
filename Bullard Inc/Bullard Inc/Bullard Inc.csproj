@@ -214,7 +214,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SchedulerController.cs" />
     <Compile Include="Controllers\TimecardController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,6 +230,7 @@
     <Compile Include="Models\PastDueView.cs" />
     <Compile Include="Models\PendingView.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\SchedulerIndexView.cs" />
     <Compile Include="Models\Timesheet.cs" />
     <Compile Include="Models\WorkWeek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,11 +244,18 @@
     <Content Include="browserconfig.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap1.css" />
     <Content Include="Content\compiled.min.css" />
+    <Content Include="Content\component.css" />
+    <Content Include="Content\custom-styles.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\font-awesome-ie7.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\mdb.css" />
     <Content Include="Content\mdb.min.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\raleway.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -291,6 +298,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="Content\__bootstrap.css" />
     <Content Include="Content\__bootstrap.min.css" />
     <Content Include="Content\__mdb.css" />
@@ -305,7 +313,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\404MEssageDog.jpg" />
     <Content Include="Images\brand.png" />
+    <Content Include="Images\donald2.jpeg" />
     <Content Include="Images\headerlogo_website.png" />
+    <Content Include="Images\justin_tran.jpg" />
+    <Content Include="Images\kameryn.jpg" />
+    <Content Include="Images\ken.jpg" />
+    <Content Include="Images\maddie.jpg" />
+    <Content Include="Images\sammy.jpg" />
     <Content Include="Images\Square.png" />
     <Content Include="Images\__brand.png" />
     <Content Include="Images\__headerlogo_website.png" />
@@ -330,10 +344,12 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="manifest.json" />
+    <None Include="Properties\PublishProfiles\Bullard - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardInc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\BullardMobile - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\compiled.min.js" />
+    <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -368,7 +384,9 @@
     <Content Include="Scripts\__tether.min.js" />
     <Content Include="Views\Responses\404.html" />
     <Content Include="Views\Responses\Unauthorized.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -377,20 +395,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Shared\AdminFrame.cshtml" />
     <Content Include="Views\Shared\FieldWorkerFrame.cshtml" />
     <Content Include="Views\Timecard\History.cshtml" />
@@ -406,9 +410,11 @@
     <Content Include="Views\Scheduler\_PendingPanel.cshtml" />
     <Content Include="Views\Scheduler\_PastDuePanel.cshtml" />
     <Content Include="Views\Scheduler\_ApprovedPanel.cshtml" />
+    <Content Include="Views\Employee\EmpEdit.cshtml" />
+    <Content Include="Views\Timecard\SignOut.cshtml" />
     <Content Include="Views\Scheduler\Help.cshtml" />
     <Content Include="Views\Timecard\Help.cshtml" />
-    <Content Include="Views\Employee\EmpEdit.cshtml" />
+    <Content Include="Views\Scheduler\SignOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

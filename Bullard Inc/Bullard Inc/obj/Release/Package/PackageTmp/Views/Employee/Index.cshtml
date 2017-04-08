@@ -1,6 +1,7 @@
 ﻿
 @model IEnumerable<Bullard_Inc.Models.Employee>
 @{
+    ViewBag.Title = "Users List";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
 }
 
@@ -12,7 +13,50 @@
     <title>Employees</title>
 </head>
 <body>
-    <h1>Employees </h1>
+    <div @*class="text-center"*@>
+        <h1>EMPLOYEES</h1>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-block">
+            <div class="form-header text-left">
+                <input type="text" placeholder="SEARCH USER">
+            </div>
+            <div class="md-form">
+                @foreach (var employee in Model)
+                {
+                    <div class="panel-group" id="accordion_@employee.Emp_Id">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@employee.Emp_Id">
+                                        @employee.FirstName @employee.LastName
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapse_@employee.Emp_Id" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p style="margin-left: 40px">
+                                        Employee Id: @employee.Emp_Id<br />
+                                        Account Name: @employee.AccountName<br />
+                                        Email: @employee.Email<br />
+                                        Phone Number: @employee.Phone<br />
+                                        <div>
+                                            @Html.ActionLink("Edit", "EmpEdit", new { id = employee.Emp_Id })
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+
+    @*<h1>EMPLOYEES</h1>
     <hr />
     @foreach (var employee in Model)
     {
@@ -32,13 +76,16 @@
                             Account Name: @employee.AccountName<br />
                             Email: @employee.Email<br />
                             Phone Number: @employee.Phone<br />
+                            <div>
+                                @Html.ActionLink("Edit", "EmpEdit", new { id = employee.Emp_Id})
+                            </div>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <hr />
-    }
+    }*@
 
 </body>
 </html>

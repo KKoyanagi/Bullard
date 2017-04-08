@@ -1,9 +1,16 @@
-﻿@model Bullard_Inc.Models.Job
+﻿@model Bullard_Inc.Models.Job[]
 @{
+    ViewBag.Title = "Job View";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
-    string startDate = "12/6/17";
-    string endDate = "12/13/17";
+    string status = (string)ViewData["status"];
+    string date = (string)ViewData["weekDate"];
+
+    int day_id = (int) ViewData["day_id"];
+    string dayString = (string)ViewData["dayString"];
+
+    double totalHours = 0;
+    double totalMiles = 0;
 }
 
 <h2 align="center"><b>TIMECARD</b></h2>
@@ -21,8 +28,8 @@
                         </a>
                     </li>
                     <li class="page-item active">
-                        <a class="page-link" href="history">
-                            @startDate - @endDate
+                        <a class="page-link" href="/timecard/history">
+                            @date
                         </a>
                     </li>
                     <li class="page-item">
@@ -38,28 +45,45 @@
     </div>
 </div>
 
-<p>Status: <span style="color: red"><b>Model.status</b></span></p>
-
-<button class="btn btn-default btn-lg btn-block">@ViewData["day"]</button>
+<p>Status: <span style="color: red"><b>@status</b></span></p>
+<button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
-<a href="@Model.EmployeeDay_Id/empjobadd" class="btn btn-default">ADD</a>
-<hr />
-<p>
-    JOB #: @Model.ActivityCode <br />
-    Hours: @Model.Hours <br />
-    Miles: @Model.Mileage <br />
-    Lunch: @Model.Lunch <br />
-    Work Perfomed: Model.workPerformed <br /> <br />
-    <div>
-        <a href="@Model.EmployeeDay_Id/empjobedit" class="btn btn-default">EDIT</a>
-        <a href="#" class="btn btn-default disabled">DEL</a>
-    </div>
-</p>
-<hr />
+
+@if (status == "OPEN")
+{
+    <a href="@ViewData["day_id"]/empjobadd" class="btn btn-default">ADD</a>
+}
+<br /><br />
+    @foreach (var job in Model)
+    {
+
+            <p>
+                JOB #: @Html.DisplayFor(m => job.Project_Id, "Project #:") <br />
+                Hours: @Html.DisplayFor(m => job.Hours) <br />
+
+                Miles: @Html.DisplayFor(m => job.Mileage) <br />
+                Lunch: @Html.DisplayFor(m => job.Lunch) <br />
+                Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br />
+                @{
+                    // accumilate total hours and milage
+                    totalHours += job.Hours;
+                    totalMiles += job.Mileage;
+                }
+                <div>
+                   @if (status == "OPEN")
+                    {
+                        @Html.ActionLink("Edit", "EmpJobEdit", new { id = job.Job_Id });
+                        //&emsp; &emsp; &emsp; &emsp; &emsp;<!--adds space between Edit & Delete-->
+                        @Html.ActionLink("       Delete", "EmpJobDelete", new { id = job.Job_Id }, new { onclick = "return confirm('Are you sure you want to delete this job?');" });
+                    }
+                </div>
+            </p>
+         <hr />
+     }
 
 <p>
-    Total Hours: XXX <br />
-    Total Miles: XXX <br />
+    Total Hours: @totalHours <br />
+    Total Miles: @totalMiles <br />
 </p>
 
 <div align="right">

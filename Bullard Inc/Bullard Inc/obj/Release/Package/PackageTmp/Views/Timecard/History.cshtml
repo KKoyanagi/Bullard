@@ -1,7 +1,8 @@
 ﻿@{
+    ViewBag.Title = "Timecard History";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
     string[] startingDates = new string[] {"12/05/2016","11/28/2016","11/21/2016"};
-    string[] endingDates = new string[] {"12/09/2016","12/02/2016","11/18/2016"}; 
+    string[] endingDates = new string[] {"12/09/2016","12/02/2016","11/18/2016"};
 }
 
 <head>
@@ -37,13 +38,13 @@
 <table class="table table-hover">
     <tbody>
         <tr>
-            <td align="center"><a href="/timecard">@startingDates[0] - @endingDates[0]</a></td>
+            <td align="center"><a href="/timecard/index">@startingDates[0] - @endingDates[0]</a></td>
         </tr>
         <tr>
-            <td align="center"><a href="/timecard">@startingDates[1] - @endingDates[1]</a></td>
+            <td align="center"><a href="/timecard/index">@startingDates[1] - @endingDates[1]</a></td>
         </tr>
         <tr>
-            <td align="center"><a href="/timecard">@startingDates[2] - @endingDates[2]</a></td>
+            <td align="center"><a href="/timecard/index">@startingDates[2] - @endingDates[2]</a></td>
         </tr>
     </tbody>
 </table>
