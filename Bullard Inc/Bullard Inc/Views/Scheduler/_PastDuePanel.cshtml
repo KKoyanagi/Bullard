@@ -5,11 +5,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Timesheet Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Week</th>
-                <th align="center">Submitted</th>
+                <th style='width: 5%;'>Id</th>
+                <th style='width: 25%;'>First Name</th>
+                <th style='width: 30%;'>Last Name</th>
+                <th style='width: 30%;'>Date of Week</th>
+                <th style='width: 10%;'>Submitted</th>
             </tr>
         </thead>
         <tbody>
@@ -21,11 +21,11 @@
                     status = new HtmlString("<i class=\"fa fa-times red-text\"></i>");
                 }
             <tr>
-                <td>@timesheet.Timesheet_Id</td>
-                <td>@timesheet.FirstName</td>
-                <td>@timesheet.LastName</td>
-                <td>@timesheet.StartDate.ToShortDateString()-@timesheet.EndDate.ToShortDateString()</td>
-                <td align="center">@status</td>
+                <td style='width: 5%;'>@timesheet.Timesheet_Id</td>
+                <td style='width: 25%;'>@timesheet.FirstName</td>
+                <td style='width: 30%;'>@timesheet.LastName</td>
+                <td style='width: 30%;'>@timesheet.StartDate.ToShortDateString()-@timesheet.EndDate.ToShortDateString()</td>
+                <td style='width: 10%;'>@status</td>
             </tr>
             }
         </tbody>

@@ -21,27 +21,28 @@
         </thead>
         <tbody id="test_@timesheet.Timesheet_Id" class="collapse">
             <tr>
-                <td>Day</td>
-                <td>Job Id</td>
-                <td>Project Id</td>
-                <td>Hours</td>
-                <td>Mileage</td>
-                <td>Lunch</td>
-                <td>Activity Code</td>
+                <td style='width: 15%;'>Day</td>
+                <td style='width: 15%;'>Job Id</td>
+                <td style='width: 15%;'>Project Id</td>
+                <td style='width: 10%;'>Hours</td>
+                <td style='width: 10%;'>Mileage</td>
+                <td style='width: 10%;'>Lunch</td>
+                <td style='width: 10%;'>Activity Code</td>
+                <td style='width: 15%;'></td>
 
             </tr>
 
             @foreach (var job in timesheet.Jobs)
             {
                 <tr>
-                    <td>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
-                    <td>@job.Job_Id</td>
-                    <td>@job.Project_Id</td>
-                    <td>@job.Hours</td>
-                    <td>@job.Mileage</td>
-                    <td>@job.Lunch</td>
-                    <td>@job.ActivityCode</td>
-                    <td><a href="@Url.Action("EmpJobEdit","Timecard", new { day_id = job.EmployeeDay_Id , id= job.Job_Id })" class="blue-text"><i class="fa fa-pencil"></i></a></td>
+                    <td style='width: 15%;'>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
+                    <td style='width: 15%;'>@job.Job_Id</td>
+                    <td style='width: 15%;'>@job.Project_Id</td>
+                    <td style='width: 10%;'>@job.Hours</td>
+                    <td style='width: 10%;'>@job.Mileage</td>
+                    <td style='width: 10%;'>@job.Lunch</td>
+                    <td style='width: 10%;'>@job.ActivityCode</td>
+                    <td style='width: 15%;'><a href="@Url.Action("EmpJobEdit","Timecard", new { day_id = job.EmployeeDay_Id , id= job.Job_Id })" class="blue-text"><i class="fa fa-pencil"></i></a></td>
 
                 </tr>
 
