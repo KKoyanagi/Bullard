@@ -162,6 +162,18 @@ namespace API.Controllers
                 return null;
             }
         }
+        [HttpGet("unsubmit/{id}", Name = "UnSubmitTimesheet")]
+        public Timesheet UnSubmitTimesheet(string id)
+        {
+            try
+            {
+                return timesheetRepository.UnSubmitTimesheet(Int32.Parse(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
         [HttpPost]
         public IActionResult Create([FromBody] Timesheet timesheet)
         {
@@ -181,6 +193,19 @@ namespace API.Controllers
             try
             {
                 var ts = timesheetRepository.GetTimesheetCurrent(Int32.Parse(id));
+                return new ObjectResult(ts);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("employee/{id}/{week}")]
+        public IActionResult GetTimesheetForEmp(string id, string week)
+        {
+            try
+            {
+                var ts = timesheetRepository.GetEmpTimesheetByWeek(Int32.Parse(id), Int32.Parse(week));
                 return new ObjectResult(ts);
             }
             catch
