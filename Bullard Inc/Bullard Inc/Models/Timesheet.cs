@@ -22,5 +22,7 @@ namespace Bullard_Inc.Models
         public Boolean Approved { get; set; }
         [Range(0, 1)]
         public Boolean Submitted { get; set; }
+        public WorkWeek Current_Week;
+        public IEnumerable<WorkWeek> Weeks;
     }
 }
