@@ -10,6 +10,11 @@
     string dayString = (string) ViewData["dayString"];
     int empDayId = (int)ViewData["empDayId"];
 }
+<script type="text/javascript">
+    function clearThis(target){
+        target.value= "";
+    }
+</script>
 
 <h2 align="center"><b>TIMECARD</b></h2>
 
@@ -81,17 +86,17 @@
     </div>
 
     <div class="md-form">
-        <input value=0 type="text" id="Hours" class="form-control" name="Hours">
+        <input value="0" onclick="clearThis(this)" type="text" id="Hours" class="form-control" name="Hours">
         <label class="active" for="form6">Hours</label>
     </div>
 
     <div class="md-form">
-        <input value=0 type="text" id="Mileage" class="form-control" name="Mileage">
+        <input value=0 onfocus="clearThis(this)" type="text" id="Mileage" class="form-control" name="Mileage">
         <label class="active" for="form6">Miles</label>
     </div>
 
     <div class="md-form">
-        <input value=0 type="text" id="Lunch" class="form-control" name="Lunch">
+        <input value=0 onfocus="clearThis(this)" type="text" id="Lunch" class="form-control" name="Lunch">
         <label class="active" for="form6">Lunch</label>
     </div>
 

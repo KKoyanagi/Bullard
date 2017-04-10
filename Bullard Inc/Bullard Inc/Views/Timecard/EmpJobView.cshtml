@@ -59,11 +59,12 @@
 
             <p>
                 JOB #: @Html.DisplayFor(m => job.Project_Id, "Project #:") <br />
+                Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br />
                 Hours: @Html.DisplayFor(m => job.Hours) <br />
 
                 Miles: @Html.DisplayFor(m => job.Mileage) <br />
                 Lunch: @Html.DisplayFor(m => job.Lunch) <br />
-                Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br />
+                
                 @{
                     // accumilate total hours and milage
                     totalHours += job.Hours;
