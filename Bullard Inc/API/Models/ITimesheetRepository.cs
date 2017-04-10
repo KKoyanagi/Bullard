@@ -23,6 +23,8 @@ namespace API.Models
         Timesheet SubmitTimesheet(int timesheet_id);
         Timesheet ApproveTimesheet(int timesheet_id);
         Timesheet UnApproveTimesheet(int timesheet_id);
+        Timesheet UnSubmitTimesheet(int timesheet_id);
+        Timesheet GetEmpTimesheetByWeek(int emp_id, int week_id);
 
         //void UpdateTimesheet(Timesheet timesheet);
         //void Save();
