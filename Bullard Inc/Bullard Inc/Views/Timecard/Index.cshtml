@@ -1,18 +1,11 @@
-﻿@model Bullard_Inc.Models.Timesheet
-@{
+﻿@model Bullard_Inc.Models.TimecardIndexView
+@{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/FieldWorkerFrame.cshtml";
 
     string status = (string)ViewData["status"];
     string date = (string)ViewData["weekDate"];
 }
-
-<script>
-function confirmSubmit() {
-    confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
-}
-</script>
-
 <h2 align="center"><b>TIMECARD</b></h2>
 
 <div class="container">
@@ -44,7 +37,17 @@ function confirmSubmit() {
         <div class="col"></div>
     </div>
 </div>
+<div class="md-form">
 
+    <select id="Week_Id" name="Week_Id">
+        @foreach (var week in Model.Weeks)
+            {
+            <option value=@week.Week_Id> @week.StartDate.ToShortDateString() - @week.EndDate.ToShortDateString() </option>
+        }
+    </select>
+    <a href="#" class="btn btn-default" onclick="changeWeek();">Change Week</a>
+</div>
+              
 <div class="row">
     <div class="col-lg-12">
         <p>Status: <span style="color: red"><b>@status</b></span></p>
@@ -62,7 +65,7 @@ function confirmSubmit() {
 <br />
 
 <div align="right">
-    <a class="btn btn-default" onclick="confirmSubmit()" href="javascript:submit(@Model.Timesheet_Id)">Submit</a>
+    <a class="btn btn-default" href="javascript:submit(@Model.Timesheet.Timesheet_Id)">Submit</a>
 </div>
 
 <script type="text/javascript">
@@ -71,5 +74,11 @@ function confirmSubmit() {
         action = action.replace("-1", id);
         window.location.href = action;
         alert("Submitted")
+    }
+    function changeWeek() {
+        var week = document.getElementById('Week_Id').value;
+        var action = '@Url.Action("ChangeWeek", "Timecard", new { week = "-1" })'
+        action = action.replace("-1", week);
+        window.location.href = action;
     }
 </script>
