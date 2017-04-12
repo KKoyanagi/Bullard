@@ -88,6 +88,26 @@ namespace Bullard_Inc.Controllers
             return RedirectToAction("Index", "Scheduler", new { weekid = week.ToString() });
         }
 
+        // makes a post request to employees table. 
+        [HttpPost]
+        public async Task<ActionResult> SubmitUser(Employee user)
+        {
+            // custom url
+            string addUserURL = url + "employees";
+
+            // post employee information
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(addUserURL, user);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return View("AddUser"); // will need to redirect to the employees page
+            }
+
+            // if api call fails, return error
+            return RedirectToAction("Error" + response);
+        }
+
         public async Task<ActionResult> GetPending(int week)
         {
             
