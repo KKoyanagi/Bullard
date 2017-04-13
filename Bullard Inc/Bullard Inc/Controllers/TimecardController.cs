@@ -139,8 +139,8 @@ namespace Timecard.Controllers
 
         }
         // This action will display the number of Jobs the user has worked on a particular day. 
-        [Route("timecard/empjobview/{day_id}")]
-        public async Task<ActionResult> EmpJobView(int day_id)
+        [Route("timecard/empjobview/{ts_id}/{day_id}")]
+        public async Task<ActionResult> EmpJobView(int ts_id,int day_id)
         {
             /* TODO: 
                 - Make a POST request to api/employeedays
@@ -163,7 +163,7 @@ namespace Timecard.Controllers
             EmployeeDay empDayTest = new EmployeeDay();
             EmployeeDay NewEmployeeDay;
             empDayTest.Day_Id = day_id;
-            empDayTest.Timesheet_Id = TimesheetId;
+            empDayTest.Timesheet_Id = ts_id;
 
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobTimesheetURL, empDayTest);
             if (responseMessage.IsSuccessStatusCode)
