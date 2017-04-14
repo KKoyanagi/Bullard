@@ -1017,3 +1017,10 @@ C:\Users\LV\Source\Repos\Bullard\Bullard Inc\Bullard Inc\bin\Microsoft.Owin.Secu
 C:\Users\LV\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.csprojResolveAssemblyReference.cache
 C:\Users\LV\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.dll
 C:\Users\LV\Source\Repos\Bullard\Bullard Inc\Bullard Inc\obj\Debug\Bullard Inc.pdb
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.dll
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Extensions.dll
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Formatting.dll
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.Primitives.dll
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.dll
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.xml
+D:\My Documents\Dropbox\Projects\Bullard\Bullard Inc\Bullard Inc\bin\System.Net.Http.WebRequest.xml
