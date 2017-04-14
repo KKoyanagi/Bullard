@@ -38,6 +38,16 @@ namespace Bullard_Inc.Controllers
             return View();
         }
 
+        public ActionResult JobList()
+        {
+            return View();
+        }
+
+        public ActionResult AddJob()
+        {
+            return View();
+        }
+
         public ActionResult SignOut()
         {
             // TODO: get request to api/timesheets/employee/current/{id}

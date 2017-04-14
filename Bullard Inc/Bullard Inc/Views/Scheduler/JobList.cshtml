@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Jobs List";
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>JOB CODES</title>
+</head>
+<body>
+    <div @*class="text-center"*@>
+        <h1>Job Codes</h1>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-block">
+            <div class="form-header text-left">
+                <input type="text" placeholder="SEARCH JOB CODES">
+            </div>
+            <div class="md-form">
+                @foreach (var # in #)
+                {
+                    <div class="panel-group" id="#">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#">
+                                        @* JOB CODES *@
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="#" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p style="margin-left: 40px">
+                                        @* JOB Description *@
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
