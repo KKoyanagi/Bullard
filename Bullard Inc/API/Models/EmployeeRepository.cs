@@ -9,6 +9,7 @@ namespace API.Models
     public class EmployeeRepository : IEmployeeRepository
     {
         //private ApplicationDbContext context;
+        private ApplicationDbContext getContext;
 
         //public EmployeeRepository(ApplicationDbContext context)
         //{
@@ -16,7 +17,7 @@ namespace API.Models
         //}
         public EmployeeRepository()
         {
-            
+            this.getContext = new ApplicationDbContext();
         }
         public IEnumerable<Employee> GetEmployees()
         {
@@ -32,6 +33,27 @@ namespace API.Models
             {
                 return context.Employees.Find(emp_id);
             }
+        }
+        public Employee GetEmployeeByName(string name)
+        {
+            if (getContext != null)
+            {
+                getContext.Dispose();
+                getContext = new ApplicationDbContext();
+            }
+            //IQueryable<Timesheet> timesheets;
+            var emp = from t in getContext.Employees
+                             where t.AccountName == name
+                             select t;
+            if (emp.Any())
+            {
+                return emp.First<Employee>();
+            }
+            else
+            {
+                return null;
+            }
+
         }
         public Employee InsertEmployee(Employee employee)
         {

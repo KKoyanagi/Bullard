@@ -76,20 +76,42 @@ namespace API.Models
             IEnumerable<Timesheet> timesheets = timesheetsRepo.GetUnapprovedTimesheets();
             foreach (var ts in timesheets)
             {
-                if(ts.Week_Id < week_id)
+                DateTime current = DateTime.Now;
+                if ((current.DayOfWeek.ToString() == "Friday" && DateTime.Now.ToString("tt") == "PM") || current.DayOfWeek.ToString()=="Saturday")
                 {
-                    PastDueView tmp = new PastDueView();
-                    var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
-                    var week = weekRepo.GetWeekById(ts.Week_Id);
-                    tmp.FirstName = employee.FirstName;
-                    tmp.LastName = employee.LastName;
-                    tmp.Timesheet_Id = ts.Timesheet_Id;
-                    tmp.StartDate = week.StartDate;
-                    tmp.EndDate = week.EndDate;
-                    tmp.Submitted = ts.Submitted;
+                    if (ts.Week_Id <= week_id)
+                    {
+                        PastDueView tmp = new PastDueView();
+                        var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
+                        var week = weekRepo.GetWeekById(ts.Week_Id);
+                        tmp.FirstName = employee.FirstName;
+                        tmp.LastName = employee.LastName;
+                        tmp.Timesheet_Id = ts.Timesheet_Id;
+                        tmp.StartDate = week.StartDate;
+                        tmp.EndDate = week.EndDate;
+                        tmp.Submitted = ts.Submitted;
 
-                    views.Add(tmp);
+                        views.Add(tmp);
+                    }
                 }
+                else
+                {
+                    if (ts.Week_Id < week_id)
+                    {
+                        PastDueView tmp = new PastDueView();
+                        var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
+                        var week = weekRepo.GetWeekById(ts.Week_Id);
+                        tmp.FirstName = employee.FirstName;
+                        tmp.LastName = employee.LastName;
+                        tmp.Timesheet_Id = ts.Timesheet_Id;
+                        tmp.StartDate = week.StartDate;
+                        tmp.EndDate = week.EndDate;
+                        tmp.Submitted = ts.Submitted;
+
+                        views.Add(tmp);
+                    }
+                }
+                
                 
             }
             return views;
