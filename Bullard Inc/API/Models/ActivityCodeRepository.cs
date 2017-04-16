@@ -18,6 +18,7 @@ namespace API.Models
         }*/
 
         public ActivityCodeRepository() { }
+
         public IEnumerable<ActivityCode> GetActivityCodes()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
@@ -64,7 +65,7 @@ namespace API.Models
                 }
                 catch
                 {
-                    context.Database.ExecuteSqlCommand("UPDATE dbo.ActivityCodes SET ActivityDescription = {0} WHERE Project_Id = {1}", activityCode.ActivityDescription, activityCode.ActivityCode_Id);
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.ActivityCodes SET activityDescription = {0} WHERE activityCode_Id = {1}", activityCode.ActivityDescription, activityCode.ActivityCode_Id);
                 }
                 return a;
             }
