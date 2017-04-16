@@ -2,7 +2,8 @@
     ViewBag.Title = "Add Job Code";
     Layout = "~/Views/Shared/AdminFrame.cshtml";
 }
-<form action="#" method="post">
+
+<form action="JobSubmit" method="post">
     <div @*class="text-center"*@>
         <h1>ADD JOB</h1>
     </div>
@@ -14,11 +15,11 @@
                 JOB INFORMATION
             </div>
             <div class="md-form">
-                <input type="text" id="#" name="#" class="form-control">
+                <input type="text" id="ActivityCode_Id" name="ActivityCode_Id" class="form-control">
                 <label for="form01">Job ID Number</label>
             </div>
             <div class="md-form">
-                <input type="text" id="#" name="#" class="form-control">
+                <input type="text" id="ActivityDescription" name="ActivityDescription" class="form-control">
                 <label for="form02">Job Description</label>
             </div>
             <div class="text-center">
