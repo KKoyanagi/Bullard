@@ -6,8 +6,12 @@ using Bullard_Inc.Models;
 using System.Web.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.IO;
+using CsvHelper;
+using System.Reflection;
 
 namespace Bullard_Inc.Controllers
 {
@@ -148,7 +152,54 @@ namespace Bullard_Inc.Controllers
             return PartialView();
         }
 
-        
+        [HttpGet]
+        [Route("downloadcsv/{week}")]
+        public async Task<FileContentResult> DownloadCSV(int week)
+        {
+
+            HttpResponseMessage responseMessage = await client.GetAsync("view/approved/" + week.ToString());
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                List<ApprovedView> views = JsonConvert.DeserializeObject<List<ApprovedView>>(responseData);
+
+                string csv = ApprovedToCSV(views);
+                Debug.WriteLine(csv);
+                //HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                //result.Content = new StringContent(csv);
+                //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
+                //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "export.csv" };
+                //return result;
+                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Export.csv");
+            }
+            else
+            {
+                return null;
+            }
+
+            
+        }
+        public static string ApprovedToCSV(List<ApprovedView> views)
+        {
+            StringWriter csvString = new StringWriter();
+            using (var csv = new CsvWriter(csvString))
+            {
+                csv.Configuration.SkipEmptyRecords = true;
+                csv.Configuration.WillThrowOnMissingField = false;
+                //csv.Configuration.Delimiter = delimiter;
+                foreach(ApprovedView view in views)
+                {
+                    csv.WriteField(view.FirstName);
+                    csv.WriteField(view.LastName);
+                    csv.WriteField(view.Timesheet_Id);
+                    csv.WriteField(view.DateSubmitted);
+                    csv.WriteField(view.WeekId);
+                    csv.NextRecord();
+                }
+                
+            }
+            return csvString.ToString();
+        }
         public async Task<ActionResult> Approve(int id, int week)
         {
 

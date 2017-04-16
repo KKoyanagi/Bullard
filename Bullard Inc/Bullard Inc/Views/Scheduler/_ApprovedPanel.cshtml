@@ -1,4 +1,15 @@
 ﻿@model IEnumerable<Bullard_Inc.Models.ApprovedView>
+@{ 
+    int weekid;
+    if (Model.Any())
+    {
+        weekid = Model.First().WeekId;
+    }
+    else
+    {
+        weekid = 0;
+    }
+}
 
 
     <table class="table" style="table-layout:fixed;width:100%">
@@ -27,14 +38,18 @@
                 </td>
             </tr>
             }
+            <tr>
         </tbody>
+        
     </table>
-<script type="text/javascript">
-    function unapprove(id,week) {
-        var action = '@Url.Action("UnApprove", "Scheduler", new { id = "-1" , week = "-2"})';
-        action = action.replace("-1", id);
-        action = action.replace("-2", week);
-        $("#panel3").load(action);
-    }
-</script>
+    <a href="/downloadcsv/@weekid"><i class="fa fa-download"></i></a>
+    
+    <script type="text/javascript">
+        function unapprove(id, week) {
+            var action = '@Url.Action("UnApprove", "Scheduler", new { id = "-1" , week = "-2"})';
+            action = action.replace("-1", id);
+            action = action.replace("-2", week);
+            $("#panel3").load(action);
+        }
+    </script>
 
