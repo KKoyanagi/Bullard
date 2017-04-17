@@ -236,6 +236,7 @@ namespace Bullard_Inc.Controllers
         }
         public static string ApprovedToCSV(List<ApprovedView> views)
         {
+            string[] days = { "", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
             StringWriter csvString = new StringWriter();
             using (var csv = new CsvWriter(csvString))
             {
@@ -244,12 +245,42 @@ namespace Bullard_Inc.Controllers
                 //csv.Configuration.Delimiter = delimiter;
                 foreach(ApprovedView view in views)
                 {
+                    csv.WriteField("First Name");
+                    csv.WriteField("Last Name");
+                    csv.WriteField("Timesheet Id");
+                    csv.WriteField("Date Submitted");
+                    csv.NextRecord();
                     csv.WriteField(view.FirstName);
                     csv.WriteField(view.LastName);
                     csv.WriteField(view.Timesheet_Id);
-                    csv.WriteField(view.DateSubmitted);
-                    csv.WriteField(view.WeekId);
+                    csv.WriteField(view.DateSubmitted.ToShortDateString());
                     csv.NextRecord();
+                    if (view.Jobs.Any())
+                    {
+                        csv.WriteField("");
+                        csv.WriteField("Day");
+                        
+                        csv.WriteField("Project Id");
+                        csv.WriteField("Hours");
+                        csv.WriteField("Mileage");
+                        csv.WriteField("Lunch");
+                        csv.WriteField("Activity Code");
+                        csv.NextRecord();
+                        foreach (Job job in view.Jobs)
+                        {
+                            csv.WriteField("");
+                            csv.WriteField(days[view.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == job.EmployeeDay_Id).Day_Id]);
+                            
+                            csv.WriteField(job.Project_Id);
+                            csv.WriteField(job.Hours);
+                            csv.WriteField(job.Mileage);
+                            csv.WriteField(job.Lunch);
+                            csv.WriteField(job.ActivityCode);
+                            csv.NextRecord();
+                        }
+                    }
+                    csv.NextRecord();
+
                 }
                 
             }
