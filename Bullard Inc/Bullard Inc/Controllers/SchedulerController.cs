@@ -42,6 +42,61 @@ namespace Bullard_Inc.Controllers
             return View();
         }
 
+        public async Task<ActionResult> JobList()
+        {
+            // values for view model: Timecard_EmpJobAddEdit
+            ActivityCode[] activityCodes;
+
+            // custom urls
+            string activityCodesURL = url + "activitycodes";
+
+            // API CALLS
+            // get list of activity codes 
+            HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            var response = responseMessage.Content.ReadAsStringAsync().Result;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(response);
+
+                // initialize view model: Scheduler_JobList
+                Scheduler_JobList schedulerJobList = new Scheduler_JobList
+                {
+                    ActivityCodes = activityCodes.ToList()
+                };
+
+                return View(schedulerJobList);
+            }
+
+            // if either api call fails, return error. 
+            return RedirectToAction("Error " + response);
+        }
+
+        public ActionResult AddJob()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> JobSubmit(ActivityCode activityCode)
+        {
+            // custom url
+            string jobAddURL = url + "activitycodes";
+
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(jobAddURL, activityCode);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/jobslist/");
+            }
+            return RedirectToAction("Error" + response);
+        }
+
+        public ActionResult EditJob()
+        {
+            return View(); 
+        }
+
         public ActionResult SignOut()
         {
             // TODO: get request to api/timesheets/employee/current/{id}
