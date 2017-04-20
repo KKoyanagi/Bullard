@@ -39,9 +39,9 @@ namespace Timecard.Controllers
             TimecardIndexView tsView = new TimecardIndexView();
 
 
-            //string username = User.Identity.Name;
-            string username = "justinmtran@gmail.com";
-            
+            string username = User.Identity.Name;
+            //string username = "justinmtran@gmail.com";
+
             string name = username.Split('@')[0];
             responseMessage = await client.GetAsync("employees/name/" + name.Trim());
             if (responseMessage.IsSuccessStatusCode)
