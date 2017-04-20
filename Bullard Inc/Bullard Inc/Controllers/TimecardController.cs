@@ -35,66 +35,90 @@ namespace Timecard.Controllers
             // TODO: get request to api/timesheets/employee/current/{id}
             HttpResponseMessage responseMessage;
             string currentEmpURL;
+            Employee emp;
             TimecardIndexView tsView = new TimecardIndexView();
-            if (weekid == "0")
-            {
-                responseMessage = await client.GetAsync("weeks/current");
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                    tsView.Current_Week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
 
 
-                }
-                currentEmpURL = url + "timesheets/employee/current/" + 3;
-            }
-            else
-            {
-                responseMessage = await client.GetAsync("weeks/"+weekid);
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-
-                    tsView.Current_Week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
-
-
-                }
-                currentEmpURL = url + "timesheets/employee/3/" + weekid; 
-            }
-            ViewData["weekDate"] = tsView.Current_Week.StartDate.ToShortDateString() + "-" + tsView.Current_Week.EndDate.ToShortDateString();
-            //string currentEmpURL = url + "timesheets/employee/current/" + 3;
-            //Timesheet currentTimesheet;
-            //TimecardIndexView tsView= new TimecardIndexView();
-            responseMessage = await client.GetAsync(currentEmpURL);
+            //string username = User.Identity.Name;
+            string username = "justinmtran@gmail.com";
+            
+            string name = username.Split('@')[0];
+            responseMessage = await client.GetAsync("employees/name/" + name.Trim());
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                //currentTimesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
-                tsView.Timesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
-                //TimesheetId = currentTimesheet.Timesheet_Id;
-                TimesheetId = tsView.Timesheet.Timesheet_Id;
-                //status = currentTimesheet.Submitted;
-                status = tsView.Timesheet.Submitted;
+                emp = JsonConvert.DeserializeObject<Employee>(responseData);
 
+                ViewData["name"] = "" + emp.FirstName + " " + emp.LastName;
+                Debug.WriteLine(emp.FirstName);
+                if (weekid == "0")
+                {
+                    responseMessage = await client.GetAsync("weeks/current");
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                        tsView.Current_Week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+
+
+                    }
+                    currentEmpURL = url + "timesheets/employee/current/" + emp.Emp_Id;
+                }
+                else
+                {
+                    responseMessage = await client.GetAsync("weeks/" + weekid);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                        tsView.Current_Week = JsonConvert.DeserializeObject<WorkWeek>(responseData);
+
+
+                    }
+                    currentEmpURL = url + "timesheets/employee/" + emp.Emp_Id + "/" + weekid;
+                }
+               
+                ViewData["weekDate"] = tsView.Current_Week.StartDate.ToShortDateString() + "-" + tsView.Current_Week.EndDate.ToShortDateString();
+                //string currentEmpURL = url + "timesheets/employee/current/" + 3;
+                //Timesheet currentTimesheet;
+                //TimecardIndexView tsView= new TimecardIndexView();
+                responseMessage = await client.GetAsync(currentEmpURL);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                    //currentTimesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
+                    tsView.Timesheet = JsonConvert.DeserializeObject<Timesheet>(responseData);
+                    //TimesheetId = currentTimesheet.Timesheet_Id;
+                    TimesheetId = tsView.Timesheet.Timesheet_Id;
+                    //status = currentTimesheet.Submitted;
+                    status = tsView.Timesheet.Submitted;
+
+                }
+                else
+                {
+                    return View("Error2");
+                }
+                
+                HttpResponseMessage responseMessage1 = await client.GetAsync("weeks");
+                if (responseMessage1.IsSuccessStatusCode)
+                {
+                    responseData = responseMessage1.Content.ReadAsStringAsync().Result;
+
+                    tsView.Weeks = JsonConvert.DeserializeObject<IEnumerable<WorkWeek>>(responseData);
+
+
+                }
+                ViewData["status"] = getState();
+                //return View(currentTimesheet);
+                return View(tsView);
             }
             else
             {
-                return View("Error2");
+                return View("Error");
             }
-            HttpResponseMessage responseMessage1 = await client.GetAsync("weeks");
-            if (responseMessage1.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage1.Content.ReadAsStringAsync().Result;
-
-                tsView.Weeks = JsonConvert.DeserializeObject<IEnumerable<WorkWeek>>(responseData);
-
-
-            }
-            ViewData["status"]=getState();
-            //return View(currentTimesheet);
-            return View(tsView);
+            
         }
         public ActionResult ChangeWeek(int week)
         {
@@ -116,8 +140,8 @@ namespace Timecard.Controllers
 
         }
         // This action will display the number of Jobs the user has worked on a particular day. 
-        [Route("timecard/empjobview/{day_id}")]
-        public async Task<ActionResult> EmpJobView(int day_id)
+        [Route("timecard/empjobview/{ts_id}/{day_id}")]
+        public async Task<ActionResult> EmpJobView(int ts_id,int day_id)
         {
             /* TODO: 
                 - Make a POST request to api/employeedays
@@ -140,7 +164,7 @@ namespace Timecard.Controllers
             EmployeeDay empDayTest = new EmployeeDay();
             EmployeeDay NewEmployeeDay;
             empDayTest.Day_Id = day_id;
-            empDayTest.Timesheet_Id = TimesheetId;
+            empDayTest.Timesheet_Id = ts_id;
 
             HttpResponseMessage responseMessage = await client.PostAsJsonAsync(empJobTimesheetURL, empDayTest);
             if (responseMessage.IsSuccessStatusCode)
@@ -347,13 +371,13 @@ namespace Timecard.Controllers
         {
             switch (day_id)
             {
-                case 1: return "MONDAY";
-                case 2: return "TUESDAY";
-                case 3: return "WEDNESDAY";
-                case 4: return "THURSDAY";
-                case 5: return "FRIDAY";
-                case 6: return "SATURDAY";
-                case 7: return "SUNDAY";
+                case 2: return "MONDAY";
+                case 3: return "TUESDAY";
+                case 4: return "WEDNESDAY";
+                case 5: return "THURSDAY";
+                case 6: return "FRIDAY";
+                case 7: return "SATURDAY";
+                case 1: return "SUNDAY";
                 default: return "N/A";
             }
         }
@@ -366,6 +390,7 @@ namespace Timecard.Controllers
             string weekDates = SundayDate + "-" + SaturdayDate;
             return weekDates;
         }
+
         private string getState()
         {
             if (status)
@@ -378,5 +403,6 @@ namespace Timecard.Controllers
             }
             return state;
         }
+        
     }
 }

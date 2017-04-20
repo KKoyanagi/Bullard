@@ -43,6 +43,23 @@ namespace API.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("name/{name}", Name = "GetEmployeeByName")]
+        public IActionResult GetEmployeeByName(string name)
+        {
+            try
+            {
+                var emp = employeeRepository.GetEmployeeByName(name);
+                if (emp == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(emp);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
 
         [HttpPost]
         public IActionResult Create([FromBody] Employee employee)
