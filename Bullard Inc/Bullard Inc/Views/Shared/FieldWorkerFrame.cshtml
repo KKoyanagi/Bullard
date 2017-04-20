@@ -40,7 +40,8 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a href="/Timecard/SignOut" onclick="signOut();" class="collapsible-header waves-effect arrow-r">
+                        <a href="#" onclick="signOut();" class="collapsible-header waves-effect arrow-r">
+                        @*<a href="/Timecard/SignOut" onclick="signOut();" class="collapsible-header waves-effect arrow-r">*@
                             <i class="fa fa-sign-out"></i>
                             SIGN OUT
                             @*<a href="#" onclick="signOut();"> Sign out</a>*@
@@ -155,17 +156,6 @@
     <script>
     $(".button-collapse").sideNav();
     </script>
-
-
-    <script>
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
-    }
-    </script>
-
 
     @RenderSection("scripts", required: false)
 </body>
