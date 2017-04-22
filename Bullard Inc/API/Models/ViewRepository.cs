@@ -44,7 +44,7 @@ namespace API.Models
 
         public List<ApprovedView> GetApprovedViews(int week_id)
         {
-            TimesheetRepository timesheetsRepo = new TimesheetRepository();
+            /*TimesheetRepository timesheetsRepo = new TimesheetRepository();
             EmployeeRepository employeeRepo = new EmployeeRepository();
             
 
@@ -61,6 +61,37 @@ namespace API.Models
                 tmp.Approved = ts.Approved;
                 tmp.WeekId = ts.Week_Id;
                 
+                views.Add(tmp);
+            }
+            return views;*/
+            TimesheetRepository timesheetsRepo = new TimesheetRepository();
+            EmployeeRepository employeeRepo = new EmployeeRepository();
+            JobRepository jobRepo = new JobRepository();
+            EmployeeDayRepository empDayRepo = new EmployeeDayRepository();
+
+            List<ApprovedView> views = new List<ApprovedView>();
+            IEnumerable<Timesheet> timesheets = timesheetsRepo.GetApprovedTimesheetsByWeek(week_id);
+            foreach (var ts in timesheets)
+            {
+                ApprovedView tmp = new ApprovedView();
+                List<Job> jobs = new List<Job>();
+                var employee = employeeRepo.GetEmployeeById(ts.Emp_Id);
+                tmp.FirstName = employee.FirstName;
+                tmp.LastName = employee.LastName;
+                tmp.Timesheet_Id = ts.Timesheet_Id;
+                tmp.DateSubmitted = ts.DateSubmitted;
+                tmp.Approved = ts.Approved;
+                List<EmployeeDay> empDays = empDayRepo.GetEmployeeDaysByTimesheet(ts.Timesheet_Id).ToList();
+                tmp.EmpDays = empDays;
+                tmp.WeekId = ts.Week_Id;
+                if (ts.Submitted == true && ts.Approved == true)
+                {
+                    foreach (var day in empDays)
+                    {
+                        jobs.AddRange(jobRepo.GetJobsByEmployeeDayId(day.EmployeeDay_Id));
+                    }
+                    tmp.Jobs = jobs;
+                }
                 views.Add(tmp);
             }
             return views;
