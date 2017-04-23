@@ -65,8 +65,11 @@
         </tbody>
     </table>
 }
-    <a href="/downloadcsv/@weekid"><i class="fa fa-download"></i></a>
-    
+    <hr />
+    <div align="right">
+        <a href="/downloadcsv/@weekid" class="btn btn-primary" role="button">Export CSV</a>
+    </div>
+
     <script type="text/javascript">
         function unapprove(id, week) {
             var action = '@Url.Action("UnApprove", "Scheduler", new { id = "-1" , week = "-2"})';
