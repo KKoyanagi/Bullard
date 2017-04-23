@@ -263,7 +263,8 @@ namespace Bullard_Inc.Controllers
                 //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
                 //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "export.csv" };
                 //return result;
-                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Export.csv");
+                string fileName = "Week_" + week + "_Timesheet";
+                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", fileName);
             }
             else
             {
