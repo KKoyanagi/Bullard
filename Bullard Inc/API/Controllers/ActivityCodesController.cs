@@ -26,6 +26,7 @@ namespace API.Controllers
           }
 
         [HttpPost]
+        
         public IActionResult Create([FromBody] ActivityCode activityCode)
         {
             try
