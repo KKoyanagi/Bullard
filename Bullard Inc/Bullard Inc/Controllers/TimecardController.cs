@@ -37,10 +37,11 @@ namespace Timecard.Controllers
             string currentEmpURL;
             Employee emp;
             TimecardIndexView tsView = new TimecardIndexView();
+
+
             //string username = User.Identity.Name;
-           
-            string username = "donemurch@gmail.com";
-            
+            string username = "justinmtran@gmail.com";
+
             string name = username.Split('@')[0];
             responseMessage = await client.GetAsync("employees/name/" + name.Trim());
             if (responseMessage.IsSuccessStatusCode)
@@ -389,6 +390,7 @@ namespace Timecard.Controllers
             string weekDates = SundayDate + "-" + SaturdayDate;
             return weekDates;
         }
+
         private string getState()
         {
             if (status)
