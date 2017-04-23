@@ -34,9 +34,9 @@
                                     <p>
                                         @activityCode.ActivityCode_Id - @activityCode.ActivityDescription
                                         <div>
-                                            @Html.ActionLink("Edit", "#", new { id = activityCode.ActivityCode_Id })
+                                            @Html.ActionLink("Edit", "EditJob", new { id = activityCode.ActivityCode_Id })
                                             &emsp; &emsp; <!--adds space between Edit & Delete-->
-                                            @Html.ActionLink("Delete", "#", new { id = activityCode.ActivityCode_Id }, new { onclick = "return confirm('Are you sure you want to delete this job code?');" })
+                                            @Html.ActionLink("Delete", "DeleteJob", new { id = activityCode.ActivityCode_Id }, new { onclick = "return confirm('Are you sure you want to delete this job code?');" })
                                         </div>
                                     </p>
                                 </h5>

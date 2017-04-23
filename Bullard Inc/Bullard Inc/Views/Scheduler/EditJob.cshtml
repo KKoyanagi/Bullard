@@ -1,0 +1,30 @@
+﻿@model Bullard_Inc.Models.ActivityCode
+@{
+    ViewBag.Title = "Add Job Code";
+    Layout = "~/Views/Shared/AdminFrame.cshtml";
+}
+<form action="@Url.Action("JobUpdate","Scheduler")" method="post">
+    <div @*class="text-center"*@>
+        <h1>EDIT JOB</h1>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-block">
+            <div class="form-header">
+                JOB INFORMATION
+            </div>
+            <div class="md-form">
+                <input type="text" value =@Model.ActivityCode_Id id="ActivityCode_Id" name="ActivityCode_Id" class="form-control">
+                <label for="form01">Job ID Number</label>
+            </div>
+            <div class="md-form">
+                <input type="text" value="@Model.ActivityDescription" id="ActivityDescription" name="ActivityDescription" class="form-control">
+                <label for="form02">Job Description</label>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-default" value="SUBMIT">
+            </div>
+        </div>
+    </div>
+</form>

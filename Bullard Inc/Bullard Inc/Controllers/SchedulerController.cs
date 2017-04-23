@@ -41,7 +41,7 @@ namespace Bullard_Inc.Controllers
         {
             return View();
         }
-
+        [Route("scheduler/joblist")]
         public async Task<ActionResult> JobList()
         {
             // values for view model: Timecard_EmpJobAddEdit
@@ -71,11 +71,20 @@ namespace Bullard_Inc.Controllers
             return RedirectToAction("Error " + response);
         }
 
+        [Route("scheduler/addjob")]
         public ActionResult AddJob()
         {
             return View();
         }
 
+        [Route("scheduler/deletejob/{id}")]
+        public async Task<ActionResult> DeleteJob(int id)
+        {
+            string jobAddURL = url + "activitycodes/" + id ;
+
+            HttpResponseMessage responseMessage = await client.DeleteAsync(jobAddURL);
+            return RedirectToAction("JobList", "Scheduler");
+        }
         [HttpPost]
         public async Task<ActionResult> JobSubmit(ActivityCode activityCode)
         {
@@ -87,14 +96,43 @@ namespace Bullard_Inc.Controllers
             Debug.WriteLine(responseMessage.Content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("/jobslist/");
+                return RedirectToAction("/joblist/");
             }
             return RedirectToAction("Error" + response);
         }
 
-        public ActionResult EditJob()
+        [HttpPost]
+        public async Task<ActionResult> JobUpdate(ActivityCode activityCode)
         {
-            return View(); 
+            // custom url
+            string jobAddURL = url + "activitycodes";
+
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(jobAddURL, activityCode);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/joblist/");
+            }
+            return RedirectToAction("Error" + response);
+        }
+
+        [Route("scheduler/editjob/{id}")]
+        public async Task<ActionResult> EditJob(int id)
+        {
+            string jobEditURL = url + "activitycodes/" + id;
+
+            ActivityCode job;
+
+            HttpResponseMessage response = await client.GetAsync(jobEditURL);
+            var responseData = response.Content.ReadAsStringAsync().Result;
+            if (response.IsSuccessStatusCode)
+            {
+                job = JsonConvert.DeserializeObject<ActivityCode>(responseData);
+                return View(job);
+            }
+            // if api call fails, return error
+            return RedirectToAction("Error " + response);
         }
 
         public ActionResult SignOut()
