@@ -8,41 +8,45 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.Timesheet_Id</td>
-                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.FirstName</td>
-                <td data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
-                <td>@timesheet.DateSubmitted</td>
-                <td>
+            <tr style="cursor: pointer;">
+                <td style='width: 12%; font-weight:bold' data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.Timesheet_Id</td>
+                <td style='width: 15%; font-weight:bold' data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.FirstName</td>
+                <td style='width: 13%; font-weight:bold' data-toggle="collapse" data-target="#test_@timesheet.Timesheet_Id">@timesheet.LastName</td>
+                <td style='width: 10%; font-weight:bold'></td>
+                <td style='width: 10%; font-weight:bold'></td>
+                <td style='width: 10%; font-weight:bold'></td>
+                <td style='width: 20%;'>@timesheet.DateSubmitted</td>
+                <td style='width: 10%;'>
                     <a href="#" class="red-text"><i class="fa fa-times"></i></a>
                     <a href='javascript:approve(@timesheet.Timesheet_Id, @timesheet.WeekId)' class="green-text"><i class="fa fa-check"></i></a>
                 </td>
+
             </tr>
         </thead>
         <tbody id="test_@timesheet.Timesheet_Id" class="collapse">
             <tr>
-                <td style='width: 15%;'>Day</td>
+                <td style='width: 12%;'>&nbsp;Day</td>
                 <td style='width: 15%;'>Job Id</td>
-                <td style='width: 15%;'>Project Id</td>
+                <td style='width: 13%;'>Project Id</td>
                 <td style='width: 10%;'>Hours</td>
                 <td style='width: 10%;'>Mileage</td>
                 <td style='width: 10%;'>Lunch</td>
-                <td style='width: 10%;'>Activity Code</td>
-                <td style='width: 15%;'></td>
+                <td style='width: 20%;'>Activity Code</td>
+                <td style='width: 10%;'></td>
 
             </tr>
 
             @foreach (var job in timesheet.Jobs)
             {
                 <tr>
-                    <td style='width: 15%;'>@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
+                    <td style='width: 12%;'>&nbsp;@days[@timesheet.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == @job.EmployeeDay_Id).Day_Id]</td>
                     <td style='width: 15%;'>@job.Job_Id</td>
-                    <td style='width: 15%;'>@job.Project_Id</td>
-                    <td style='width: 10%;'>@job.Hours</td>
+                    <td style='width: 13%;'>@job.Project_Id</td>
+                    <td style='width: 10%;'> @job.Hours</td>
                     <td style='width: 10%;'>@job.Mileage</td>
                     <td style='width: 10%;'>@job.Lunch</td>
-                    <td style='width: 10%;'>@job.ActivityCode</td>
-                    <td style='width: 15%;'><a href="@Url.Action("EmpJobEdit","Timecard", new { day_id = job.EmployeeDay_Id , id= job.Job_Id })" class="blue-text"><i class="fa fa-pencil"></i></a></td>
+                    <td style='width: 20%;'>@job.ActivityCode</td>
+                    <td style='width: 10%;'><a href="@Url.Action("EmpJobEdit","Timecard", new { day_id = job.EmployeeDay_Id , id= job.Job_Id })" class="blue-text"><i class="fa fa-pencil"></i></a></td>
 
                 </tr>
 

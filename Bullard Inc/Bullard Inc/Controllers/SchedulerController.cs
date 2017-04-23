@@ -263,7 +263,8 @@ namespace Bullard_Inc.Controllers
                 //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
                 //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "export.csv" };
                 //return result;
-                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Export.csv");
+                string fileName = "Week_" + week + "_Timesheet";
+                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", fileName);
             }
             else
             {
@@ -281,13 +282,14 @@ namespace Bullard_Inc.Controllers
                 csv.Configuration.SkipEmptyRecords = true;
                 csv.Configuration.WillThrowOnMissingField = false;
                 //csv.Configuration.Delimiter = delimiter;
-                foreach(ApprovedView view in views)
+
+                csv.WriteField("First Name");
+                csv.WriteField("Last Name");
+                csv.WriteField("Timesheet Id");
+                csv.WriteField("Date Submitted");
+                csv.NextRecord();
+                foreach (ApprovedView view in views)
                 {
-                    csv.WriteField("First Name");
-                    csv.WriteField("Last Name");
-                    csv.WriteField("Timesheet Id");
-                    csv.WriteField("Date Submitted");
-                    csv.NextRecord();
                     csv.WriteField(view.FirstName);
                     csv.WriteField(view.LastName);
                     csv.WriteField(view.Timesheet_Id);
@@ -297,7 +299,6 @@ namespace Bullard_Inc.Controllers
                     {
                         csv.WriteField("");
                         csv.WriteField("Day");
-                        
                         csv.WriteField("Project Id");
                         csv.WriteField("Hours");
                         csv.WriteField("Mileage");
