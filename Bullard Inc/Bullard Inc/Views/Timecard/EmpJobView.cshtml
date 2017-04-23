@@ -15,7 +15,7 @@
 
 <h2 align="center"><b>TIMECARD</b></h2>
 
-<div class="container">
+@*<div class="container">
     <div class="row">
         <div class="col"></div>
         <div class="col">
@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li class="page-item active">
-                        <a class="page-link" href="/timecard/history">
+                        <a class="page-link" href="#">
                             @date
                         </a>
                     </li>
@@ -43,7 +43,7 @@
         </div>
         <div class="col"></div>
     </div>
-</div>
+</div>*@
 
 <p>Status: <span style="color: red"><b>@status</b></span></p>
 <button class="btn btn-default btn-lg btn-block">@dayString</button>
@@ -59,11 +59,12 @@
 
             <p>
                 JOB #: @Html.DisplayFor(m => job.Project_Id, "Project #:") <br />
+                Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br />
                 Hours: @Html.DisplayFor(m => job.Hours) <br />
 
                 Miles: @Html.DisplayFor(m => job.Mileage) <br />
                 Lunch: @Html.DisplayFor(m => job.Lunch) <br />
-                Work Perfomed: @Html.DisplayFor(m => job.ActivityCode) <br />
+                
                 @{
                     // accumilate total hours and milage
                     totalHours += job.Hours;
