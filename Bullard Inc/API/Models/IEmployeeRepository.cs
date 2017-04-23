@@ -12,6 +12,7 @@ namespace API.Models
         Employee GetEmployeeById(int emp_id);
         Employee RemoveEmployee(int emp_id);
         Employee UpdateEmployee(Employee employee);
+        Employee GetEmployeeByName(string name);
         //void Save();
     }
 }

@@ -82,6 +82,7 @@ namespace API.Controllers
                 return BadRequest();
             }
         }
+
         [HttpPost]
         public IActionResult Create([FromBody] Job job)
         {

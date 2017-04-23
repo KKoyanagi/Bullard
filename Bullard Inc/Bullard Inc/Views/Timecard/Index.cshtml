@@ -5,13 +5,9 @@
 
     string status = (string)ViewData["status"];
     string date = (string)ViewData["weekDate"];
+    string name = (string)ViewData["name"];
 }
-<script>
-function confirmSubmit() {
-    confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
-}
-</script>
-<h2 align="center"><b>TIMECARD</b></h2>
+<h2 align="center"><b>@name's Timecard Portal</b></h2>
 
 <div class="container">
     <div class="row">
@@ -19,29 +15,30 @@ function confirmSubmit() {
         <div class="col">
             <nav>
                 <ul class="pagination pagination-lg pg-bluegrey">
-                    <li class="page-item">
+                    @*<li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
-                    </li>
+                    </li>*@
                     <li class="page-item active">
-                        <a class="page-link" href="history">
+                        <a class="page-link" href="#">
                             @date
                         </a>
                     </li>
-                    <li class="page-item">
+                    @*<li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </nav>
         </div>
         <div class="col"></div>
     </div>
 </div>
+
 <div class="md-form">
 
     <select id="Week_Id" name="Week_Id">
@@ -60,17 +57,17 @@ function confirmSubmit() {
 </div>
 <!-- need to pass timesheet id and day id-->
 
-<a href="/timecard/empjobview/7" class="btn btn-default btn-lg btn-block">SUNDAY</a>
-<a href="/timecard/empjobview/1" class="btn btn-default btn-lg btn-block">MONDAY</a>
-<a href="/timecard/empjobview/2" class="btn btn-default btn-lg btn-block">TUESDAY</a>
-<a href="/timecard/empjobview/3" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
-<a href="/timecard/empjobview/4" class="btn btn-default btn-lg btn-block">THURSDAY</a>
-<a href="/timecard/empjobview/5" class="btn btn-default btn-lg btn-block">FRIDAY</a>
-<a href="/timecard/empjobview/6" class="btn btn-default btn-lg btn-block">SATURDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/1" class="btn btn-default btn-lg btn-block">SUNDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/2" class="btn btn-default btn-lg btn-block">MONDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/3" class="btn btn-default btn-lg btn-block">TUESDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/4" class="btn btn-default btn-lg btn-block">WEDNESDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/5" class="btn btn-default btn-lg btn-block">THURSDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/6" class="btn btn-default btn-lg btn-block">FRIDAY</a>
+<a href="/timecard/empjobview/@Model.Timesheet.Timesheet_Id/7" class="btn btn-default btn-lg btn-block">SATURDAY</a>
 <br />
 
 <div align="right">
-    <a class="btn btn-default" onclick ="confirmSubmit()" href="javascript:submit(@Model.Timesheet.Timesheet_Id)">Submit</a>
+    <a class="btn btn-default" href="javascript:submit(@Model.Timesheet.Timesheet_Id)">Submit</a>
 </div>
 
 <script type="text/javascript">

@@ -6,8 +6,12 @@ using Bullard_Inc.Models;
 using System.Web.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.IO;
+using CsvHelper;
+using System.Reflection;
 
 namespace Bullard_Inc.Controllers
 {
@@ -36,6 +40,61 @@ namespace Bullard_Inc.Controllers
         public ActionResult Help()
         {
             return View();
+        }
+
+        public async Task<ActionResult> JobList()
+        {
+            // values for view model: Timecard_EmpJobAddEdit
+            ActivityCode[] activityCodes;
+
+            // custom urls
+            string activityCodesURL = url + "activitycodes";
+
+            // API CALLS
+            // get list of activity codes 
+            HttpResponseMessage responseMessage = await client.GetAsync(activityCodesURL);
+            var response = responseMessage.Content.ReadAsStringAsync().Result;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                activityCodes = JsonConvert.DeserializeObject<ActivityCode[]>(response);
+
+                // initialize view model: Scheduler_JobList
+                Scheduler_JobList schedulerJobList = new Scheduler_JobList
+                {
+                    ActivityCodes = activityCodes.ToList()
+                };
+
+                return View(schedulerJobList);
+            }
+
+            // if either api call fails, return error. 
+            return RedirectToAction("Error " + response);
+        }
+
+        public ActionResult AddJob()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> JobSubmit(ActivityCode activityCode)
+        {
+            // custom url
+            string jobAddURL = url + "activitycodes";
+
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(jobAddURL, activityCode);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/jobslist/");
+            }
+            return RedirectToAction("Error" + response);
+        }
+
+        public ActionResult EditJob()
+        {
+            return View(); 
         }
 
         public ActionResult SignOut()
@@ -88,6 +147,26 @@ namespace Bullard_Inc.Controllers
             return RedirectToAction("Index", "Scheduler", new { weekid = week.ToString() });
         }
 
+        // makes a post request to employees table. 
+        [HttpPost]
+        public async Task<ActionResult> SubmitUser(Employee user)
+        {
+            // custom url
+            string addUserURL = url + "employees";
+
+            // post employee information
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(addUserURL, user);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return View("AddUser"); // will need to redirect to the employees page
+            }
+
+            // if api call fails, return error
+            return RedirectToAction("Error" + response);
+        }
+
         public async Task<ActionResult> GetPending(int week)
         {
             
@@ -128,7 +207,85 @@ namespace Bullard_Inc.Controllers
             return PartialView();
         }
 
-        
+        [HttpGet]
+        [Route("downloadcsv/{week}")]
+        public async Task<FileContentResult> DownloadCSV(int week)
+        {
+
+            HttpResponseMessage responseMessage = await client.GetAsync("view/approved/" + week.ToString());
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                List<ApprovedView> views = JsonConvert.DeserializeObject<List<ApprovedView>>(responseData);
+
+                string csv = ApprovedToCSV(views);
+                Debug.WriteLine(csv);
+                //HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                //result.Content = new StringContent(csv);
+                //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
+                //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "export.csv" };
+                //return result;
+                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Export.csv");
+            }
+            else
+            {
+                return null;
+            }
+
+            
+        }
+        public static string ApprovedToCSV(List<ApprovedView> views)
+        {
+            string[] days = { "", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            StringWriter csvString = new StringWriter();
+            using (var csv = new CsvWriter(csvString))
+            {
+                csv.Configuration.SkipEmptyRecords = true;
+                csv.Configuration.WillThrowOnMissingField = false;
+                //csv.Configuration.Delimiter = delimiter;
+                foreach(ApprovedView view in views)
+                {
+                    csv.WriteField("First Name");
+                    csv.WriteField("Last Name");
+                    csv.WriteField("Timesheet Id");
+                    csv.WriteField("Date Submitted");
+                    csv.NextRecord();
+                    csv.WriteField(view.FirstName);
+                    csv.WriteField(view.LastName);
+                    csv.WriteField(view.Timesheet_Id);
+                    csv.WriteField(view.DateSubmitted.ToShortDateString());
+                    csv.NextRecord();
+                    if (view.Jobs.Any())
+                    {
+                        csv.WriteField("");
+                        csv.WriteField("Day");
+                        
+                        csv.WriteField("Project Id");
+                        csv.WriteField("Hours");
+                        csv.WriteField("Mileage");
+                        csv.WriteField("Lunch");
+                        csv.WriteField("Activity Code");
+                        csv.NextRecord();
+                        foreach (Job job in view.Jobs)
+                        {
+                            csv.WriteField("");
+                            csv.WriteField(days[view.EmpDays.FirstOrDefault(c => c.EmployeeDay_Id == job.EmployeeDay_Id).Day_Id]);
+                            
+                            csv.WriteField(job.Project_Id);
+                            csv.WriteField(job.Hours);
+                            csv.WriteField(job.Mileage);
+                            csv.WriteField(job.Lunch);
+                            csv.WriteField(job.ActivityCode);
+                            csv.NextRecord();
+                        }
+                    }
+                    csv.NextRecord();
+
+                }
+                
+            }
+            return csvString.ToString();
+        }
         public async Task<ActionResult> Approve(int id, int week)
         {
 
