@@ -54,7 +54,7 @@
 <button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
 
-<form action="EmpJobUpdate" method="post">
+<form action="@Url.Action("EmpJobUpdate","Timecard", new { day_id = day_id })" method="post">
 
     <div class="md-form">
         <input value=@Model.Job.Job_Id type="hidden" id="Job_Id" class="form-control" name="Job_Id">
@@ -128,7 +128,7 @@
             </div>
             <div class="col">
                 <div align="right">
-                    <a class="btn btn-default" href="/Timecard/empjobview/@day_id">CANCEL</a>
+                    <a class="btn btn-default" href="/Timecard/empjobview/@empDayId/@day_id">CANCEL</a>
                 </div>
             </div>
         </div>
