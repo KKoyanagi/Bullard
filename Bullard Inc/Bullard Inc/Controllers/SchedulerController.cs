@@ -331,8 +331,13 @@ namespace Bullard_Inc.Controllers
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return await GetPending(week);
         }
+        public async Task<ActionResult> UnSubmit(int id, int week)
+        {
 
-        
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/unsubmit/" + id.ToString());
+            return await GetPending(week);
+        }
+
         public async Task<ActionResult> UnApprove(int id, int week)
         {
 

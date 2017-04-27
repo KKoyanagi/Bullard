@@ -17,7 +17,7 @@
                 <td style='width: 10%; font-weight:bold'></td>
                 <td style='width: 20%;'>@timesheet.DateSubmitted</td>
                 <td style='width: 10%;'>
-                    <a href="#" class="red-text"><i class="fa fa-times"></i></a>
+                    <a href="javascript:unsubmit(@timesheet.Timesheet_Id, @timesheet.WeekId)" class="red-text"><i class="fa fa-times"></i></a>
                     <a href='javascript:approve(@timesheet.Timesheet_Id, @timesheet.WeekId)' class="green-text"><i class="fa fa-check"></i></a>
                 </td>
 
@@ -58,6 +58,15 @@
 <script type="text/javascript">
     function approve(id, week) {
         var action = '@Url.Action("Approve", "Scheduler", new { id = "-1", week = "-2" })';
+        action = action.replace("-1", id);
+        action = action.replace("-2", week);
+        $("#panel1").load(action);
+    }
+</script>
+
+<script type="text/javascript">
+    function unsubmit(id, week) {
+        var action = '@Url.Action("UnSubmit", "Scheduler", new { id = "-1", week = "-2" })';
         action = action.replace("-1", id);
         action = action.replace("-2", week);
         $("#panel1").load(action);
