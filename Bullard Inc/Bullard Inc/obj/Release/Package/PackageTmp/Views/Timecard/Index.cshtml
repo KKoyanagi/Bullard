@@ -9,41 +9,17 @@
 }
 <script>
 function confirmSubmit() {
-    confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+    var r = confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+    if(r==true){
+        var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
+        action = action.replace("-1", id);
+        window.location.href = action;
+        alert("Submitted")
+    }
 }
 </script>
 
 <h2 align="center"><b>@name's Timecard Portal</b></h2>
-
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <nav>
-                <ul class="pagination pagination-lg pg-bluegrey">
-                    @*<li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>*@
-                    <li class="page-item active">
-                        <a class="page-link" href="#">
-                            @date
-                        </a>
-                    </li>
-                    @*<li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>*@
-                </ul>
-            </nav>
-        </div>
-        <div class="col"></div>
-    </div>
-</div>
 
 <div class="md-form">
 
@@ -73,16 +49,19 @@ function confirmSubmit() {
 <br />
 
 <div align="right">
-    <a class="btn btn-default" onclick="confirmSubmit()" href="javascript:submit(@Model.Timesheet.Timesheet_Id)">Submit</a>
+    <a class="btn btn-default" href="javascript:submit(@Model.Timesheet.Timesheet_Id)" >Submit</a>
 </div>
 
 
 <script type="text/javascript">
     function submit(id) {
-        var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
-        action = action.replace("-1", id);
-        window.location.href = action;
-        alert("Submitted")
+       var r = confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+        if(r==true){
+            var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
+            action = action.replace("-1", id);
+            window.location.href = action;
+            alert("Submitted")
+        }
     }
     function changeWeek() {
         var week = document.getElementById('Week_Id').value;
