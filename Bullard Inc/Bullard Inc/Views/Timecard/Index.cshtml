@@ -9,7 +9,13 @@
 }
 <script>
 function confirmSubmit() {
-    confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+    var r = confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+    if(r==true){
+        var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
+        action = action.replace("-1", id);
+        window.location.href = action;
+        alert("Submitted")
+    }
 }
 </script>
 
@@ -73,16 +79,19 @@ function confirmSubmit() {
 <br />
 
 <div align="right">
-    <a class="btn btn-default" onclick="confirmSubmit()" href="javascript:submit(@Model.Timesheet.Timesheet_Id)">Submit</a>
+    <a class="btn btn-default" href="javascript:submit(@Model.Timesheet.Timesheet_Id)" >Submit</a>
 </div>
 
 
 <script type="text/javascript">
     function submit(id) {
-        var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
-        action = action.replace("-1", id);
-        window.location.href = action;
-        alert("Submitted")
+       var r = confirm("Are you sure you want to Submit? Once submitted you will no longer be able to edit this time card.");
+        if(r==true){
+            var action = '@Url.Action("Submit", "Timecard", new { id = "-1"})';
+            action = action.replace("-1", id);
+            window.location.href = action;
+            alert("Submitted")
+        }
     }
     function changeWeek() {
         var week = document.getElementById('Week_Id').value;
