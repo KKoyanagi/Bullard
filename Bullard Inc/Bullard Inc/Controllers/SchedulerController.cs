@@ -87,7 +87,7 @@ namespace Bullard_Inc.Controllers
             Debug.WriteLine(responseMessage.Content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("/jobslist/");
+                return RedirectToAction("/joblist/");
             }
             return RedirectToAction("Error" + response);
         }
