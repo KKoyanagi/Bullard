@@ -39,8 +39,8 @@ namespace Timecard.Controllers
             TimecardIndexView tsView = new TimecardIndexView();
 
 
-            string username = User.Identity.Name;
-            //string username = "donemurch@gmail.com";
+            //string username = User.Identity.Name;
+            string username = "justinmtran@gmail.com";
 
             string name = username.Split('@')[0];
             responseMessage = await client.GetAsync("employees/name/" + name.Trim());
@@ -157,10 +157,12 @@ namespace Timecard.Controllers
             ViewData["dayString"] = dayToString(day_id);
             ViewData["weekDate"] = currentWeekDate();
             ViewData["status"] = getState();
+            ViewData["ts_id"] = ts_id;
 
             // custom url
             string empJobTimesheetURL = url + "employeedays/";
             string empJobURL = url + "jobs/employeeday/";
+
             EmployeeDay empDayTest = new EmployeeDay();
             EmployeeDay NewEmployeeDay;
             empDayTest.Day_Id = day_id;
@@ -173,7 +175,6 @@ namespace Timecard.Controllers
 
                 NewEmployeeDay = JsonConvert.DeserializeObject<EmployeeDay>(responseData);
                 ViewData["EmpDayId"] = NewEmployeeDay.EmployeeDay_Id;
-
             }
             else
             {
@@ -193,8 +194,8 @@ namespace Timecard.Controllers
         }
 
         // ADD JOB ACTION
-        //[Route("timecard/empjobview/{empdayid}/{day_id}/empjobadd")]
-        public async Task<ActionResult> EmpJobAdd(int empdayid, int day_id)
+        //[Route("timecard/empjobview/{ts_id}/{day_id}/{empdayid}/empjobadd")]
+        public async Task<ActionResult> EmpJobAdd(int ts_id, int day_id, int empdayid)
         {
             // pass in day information into the view
             ViewData["day_id"] = day_id;
@@ -202,6 +203,7 @@ namespace Timecard.Controllers
             ViewData["empDayId"] = empdayid;
             ViewData["weekDate"] = currentWeekDate();
             ViewData["status"] = getState();
+            ViewData["ts_id"] = ts_id;
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
@@ -272,8 +274,8 @@ namespace Timecard.Controllers
    
 
         // EDIT JOB ACTION
-       //[Route("timecard/empjobview/{empdayid}/{day_id}/empjobedit")]
-        public async Task<ActionResult> EmpJobEdit(int empdayid, int day_id, int? id)
+       [Route("timecard/empjobview/{ts_id}/{day_id}/{empdayid}/empjobedit")]
+        public async Task<ActionResult> EmpJobEdit(int ts_id, int day_id, int empdayid, int? id)
         {
             // pass in day information into the view
             ViewData["day_id"] = day_id;
@@ -281,6 +283,7 @@ namespace Timecard.Controllers
             ViewData["weekDate"] = currentWeekDate();
             ViewData["empDayId"] = empdayid;
             ViewData["status"] = getState();
+            ViewData["ts_id"] = ts_id;
 
             // values for view model: Timecard_EmpJobAddEdit
             ActivityCode[] activityCodes;
