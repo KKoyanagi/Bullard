@@ -26,7 +26,13 @@ namespace API.Models
                 return context.ActivityCodes.ToList();
             }
         }
-
+        public ActivityCode GetActivityCode(int activityCode_id)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return context.ActivityCodes.Find(activityCode_id);
+            }
+        }
         public ActivityCode InsertActivityCode(ActivityCode activityCode)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())

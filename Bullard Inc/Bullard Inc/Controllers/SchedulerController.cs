@@ -41,7 +41,7 @@ namespace Bullard_Inc.Controllers
         {
             return View();
         }
-
+        [Route("scheduler/joblist")]
         public async Task<ActionResult> JobList()
         {
             // values for view model: Timecard_EmpJobAddEdit
@@ -71,11 +71,20 @@ namespace Bullard_Inc.Controllers
             return RedirectToAction("Error " + response);
         }
 
+        [Route("scheduler/addjob")]
         public ActionResult AddJob()
         {
             return View();
         }
 
+        [Route("scheduler/deletejob/{id}")]
+        public async Task<ActionResult> DeleteJob(int id)
+        {
+            string jobAddURL = url + "activitycodes/" + id ;
+
+            HttpResponseMessage responseMessage = await client.DeleteAsync(jobAddURL);
+            return RedirectToAction("JobList", "Scheduler");
+        }
         [HttpPost]
         public async Task<ActionResult> JobSubmit(ActivityCode activityCode)
         {
@@ -92,9 +101,38 @@ namespace Bullard_Inc.Controllers
             return RedirectToAction("Error" + response);
         }
 
-        public ActionResult EditJob()
+        [HttpPost]
+        public async Task<ActionResult> JobUpdate(ActivityCode activityCode)
         {
-            return View(); 
+            // custom url
+            string jobAddURL = url + "activitycodes";
+
+            HttpResponseMessage responseMessage = await client.PutAsJsonAsync(jobAddURL, activityCode);
+            System.Net.HttpStatusCode response = responseMessage.StatusCode;
+            Debug.WriteLine(responseMessage.Content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("/joblist/");
+            }
+            return RedirectToAction("Error" + response);
+        }
+
+        [Route("scheduler/editjob/{id}")]
+        public async Task<ActionResult> EditJob(int id)
+        {
+            string jobEditURL = url + "activitycodes/" + id;
+
+            ActivityCode job;
+
+            HttpResponseMessage response = await client.GetAsync(jobEditURL);
+            var responseData = response.Content.ReadAsStringAsync().Result;
+            if (response.IsSuccessStatusCode)
+            {
+                job = JsonConvert.DeserializeObject<ActivityCode>(responseData);
+                return View(job);
+            }
+            // if api call fails, return error
+            return RedirectToAction("Error " + response);
         }
 
         public ActionResult SignOut()
@@ -225,7 +263,8 @@ namespace Bullard_Inc.Controllers
                 //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
                 //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "export.csv" };
                 //return result;
-                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", "Export.csv");
+                string fileName = "Week_" + week + "_Timesheet";
+                return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", fileName);
             }
             else
             {
@@ -243,13 +282,14 @@ namespace Bullard_Inc.Controllers
                 csv.Configuration.SkipEmptyRecords = true;
                 csv.Configuration.WillThrowOnMissingField = false;
                 //csv.Configuration.Delimiter = delimiter;
-                foreach(ApprovedView view in views)
+
+                csv.WriteField("First Name");
+                csv.WriteField("Last Name");
+                csv.WriteField("Timesheet Id");
+                csv.WriteField("Date Submitted");
+                csv.NextRecord();
+                foreach (ApprovedView view in views)
                 {
-                    csv.WriteField("First Name");
-                    csv.WriteField("Last Name");
-                    csv.WriteField("Timesheet Id");
-                    csv.WriteField("Date Submitted");
-                    csv.NextRecord();
                     csv.WriteField(view.FirstName);
                     csv.WriteField(view.LastName);
                     csv.WriteField(view.Timesheet_Id);
@@ -259,7 +299,6 @@ namespace Bullard_Inc.Controllers
                     {
                         csv.WriteField("");
                         csv.WriteField("Day");
-                        
                         csv.WriteField("Project Id");
                         csv.WriteField("Hours");
                         csv.WriteField("Mileage");
@@ -292,8 +331,13 @@ namespace Bullard_Inc.Controllers
             HttpResponseMessage responseMessage = await client.GetAsync("timesheets/approve/"+ id.ToString());
             return await GetPending(week);
         }
+        public async Task<ActionResult> UnSubmit(int id, int week)
+        {
 
-        
+            HttpResponseMessage responseMessage = await client.GetAsync("timesheets/unsubmit/" + id.ToString());
+            return await GetPending(week);
+        }
+
         public async Task<ActionResult> UnApprove(int id, int week)
         {
 

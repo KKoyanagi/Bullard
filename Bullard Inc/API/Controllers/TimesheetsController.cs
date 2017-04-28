@@ -119,7 +119,7 @@ namespace API.Controllers
         {
             try
             {
-                return timesheetRepository.GetTimesheetsByWeek(Int32.Parse(id));
+                return timesheetRepository.GetTimesheetsByEmp(Int32.Parse(id));
             }
             catch
             {

@@ -11,9 +11,14 @@
     string dayString = (string) ViewData["dayString"];
     int empDayId = (int)ViewData["empDayId"];
 }
+<script type="text/javascript">
+    function ClearFields() {
 
+        onclick = "this.value=''";
+
+    }
+</script>
 <h2 align="center"><b>TIMECARD</b></h2>
-
 <div class="container">
     <div class="row">
         <div class="col"></div>
@@ -49,7 +54,7 @@
 <button class="btn btn-default btn-lg btn-block">@dayString</button>
 <br />
 
-<form action="EmpJobUpdate" method="post">
+<form action="@Url.Action("EmpJobUpdate","Timecard", new { day_id = day_id })" method="post">
 
     <div class="md-form">
         <input value=@Model.Job.Job_Id type="hidden" id="Job_Id" class="form-control" name="Job_Id">
@@ -100,20 +105,20 @@
     </div>
 
     <div class="md-form">
-        <input value=@Model.Job.Hours type="text" id="Hours" class="form-control" name="Hours">
+        <input value=@Model.Job.Hours type="text" id="Hours" placeholder="0" class="form-control" name="Hours">
         <label class="active" for="form6">Hours</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.Job.Mileage type="text" id="Mileage" class="form-control" name="Mileage">
+        <input value=@Model.Job.Mileage type="text" id="Mileage" onclick="ClearFields();" class="form-control" name="Mileage">
         <label class="active" for="form6">Miles</label>
     </div>
 
     <div class="md-form">
-        <input value=@Model.Job.Lunch type="text" id="Lunch" class="form-control" name="Lunch">
+        <input value=@Model.Job.Lunch type="text" id="Lunch" onclick="ClearFields();" class="form-control" name="Lunch">
         <label class="active" for="form6">Lunch</label>
     </div>
-        
+
     <div>
         <div class="row">
             <div class="col">
@@ -123,7 +128,7 @@
             </div>
             <div class="col">
                 <div align="right">
-                    <a class="btn btn-default" href="/Timecard/empjobview/@day_id">CANCEL</a>
+                    <a class="btn btn-default" href="/Timecard/empjobview/@empDayId/@day_id">CANCEL</a>
                 </div>
             </div>
         </div>

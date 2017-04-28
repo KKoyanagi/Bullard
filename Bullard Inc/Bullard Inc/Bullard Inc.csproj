@@ -423,6 +423,7 @@
     <Content Include="Views\Scheduler\SignOut.cshtml" />
     <Content Include="Views\Scheduler\AddJob.cshtml" />
     <Content Include="Views\Scheduler\JobList.cshtml" />
+    <Content Include="Views\Scheduler\EditJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

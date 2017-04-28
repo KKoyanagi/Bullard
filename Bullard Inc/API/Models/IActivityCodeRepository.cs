@@ -8,8 +8,10 @@ namespace API.Models
     public interface IActivityCodeRepository
     {
         IEnumerable<ActivityCode> GetActivityCodes();
+        ActivityCode GetActivityCode(int activityCode_id);
         ActivityCode InsertActivityCode(ActivityCode activityCode);
         ActivityCode RemoveActivityCode(int activityCode_id);
         ActivityCode UpdateActivityCode(ActivityCode activityCode);
+        
     }
 }

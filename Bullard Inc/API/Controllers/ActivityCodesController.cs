@@ -25,7 +25,14 @@ namespace API.Controllers
              return activityCodeRepository.GetActivityCodes();
           }
 
+        [HttpGet("{id}", Name = "GetCodeById")]
+        public ActivityCode GetActivityCode(int id)
+        {
+            return activityCodeRepository.GetActivityCode(id);
+        }
+
         [HttpPost]
+        
         public IActionResult Create([FromBody] ActivityCode activityCode)
         {
             try
@@ -63,6 +70,25 @@ namespace API.Controllers
                 }
 
                 return new ObjectResult(ac);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            try
+            {
+                var job = activityCodeRepository.GetActivityCode(Int32.Parse(id));
+                if (job == null)
+                {
+                    return NotFound();
+                }
+
+                activityCodeRepository.RemoveActivityCode(Int32.Parse(id));
+                return new NoContentResult();
             }
             catch
             {
